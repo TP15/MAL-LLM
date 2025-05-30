@@ -1,0 +1,40 @@
+
+
+#id: "org.mal-lang.examplelang"
+#version: "1.0.0"
+
+category Infrastructure {
+  asset Gateway {
+    | link
+      -> machine.entry
+    # SegmentInternalNetworks
+  }
+
+  asset Machine {
+    | login
+      -> entry
+    # MFA
+    | entry
+      -> gateway.link
+  }
+
+  asset Operator {
+    | launchPhishing
+      -> phishingHit
+    # PhishingAwareness
+    | phishingHit [Exponential(0.1)]
+      -> credential.extract
+  }
+
+  asset Credential {
+    | extract
+      -> machine.login
+    # RotateCredential
+  }
+}
+associations {
+  Gateway [gateway] * <-- LinkAccess --> * [machine] Machine
+  Machine [machine] 1 <-- AuthData --> * [credential] Credential
+  Operator [operator] 1 <-- AuthData --> * [credential] Credential
+}
+

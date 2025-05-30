@@ -1,0 +1,417 @@
+#id: "org.mal-lang.customlang"
+#version: "1.0.0"
+
+category Infrastructure {
+  asset Operator {
+    | launchPhishing -> phishingHit
+    | IsVulnerableToPhishing -> phishingHit
+    & phishingHit [Exponential(0.1)] -> usesCredentials.extract
+    # PhishingAwarenessTrainingProvided -> IsVulnerableToPhishing
+  }
+  asset Credentials {
+    | extract -> compromiseAndUse
+    | AreStaleCredentialsUsable -> compromiseAndUse
+    & compromiseAndUse -> authenticatorsForMachines.login
+    # AreCredentialsRotated -> AreStaleCredentialsUsable
+  }
+  asset Machine {
+    | login -> gainEntry
+    | MFAIsCompromisedOrAbsent -> gainEntry
+    & gainEntry -> attemptLateralMovement
+    | attemptLateralMovement -> performLateralLink
+    | MachineAllowsUnrestrictedLinks -> performLateralLink
+    & performLateralLink -> connectedGateways.acceptInboundLink
+    # IsMFAActive -> MFAIsCompromisedOrAbsent
+    # IsNetworkSegmentedForMachine -> MachineAllowsUnrestrictedLinks
+  }
+  asset Gateway {
+    | acceptInboundLink -> forwardLinkToMachine
+    | GatewayAllowsUnrestrictedForwarding -> forwardLinkToMachine
+    & forwardLinkToMachine -> accessibleMachines.login
+    # IsGatewayNetworkSegmented -> GatewayAllowsUnrestrictedForwarding
+  }
+}
+
+associations {
+  Gateway [accessibleMachines] * <-- LinkAccess --> * [connectedGateways] Machine
+  Operator [usesCredentials] * <-- OperatorCredentialShare --> * [usedByOperators] Credentials
+  Machine [requiresCredentials] * <-- MachineCredentialAuth --> * [authenticatorsForMachines] Credentials
+}
+
+{
+  "meta": {
+    "language_version": "1.0.0",
+    "language_name": "org.mal-lang.customlang",
+    "description": "A MAL language for modeling infrastructure threats based on IR-2025-0427, including phishing, credential theft, and lateral movement."
+  },
+  "category_definitions": [
+    {
+      "category_name": "Infrastructure",
+      "description": "Models interconnected infrastructure components and related threats as described in IR-2025-0427."
+    }
+  ],
+  "asset_definitions": [
+    {
+      "asset_name": "Operator",
+      "is_abstract": false,
+      "extends": null,
+      "category": "Infrastructure",
+      "attack_steps": [
+        {
+          "attackstep_name": "launchPhishing",
+          "attackstep_type": "|",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "phishingHit",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "IsVulnerableToPhishing",
+          "attackstep_type": "E",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "phishingHit",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "phishingHit",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.1,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "extract",
+              "target_asset_role": "usesCredentials"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "PhishingAwarenessTrainingProvided",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "IsVulnerableToPhishing",
+              "target_asset_role": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_name": "Credentials",
+      "is_abstract": false,
+      "extends": null,
+      "category": "Infrastructure",
+      "attack_steps": [
+        {
+          "attackstep_name": "extract",
+          "attackstep_type": "|",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "compromiseAndUse",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "AreStaleCredentialsUsable",
+          "attackstep_type": "E",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "compromiseAndUse",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "compromiseAndUse",
+          "attackstep_type": "&",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "login",
+              "target_asset_role": "authenticatorsForMachines"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "AreCredentialsRotated",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "AreStaleCredentialsUsable",
+              "target_asset_role": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_name": "Machine",
+      "is_abstract": false,
+      "extends": null,
+      "category": "Infrastructure",
+      "attack_steps": [
+        {
+          "attackstep_name": "login",
+          "attackstep_type": "|",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "gainEntry",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "MFAIsCompromisedOrAbsent",
+          "attackstep_type": "E",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "gainEntry",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "gainEntry",
+          "attackstep_type": "&",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "attemptLateralMovement",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "attemptLateralMovement",
+          "attackstep_type": "|",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "performLateralLink",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "MachineAllowsUnrestrictedLinks",
+          "attackstep_type": "E",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "performLateralLink",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "performLateralLink",
+          "attackstep_type": "&",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "acceptInboundLink",
+              "target_asset_role": "connectedGateways"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "IsMFAActive",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "MFAIsCompromisedOrAbsent",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "defense_name": "IsNetworkSegmentedForMachine",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "MachineAllowsUnrestrictedLinks",
+              "target_asset_role": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_name": "Gateway",
+      "is_abstract": false,
+      "extends": null,
+      "category": "Infrastructure",
+      "attack_steps": [
+        {
+          "attackstep_name": "acceptInboundLink",
+          "attackstep_type": "|",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "forwardLinkToMachine",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "GatewayAllowsUnrestrictedForwarding",
+          "attackstep_type": "E",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "forwardLinkToMachine",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "forwardLinkToMachine",
+          "attackstep_type": "&",
+          "ttc_distribution": null,
+          "reaches": [
+            {
+              "target_attack_step_name": "login",
+              "target_asset_role": "accessibleMachines"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "IsGatewayNetworkSegmented",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "GatewayAllowsUnrestrictedForwarding",
+              "target_asset_role": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "association_definitions": [
+    {
+      "association_name": "LinkAccess",
+      "end1_asset_type": "Gateway",
+      "end1_role_name": "accessibleMachines",
+      "end1_multiplicity": "*",
+      "end2_asset_type": "Machine",
+      "end2_role_name": "connectedGateways",
+      "end2_multiplicity": "*"
+    },
+    {
+      "association_name": "OperatorCredentialShare",
+      "end1_asset_type": "Operator",
+      "end1_role_name": "usesCredentials",
+      "end1_multiplicity": "*",
+      "end2_asset_type": "Credentials",
+      "end2_role_name": "usedByOperators",
+      "end2_multiplicity": "*"
+    },
+    {
+      "association_name": "MachineCredentialAuth",
+      "end1_asset_type": "Machine",
+      "end1_role_name": "requiresCredentials",
+      "end1_multiplicity": "*",
+      "end2_asset_type": "Credentials",
+      "end2_role_name": "authenticatorsForMachines",
+      "end2_multiplicity": "*"
+    }
+  ]
+}
+
+
+Generate a MAL (Meta Attack Language) model definition for the following report.
+            🛡️ Cybersecurity Incident Report
+Incident ID: IR-2025-0427
+Generated on: 2025-05-15
+Reported by: Security Operations Center (SOC)
+System Profile: org.mal-lang.customlang v1.0.0
+Category: Infrastructure Threat Modeling
+
+🧩 System Overview
+The affected infrastructure consists of interconnected components modeled in the Infrastructure category:
+
+Gateways: External-facing components that regulate entry to internal machines.
+
+Machines: Compute units capable of authentication and connection activities.
+
+Operators: Human users capable of launching social engineering attacks.
+
+Credentials: Authentication secrets shared between operators and machines.
+
+🧠 Threat Scenario Summary
+An external Operator executed a successful phishing campaign against internal personnel, resulting in the extraction of Credentials. The stolen credentials were then used to gain unauthorized login access to several Machines. From there, lateral movement was observed via internal linking mechanisms.
+
+⚠️ Attack Path Breakdown
+Phishing Launch
+
+The attacker (Operator) initiated launchPhishing, resulting in phishingHit.
+
+Based on simulation parameters:
+
+phishingHit has a 10% exponential probability per attempt.
+
+Credential Compromise
+
+The phishingHit led to successful extract of Credentials.
+
+Machine Access
+
+The attacker used the compromised Credentials to trigger login on a Machine.
+
+Each Machine uses login to allow entry.
+
+Lateral Movement
+
+With entry established, the attacker used link capability to move between Machines through the internal network (Gateway → Machine).
+
+🔍 Associations Observed
+Gateways connected to multiple Machines via LinkAccess.
+
+Machines and Operators shared Credentials via AuthData relationships.
+
+No anomalies were detected in the Gateway itself, suggesting direct compromise was avoided.
+
+🚨 Risk Assessment
+Asset	Risk Level	Exploited Technique	Observed Impact
+Operator	Medium	Phishing (Social Engineering)	Credential theft
+Credentials	High	Unauthorized extraction	Privilege escalation
+Machine	High	Login with stolen credentials	Data access & persistence
+Gateway	Low	No direct access observed	Used for lateral movement
+
+🛠️ Mitigation Recommendations
+Enforce MFA for all Machine login attempts.
+
+Conduct phishing awareness training for all Operators.
+
+Rotate credentials and monitor for abnormal link behavior.
+
+Segment internal networks to restrict Gateway-based lateral movement.

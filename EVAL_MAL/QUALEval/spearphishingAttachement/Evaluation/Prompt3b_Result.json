@@ -1,0 +1,536 @@
+{
+  "matched_aspects": [
+    {
+      "reference_aspect_id": 0,
+      "generated_aspect_id": 2,
+      "match_reason": "Both represent category definitions for grouping person/identity-related assets.",
+      "confidence_score": 0.95
+    },
+    {
+      "reference_aspect_id": 1,
+      "generated_aspect_id": 3,
+      "match_reason": "Both define the core user/identity asset involved in the technique.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 2,
+      "generated_aspect_id": 18,
+      "match_reason": "The 'spearphishingAttachmentDownload' step in A corresponds to the user interaction with the attachment on the workstation in B, a key step after email receipt.",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 3,
+      "generated_aspect_id": 19,
+      "match_reason": "The 'userExecution' step in A directly corresponds to the 'executePayloadFromAttachment' step in B.",
+      "confidence_score": 0.95
+    },
+    {
+      "reference_aspect_id": 3,
+      "generated_aspect_id": 20,
+      "match_reason": "User execution often leads to gaining privileges, which is explicitly modeled as a separate step in B following execution.",
+      "confidence_score": 0.85
+    },
+    {
+      "reference_aspect_id": 4,
+      "generated_aspect_id": 6,
+      "match_reason": "Both define security awareness training as a defense mechanism for users.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 5,
+      "generated_aspect_id": 13,
+      "match_reason": "Both represent category definitions for grouping software-related assets.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 8,
+      "generated_aspect_id": 12,
+      "match_reason": "Attachment reaching the browser (A) is semantically closest to the email/attachment being delivered to the user's mailbox (B).",
+      "confidence_score": 0.8
+    },
+     {
+      "reference_aspect_id": 8,
+      "generated_aspect_id": 54,
+      "match_reason": "The objective of the attachment reaching the browser (A) is covered by the email being delivered as an objective in B.",
+      "confidence_score": 0.8
+    },
+     {
+      "reference_aspect_id": 8,
+      "generated_aspect_id": 56,
+      "match_reason": "The objective of the attachment reaching the browser (A) is covered by the user receiving the email as an objective in B.",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 11,
+      "generated_aspect_id": 22,
+      "match_reason": "Antivirus protection (A) is semantically equivalent to active endpoint antivirus (B) as a defense.",
+      "confidence_score": 0.95
+    },
+    {
+      "reference_aspect_id": 11,
+      "generated_aspect_id": 23,
+      "match_reason": "Antivirus and application hardening (B) are both endpoint defenses preventing post-interaction malicious activity.",
+      "confidence_score": 0.85
+    },
+    {
+      "reference_aspect_id": 13,
+      "generated_aspect_id": 16,
+      "match_reason": "Hardware assets (A) are a type of system asset (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 14,
+      "generated_aspect_id": 17,
+      "match_reason": "A computer (A) is semantically equivalent to a workstation (B).",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 15,
+      "generated_aspect_id": 20,
+      "match_reason": "A computer becoming infected (A) includes gaining execution privileges (B).",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 15,
+      "generated_aspect_id": 21,
+      "match_reason": "A computer becoming infected (A) often involves establishing C2 (B).",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 15,
+      "generated_aspect_id": 30,
+      "match_reason": "A computer becoming infected (A) is confirmed by C2 connection being accepted (B).",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 18,
+      "generated_aspect_id": 26,
+      "match_reason": "Internal network intrusion prevention (A) includes server-side attachment scanning (B) as a network-level defense.",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 18,
+      "generated_aspect_id": 27,
+      "match_reason": "Internal network intrusion prevention (A) includes server-side anti-spoofing (B) as a network-level defense.",
+      "confidence_score": 0.8
+    },
+     {
+      "reference_aspect_id": 18,
+      "generated_aspect_id": 24,
+      "match_reason": "Internal network intrusion prevention (A) includes egress traffic filtering (B) as a network defense impacting internal systems.",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 19,
+      "generated_aspect_id": 28,
+      "match_reason": "An external network asset (A) is represented by the remote system acting as a C2 server (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 20,
+      "generated_aspect_id": 24,
+      "match_reason": "External network intrusion prevention (A) directly corresponds to egress traffic filtering preventing outbound C2 (B).",
+      "confidence_score": 0.9
+    },
+     {
+      "reference_aspect_id": 20,
+      "generated_aspect_id": 26,
+      "match_reason": "External network intrusion prevention (A) can include controls like attachment scanning (B) that protect against threats from external sources.",
+      "confidence_score": 0.7
+    },
+     {
+      "reference_aspect_id": 20,
+      "generated_aspect_id": 27,
+      "match_reason": "External network intrusion prevention (A) can include controls like anti-spoofing (B) that protect against threats from external sources.",
+      "confidence_score": 0.7
+    },
+    {
+      "reference_aspect_id": 21,
+      "generated_aspect_id": 31,
+      "match_reason": "Both define asset associations.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 22,
+      "generated_aspect_id": 32,
+      "match_reason": "Both model the relationship between a user/account and a computing device/workstation.",
+      "confidence_score": 0.95
+    },
+    {
+      "reference_aspect_id": 28,
+      "generated_aspect_id": 38,
+      "match_reason": "The download->execution flow (A) is part of the broader chain in B including deception leading to interaction/download.",
+      "confidence_score": 0.85
+    },
+     {
+      "reference_aspect_id": 28,
+      "generated_aspect_id": 39,
+      "match_reason": "The download->execution flow (A) is part of the broader chain in B including delivery/receipt leading to user action.",
+      "confidence_score": 0.85
+    },
+    {
+      "reference_aspect_id": 28,
+      "generated_aspect_id": 40,
+      "match_reason": "The download->execution flow (A) directly corresponds to the execute payload -> gain privileges flow (B).",
+      "confidence_score": 0.9
+    },
+     {
+      "reference_aspect_id": 29,
+      "generated_aspect_id": 40,
+      "match_reason": "The execution->infected flow (A) starts with execution leading to privilege gain (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 29,
+      "generated_aspect_id": 41,
+      "match_reason": "The execution->infected flow (A) continues with gaining privileges leading to establishing C2 (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 29,
+      "generated_aspect_id": 42,
+      "match_reason": "The execution->infected flow (A) culminates in establishing C2 which is accepted by the remote system (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 30,
+      "generated_aspect_id": 39,
+      "match_reason": "User training preventing download/execution (A) corresponds to security awareness training preventing deception (B), an earlier step in the user interaction chain.",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 32,
+      "generated_aspect_id": 38,
+      "match_reason": "Attachment reaching user/download flow (A) is similar to deception leading to interaction/download (B).",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 32,
+      "generated_aspect_id": 39,
+      "match_reason": "Attachment reaching user/download flow (A) is similar to delivery/receipt leading to user interaction (B).",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 34,
+      "generated_aspect_id": 43,
+      "match_reason": "Antivirus preventing attachment (A) is related to endpoint antivirus preventing execution (B) as both are endpoint security preventing post-delivery steps.",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 34,
+      "generated_aspect_id": 44,
+      "match_reason": "Antivirus preventing attachment (A) is related to application hardening preventing privilege gain (B) as both are endpoint security preventing post-delivery steps.",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 35,
+      "generated_aspect_id": 46,
+      "match_reason": "Internal network prevention (A) includes attachment scanning prevention (B) on the email server.",
+      "confidence_score": 0.85
+    },
+    {
+      "reference_aspect_id": 35,
+      "generated_aspect_id": 47,
+      "match_reason": "Internal network prevention (A) includes anti-spoofing prevention (B) on the email server.",
+      "confidence_score": 0.85
+    },
+    {
+      "reference_aspect_id": 35,
+      "generated_aspect_id": 45,
+      "match_reason": "Internal network prevention (A) includes egress filtering prevention (B) on the workstation.",
+      "confidence_score": 0.75
+    },
+    {
+      "reference_aspect_id": 36,
+      "generated_aspect_id": 45,
+      "match_reason": "External network prevention (A) directly corresponds to egress filtering preventing external C2 (B).",
+      "confidence_score": 0.9
+    },
+     {
+      "reference_aspect_id": 36,
+      "generated_aspect_id": 46,
+      "match_reason": "External network prevention (A) includes attachment scanning prevention (B) against external threats.",
+      "confidence_score": 0.7
+    },
+     {
+      "reference_aspect_id": 36,
+      "generated_aspect_id": 47,
+      "match_reason": "External network prevention (A) includes anti-spoofing prevention (B) against external threats.",
+      "confidence_score": 0.7
+    },
+    {
+      "reference_aspect_id": 37,
+      "generated_aspect_id": 51,
+      "match_reason": "Initiating the spearphishing attempt (A) includes crafting the malicious email (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 37,
+      "generated_aspect_id": 54,
+      "match_reason": "Initiating the spearphishing attempt (A) includes the email being delivered (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 37,
+      "generated_aspect_id": 55,
+      "match_reason": "Initiating the spearphishing attempt (A) includes ensuring the malicious attachment contains a viable payload (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 37,
+      "generated_aspect_id": 52,
+      "match_reason": "Initiating the spearphishing attempt (A) involves the attachment passing server scanning (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 37,
+      "generated_aspect_id": 53,
+      "match_reason": "Initiating the spearphishing attempt (A) involves the content passing spoofing checks (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 38,
+      "generated_aspect_id": 54,
+      "match_reason": "Attachment reaching browser objective (A) is part of the email delivery objective (B).",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 38,
+      "generated_aspect_id": 56,
+      "match_reason": "Attachment reaching browser objective (A) is part of the user receiving the email objective (B).",
+      "confidence_score": 0.85
+    },
+     {
+      "reference_aspect_id": 38,
+      "generated_aspect_id": 57,
+      "match_reason": "Attachment reaching browser objective (A) is related to the user being deceived objective (B), leading to interaction.",
+      "confidence_score": 0.8
+    },
+     {
+      "reference_aspect_id": 38,
+      "generated_aspect_id": 58,
+      "match_reason": "Attachment reaching browser objective (A) is related to the user interacting with the attachment objective (B).",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 39,
+      "generated_aspect_id": 58,
+      "match_reason": "User downloading the attachment objective (A) corresponds to the user interacting with the attachment objective (B).",
+      "confidence_score": 0.95
+    },
+    {
+      "reference_aspect_id": 40,
+      "generated_aspect_id": 59,
+      "match_reason": "User executing malicious content objective (A) corresponds to executing the payload objective (B).",
+      "confidence_score": 0.95
+    },
+    {
+      "reference_aspect_id": 40,
+      "generated_aspect_id": 60,
+      "match_reason": "User executing malicious content objective (A) leads to gaining execution privileges objective (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 41,
+      "generated_aspect_id": 60,
+      "match_reason": "Computer compromised/infected objective (A) involves gaining execution privileges objective (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 41,
+      "generated_aspect_id": 61,
+      "match_reason": "Computer compromised/infected objective (A) involves establishing outbound C2 objective (B).",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 41,
+      "generated_aspect_id": 62,
+      "match_reason": "Computer compromised/infected objective (A) involves the remote system accepting inbound C2 objective (B).",
+      "confidence_score": 0.9
+    }
+  ],
+  "unmatched_aspects_list_a": [
+    {
+      "id": 6,
+      "aspect_description": "Asset definition for 'Browser' within the 'Software' category.",
+      "evidence_code": "asset Browser {"
+    },
+    {
+      "id": 7,
+      "aspect_description": "Attack step definition: Initial attempt to deliver a spearphishing attachment via a browser.",
+      "evidence_code": "| attemptSpearhishingAttachment"
+    },
+    {
+      "id": 9,
+      "aspect_description": "Defense definition: Restricting web-based content to prevent spearphishing attachments.",
+      "evidence_code": "# restrictWebBasedContent"
+    },
+    {
+      "id": 10,
+      "aspect_description": "Asset definition for 'OS' within the 'Software' category.",
+      "evidence_code": "asset OS { \n    # antivirus\n    user info: \"https://attack.mitre.org/mitigations/M1049/\"\n    -> browser1.spearphishingAttachment\n}"
+    },
+    {
+      "id": 12,
+      "aspect_description": "Annotation for the 'antivirus' defense, providing a link to MITRE ATT&CK mitigation M1049.",
+      "evidence_code": "user info: \"https://attack.mitre.org/mitigations/M1049/\""
+    },
+    {
+      "id": 16,
+      "aspect_description": "Category definition for grouping network-related assets.",
+      "evidence_code": "category Network {"
+    },
+    {
+      "id": 17,
+      "aspect_description": "Asset definition for 'InternalNetwork' within the 'Network' category.",
+      "evidence_code": "asset InternalNetwork {"
+    },
+    {
+      "id": 23,
+      "aspect_description": "Association: A User uses one or more Browsers.",
+      "evidence_code": "User [user] * <--Use--> * [browser] Browser"
+    },
+    {
+      "id": 24,
+      "aspect_description": "Association: A Browser runs on one or more Computers.",
+      "evidence_code": "Browser [computerBrowser] * <--Run--> 1..* [computer] Computer"
+    },
+    {
+      "id": 25,
+      "aspect_description": "Association: A Browser is associated with zero or more OS instances via the 'Software' relationship.",
+      "evidence_code": "Browser [browser1] * <--Software--> * [os] OS"
+    },
+    {
+      "id": 26,
+      "aspect_description": "Association: A Browser connects to zero or more Internal Networks via the 'Connect' relationship.",
+      "evidence_code": "Browser [browser6] * <--Connect--> * [internalNetwork1] InternalNetwork"
+    },
+    {
+      "id": 27,
+      "aspect_description": "Association: A Browser connects to zero or more External Networks via the 'Connect' relationship.",
+      "evidence_code": "Browser [browser7] * <--Connect--> * [externalNetwork1] ExternalNetwork"
+    },
+    {
+      "id": 31,
+      "aspect_description": "Logical connector/relationship: The 'attemptSpearhishingAttachment' attack step on Browser leads to the 'spearphishingAttachment' attack step on Browser.",
+      "evidence_code": "-> spearphishingAttachment"
+    },
+    {
+      "id": 33,
+      "aspect_description": "Logical connector/relationship: The 'restrictWebBasedContent' defense on Browser prevents the 'spearphishingAttachment' attack step on Browser.",
+      "evidence_code": "-> spearphishingAttachment"
+    }
+  ],
+  "unmatched_aspects_list_b": [
+    {
+      "id": 0,
+      "aspect_description": "Metadata: Defines the unique identifier for the MAL model.",
+      "evidence_code": "#id: \"com.example.spearphishing.attachment\""
+    },
+    {
+      "id": 1,
+      "aspect_description": "Metadata: Defines the version of the MAL model.",
+      "evidence_code": "#version: \"1.0.1\""
+    },
+    {
+      "id": 4,
+      "aspect_description": "Attack step definition: A user account receiving a spearphishing email (entry point). Includes a probability distribution for the next step.",
+      "evidence_code": "| receivesSpearphishingEmail [Bernoulli(0.95)] -> isDeceivedByEmailContent"
+    },
+    {
+      "id": 5,
+      "aspect_description": "Attack step definition: A user account being deceived by the email content (entry point). Includes a probability distribution for the next step.",
+      "evidence_code": "| isDeceivedByEmailContent [Bernoulli(0.4)] -> associatedWorkstation.userInteractsWithAttachment"
+    },
+    {
+      "id": 7,
+      "aspect_description": "Category definition for grouping data-related assets.",
+      "evidence_code": "category Data {"
+    },
+    {
+      "id": 8,
+      "aspect_description": "Asset definition for 'Email' within the 'Data' category.",
+      "evidence_code": "asset Email {"
+    },
+    {
+      "id": 9,
+      "aspect_description": "Attack step definition: The email is maliciously crafted (entry point).",
+      "evidence_code": "| isMaliciouslyCrafted"
+    },
+    {
+      "id": 10,
+      "aspect_description": "Attack step definition: The attachment within the email passes server-side scanning (entry point).",
+      "evidence_code": "| attachmentPassesToServerScanning"
+    },
+    {
+      "id": 11,
+      "aspect_description": "Attack step definition: The email content passes server-side anti-spoofing checks (entry point).",
+      "evidence_code": "| contentPassesToServerSpoofingChecks"
+    },
+    {
+      "id": 14,
+      "aspect_description": "Asset definition for 'MaliciousAttachment' within the 'Software' category.",
+      "evidence_code": "asset MaliciousAttachment {"
+    },
+    {
+      "id": 15,
+      "aspect_description": "Attack step definition: The malicious attachment contains a viable payload (entry point).",
+      "evidence_code": "| containsViablePayload"
+    },
+    {
+      "id": 19,
+      "aspect_description": "Attack step definition: The payload from the attachment is executed on the workstation (entry point). Includes a time distribution for the next step.",
+      "evidence_code": "| executePayloadFromAttachment [Exponential(1.0)] -> gainExecutionPrivileges"
+    },
+    {
+      "id": 20,
+      "aspect_description": "Attack step definition: Execution privileges are gained on the workstation (entry point). Includes a time distribution for the next step.",
+      "evidence_code": "| gainExecutionPrivileges [LogNormal(2.0,1.0)] -> establishOutboundC2"
+    },
+    {
+      "id": 21,
+      "aspect_description": "Attack step definition: An outbound command and control (C2) connection is established from the workstation (entry point). Includes a time distribution for the next step.",
+      "evidence_code": "| establishOutboundC2 [Exponential(0.5)] -> c2ServerConnection.acceptInboundC2"
+    },
+    {
+      "id": 25,
+      "aspect_description": "Asset definition for 'EmailServer' within the 'Systems' category.",
+      "evidence_code": "asset EmailServer {"
+    },
+    {
+      "id": 29,
+      "aspect_description": "Attack step definition: The email server receives an inbound email (entry point).",
+      "evidence_code": "| receiveInboundEmail"
+    },
+     {
+      "id": 30,
+      "aspect_description": "Attack step definition: The remote system (C2 server) accepts an inbound C2 connection (entry point/objective).",
+      "evidence_code": "| acceptInboundC2"
+    },
+    {
+      "id": 33,
+      "aspect_description": "Association: One or more Emails are linked to zero or more UserAccounts (recipients).",
+      "evidence_code": "Email [receivedEmails] 1..* <-- EmailRecipients --> * [recipient] UserAccount"
+    },
+    {
+      "id": 34,
+      "aspect_description": "Association: Zero or one Email contains exactly one MaliciousAttachment.",
+      "evidence_code": "Email [emailContainer] 0..1 <-- EmailAttachmentContainment --> 1 [embeddedAttachment] MaliciousAttachment"
+    },
+    {
+      "id": 35,
+      "aspect_description": "Association: Zero or more EmailServers handle exactly one Email.",
+      "evidence_code": "EmailServer [handlingServer] * <-- EmailServerHandling --> 1 [processedEmails] Email"
+    },
+    {
+      "id": 36,
+      "aspect_description": "Association: Zero or more Workstations are linked to zero or more RemoteSystems via a C2 connection link.",
+      "evidence_code": "Workstation [c2ClientOrigin] * <-- WorkstationC2Link --> * [c2ServerConnection] RemoteSystem"
+    },
+    {
+      "id": 37,
+      "aspect_description": "Logical connector/relationship: The 'receivesSpearphishingEmail' step on UserAccount leads to the 'isDeceivedByEmailContent' step on UserAccount with a Bernoulli probability of 0.95.",
+      "evidence_code": "-> isDeceivedByEmailContent"
+    }
+  ]
+}

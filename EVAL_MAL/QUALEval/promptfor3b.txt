@@ -1,0 +1,42 @@
+You are an expert in Meta Attack Language (MAL) and the MITRE ATT&CK framework. Your task is to compare two sets of aspects related to the MITRE ATT&CK technique [MITRE_TECHNIQUE_ID_AND_NAME].
+
+Each set contains aspects modeled in MAL and provided as JSON objects. The comparison involves identifying semantic matches between aspects from the reference set (List A) and the generated set (List B).
+
+Matching Criteria:
+An aspect from List A and an aspect from List B should be considered a match if they describe the same semantic concept or modeling intent in the context of the target MITRE technique. Examples of matching pairs include:
+
+Aspects describing the compromise of a similar asset type for a similar goal.
+
+Aspects representing the same attack phase or step, even if phrased differently.
+
+Input Format:
+Each aspect is a JSON object containing:
+
+id: A unique identifier for the aspect.
+
+aspect_description: A textual description of the aspect.
+
+evidence_code: A code indicating the strength or nature of the evidence.
+
+You will be given two JSON arrays:
+
+List A (Reference MAL Aspects)
+
+[REFERENCE_MAL_ASPECTS_JSON_HERE]
+List B (Generated MAL Aspects)
+
+[GENERATED_MAL_ASPECTS_JSON_HERE]
+Output Instructions:
+Return a structured comparison in JSON format where each matched pair includes:
+
+reference_aspect_id
+
+generated_aspect_id
+
+match_reason: A brief explanation of why they were matched.
+
+Also, include:
+
+A list of unmatched aspects from each list.
+
+A confidence score (0–1) for each match, representing how certain you are in the match.

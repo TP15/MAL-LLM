@@ -1,0 +1,908 @@
+#id: "mitre.attack.ics.supplychain.t0862"
+#version: "1.1.0"
+
+category SupplyChainInfrastructure {
+  asset VendorWebsite {
+    & compromise [Exponential(0.01)]
+    & hostMaliciousSoftware [Exponential(0.2)] -> hostedSoftware.bePlacedOnCompromisedHost
+    # WebsiteHardeningAndMonitoring -> compromise
+  }
+  asset DevelopmentEnvironment {
+    & compromise [Exponential(0.005)]
+    & injectMalwareInSoftwareBuild [Exponential(0.1)] -> developedSoftware.beTrojanized
+    & injectMalwareInFirmwareBuild [Exponential(0.1)] -> developedFirmware.firmwareCompromised
+    # SecureDevelopmentLifecycle -> compromise
+  }
+  asset DistributionMechanism {
+    & compromise [Exponential(0.03)]
+    & substituteWithMaliciousSoftware [Exponential(0.15)] -> distributedSoftware.bePlacedOnCompromisedHost
+    & substituteWithCompromisedHardware [Exponential(0.15)] -> distributedHardware.beSubstitutedInSupplyChain
+    # DistributionIntegrityControls -> compromise
+  }
+}
+
+category CompromisableProducts {
+  asset SoftwareProduct {
+    & beTrojanized [Exponential(0.05)] -> targetSystems.receiveTrojanizedSoftware
+    & bePlacedOnCompromisedHost [Exponential(0.1)] -> targetSystems.receiveTrojanizedSoftware
+    # CodeSigningAndVerificationChain
+  }
+  asset HardwareProduct {
+    & beCounterfeit [Exponential(0.02)] -> targetSystems.receiveCompromisedHardware
+    & firmwareCompromised [Exponential(0.05)] -> targetSystems.receiveCompromisedHardware
+    & beSubstitutedInSupplyChain [Exponential(0.1)] -> targetSystems.receiveCompromisedHardware
+    # HardwareAuthenticityChecks
+  }
+}
+
+category TargetICSAssets {
+  abstract asset TargetSystem {
+    & SusceptibleToSupplyChainIntroduction
+    & InstallationPossibleDueToLaxChecks
+    | receiveTrojanizedSoftware [Exponential(0.8)]
+    | receiveCompromisedHardware [Exponential(0.8)]
+    & installTrojanizedSoftware [Exponential(0.5)] -> executeSoftwarePayload
+    & activateCompromisedHardware [Exponential(0.5)] -> executeHardwarePayload
+    & executeSoftwarePayload [Exponential(0.1)] -> achieveSystemImpactViaSoftware
+    & executeHardwarePayload [Exponential(0.1)] -> achieveSystemImpactViaHardware
+    & achieveSystemImpactViaSoftware [Exponential(0.02)]
+    & achieveSystemImpactViaHardware [Exponential(0.02)]
+    # SupplyChainRiskManagementProgram -> SusceptibleToSupplyChainIntroduction
+    # ProductIntegrityVerification -> InstallationPossibleDueToLaxChecks
+    # SoftwareUpdateAndPatchManagement
+    # VulnerabilityScanningAndAuditing
+  }
+  asset ApplicationServer extends TargetSystem {
+  }
+  asset ControlServer extends TargetSystem {
+  }
+  asset DataGateway extends TargetSystem {
+  }
+  asset DataHistorian extends TargetSystem {
+  }
+  asset FieldIO extends TargetSystem {
+  }
+  asset HMI extends TargetSystem {
+  }
+  asset IED extends TargetSystem {
+  }
+  asset JumpHost extends TargetSystem {
+  }
+  asset PLC extends TargetSystem {
+  }
+  asset RTU extends TargetSystem {
+  }
+  asset SafetyController extends TargetSystem {
+  }
+  asset VPNServer extends TargetSystem {
+  }
+  asset Workstation extends TargetSystem {
+  }
+}
+
+associations {
+  VendorWebsite [hostingSite] 1 <-- HostsSoftware --> * [hostedSoftware] SoftwareProduct
+  DevelopmentEnvironment [developerEnvironment] 1 <-- DevelopsSoftware --> * [developedSoftware] SoftwareProduct
+  DevelopmentEnvironment [firmwareDeveloperEnvironment] 1 <-- DevelopsFirmware --> * [developedFirmware] HardwareProduct
+  DistributionMechanism [softwareDistributor] 1 <-- DistributesSoftware --> * [distributedSoftware] SoftwareProduct
+  DistributionMechanism [hardwareDistributor] 1 <-- DistributesHardware --> * [distributedHardware] HardwareProduct
+  SoftwareProduct [usedSoftware] * <-- SoftwareUsage --> * [targetSystems] TargetSystem
+  HardwareProduct [usedHardware] * <-- HardwareUsage --> * [targetSystems] TargetSystem
+}
+
+
+{
+  "meta": {
+    "language_version": "1.1.0",
+    "language_name": "mitre.attack.ics.supplychain.t0862",
+    "description": "A MAL language model for MITRE ATT&CK ICS Technique T0862: Supply Chain Compromise. This model describes how adversaries may manipulate products or their delivery mechanisms to gain access to target environments."
+  },
+  "category_definitions": [
+    {
+      "category_name": "SupplyChainInfrastructure",
+      "description": "Assets that form part of the product supply chain, such as vendor sites, development environments, and distribution mechanisms."
+    },
+    {
+      "category_name": "CompromisableProducts",
+      "description": "Software or hardware products that can be compromised and subsequently used in a supply chain attack."
+    },
+    {
+      "category_name": "TargetICSAssets",
+      "description": "Operational Technology and Industrial Control System assets that are the ultimate targets of the supply chain compromise, including workstations, servers, and various control devices."
+    }
+  ],
+  "asset_definitions": [
+    {
+      "asset_name": "VendorWebsite",
+      "is_abstract": false,
+      "extends": null,
+      "category": "SupplyChainInfrastructure",
+      "attack_steps": [
+        {
+          "attackstep_name": "compromise",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.01,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": []
+        },
+        {
+          "attackstep_name": "hostMaliciousSoftware",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.2,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "bePlacedOnCompromisedHost",
+              "target_asset_role": "hostedSoftware"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "WebsiteHardeningAndMonitoring",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "compromise",
+              "target_asset_role": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_name": "DevelopmentEnvironment",
+      "is_abstract": false,
+      "extends": null,
+      "category": "SupplyChainInfrastructure",
+      "attack_steps": [
+        {
+          "attackstep_name": "compromise",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.005,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": []
+        },
+        {
+          "attackstep_name": "injectMalwareInSoftwareBuild",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.1,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "beTrojanized",
+              "target_asset_role": "developedSoftware"
+            }
+          ]
+        },
+        {
+          "attackstep_name": "injectMalwareInFirmwareBuild",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.1,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "firmwareCompromised",
+              "target_asset_role": "developedFirmware"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "SecureDevelopmentLifecycle",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "compromise",
+              "target_asset_role": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_name": "DistributionMechanism",
+      "is_abstract": false,
+      "extends": null,
+      "category": "SupplyChainInfrastructure",
+      "attack_steps": [
+        {
+          "attackstep_name": "compromise",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.03,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": []
+        },
+        {
+          "attackstep_name": "substituteWithMaliciousSoftware",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.15,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "bePlacedOnCompromisedHost",
+              "target_asset_role": "distributedSoftware"
+            }
+          ]
+        },
+        {
+          "attackstep_name": "substituteWithCompromisedHardware",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.15,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "beSubstitutedInSupplyChain",
+              "target_asset_role": "distributedHardware"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "DistributionIntegrityControls",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "compromise",
+              "target_asset_role": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_name": "SoftwareProduct",
+      "is_abstract": false,
+      "extends": null,
+      "category": "CompromisableProducts",
+      "attack_steps": [
+        {
+          "attackstep_name": "beTrojanized",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.05,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "receiveTrojanizedSoftware",
+              "target_asset_role": "targetSystems"
+            }
+          ]
+        },
+        {
+          "attackstep_name": "bePlacedOnCompromisedHost",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.1,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "receiveTrojanizedSoftware",
+              "target_asset_role": "targetSystems"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "CodeSigningAndVerificationChain",
+          "reaches_if_false": []
+        }
+      ]
+    },
+    {
+      "asset_name": "HardwareProduct",
+      "is_abstract": false,
+      "extends": null,
+      "category": "CompromisableProducts",
+      "attack_steps": [
+        {
+          "attackstep_name": "beCounterfeit",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.02,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "receiveCompromisedHardware",
+              "target_asset_role": "targetSystems"
+            }
+          ]
+        },
+        {
+          "attackstep_name": "firmwareCompromised",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.05,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "receiveCompromisedHardware",
+              "target_asset_role": "targetSystems"
+            }
+          ]
+        },
+        {
+          "attackstep_name": "beSubstitutedInSupplyChain",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.1,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "receiveCompromisedHardware",
+              "target_asset_role": "targetSystems"
+            }
+          ]
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "HardwareAuthenticityChecks",
+          "reaches_if_false": []
+        }
+      ]
+    },
+    {
+      "asset_name": "TargetSystem",
+      "is_abstract": true,
+      "extends": null,
+      "category": "TargetICSAssets",
+      "attack_steps": [
+        {
+          "attackstep_name": "SusceptibleToSupplyChainIntroduction",
+          "attackstep_type": "&",
+          "ttc_distribution": null,
+          "reaches": []
+        },
+        {
+          "attackstep_name": "InstallationPossibleDueToLaxChecks",
+          "attackstep_type": "&",
+          "ttc_distribution": null,
+          "reaches": []
+        },
+        {
+          "attackstep_name": "receiveTrojanizedSoftware",
+          "attackstep_type": "|",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.8,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": []
+        },
+        {
+          "attackstep_name": "receiveCompromisedHardware",
+          "attackstep_type": "|",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.8,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": []
+        },
+        {
+          "attackstep_name": "installTrojanizedSoftware",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.5,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "executeSoftwarePayload",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "activateCompromisedHardware",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.5,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "executeHardwarePayload",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "executeSoftwarePayload",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.1,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "achieveSystemImpactViaSoftware",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "executeHardwarePayload",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.1,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": [
+            {
+              "target_attack_step_name": "achieveSystemImpactViaHardware",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "attackstep_name": "achieveSystemImpactViaSoftware",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.02,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": []
+        },
+        {
+          "attackstep_name": "achieveSystemImpactViaHardware",
+          "attackstep_type": "&",
+          "ttc_distribution": {
+            "type": "Exponential",
+            "p": null,
+            "n": null,
+            "lambda_": 0.02,
+            "k": null,
+            "theta": null,
+            "mu": null,
+            "sigma": null,
+            "x": null,
+            "alpha": null,
+            "variance": null,
+            "a": null,
+            "b": null
+          },
+          "reaches": []
+        }
+      ],
+      "defenses": [
+        {
+          "defense_name": "SupplyChainRiskManagementProgram",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "SusceptibleToSupplyChainIntroduction",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "defense_name": "ProductIntegrityVerification",
+          "reaches_if_false": [
+            {
+              "target_attack_step_name": "InstallationPossibleDueToLaxChecks",
+              "target_asset_role": null
+            }
+          ]
+        },
+        {
+          "defense_name": "SoftwareUpdateAndPatchManagement",
+          "reaches_if_false": []
+        },
+        {
+          "defense_name": "VulnerabilityScanningAndAuditing",
+          "reaches_if_false": []
+        }
+      ]
+    },
+    {
+      "asset_name": "ApplicationServer",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "ControlServer",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "DataGateway",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "DataHistorian",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "FieldIO",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "HMI",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "IED",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "JumpHost",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "PLC",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "RTU",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "SafetyController",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "VPNServer",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    },
+    {
+      "asset_name": "Workstation",
+      "is_abstract": false,
+      "extends": "TargetSystem",
+      "category": "TargetICSAssets",
+      "attack_steps": [],
+      "defenses": []
+    }
+  ],
+  "association_definitions": [
+    {
+      "association_name": "HostsSoftware",
+      "end1_asset_type": "VendorWebsite",
+      "end1_role_name": "hostingSite",
+      "end1_multiplicity": "1",
+      "end2_asset_type": "SoftwareProduct",
+      "end2_role_name": "hostedSoftware",
+      "end2_multiplicity": "*"
+    },
+    {
+      "association_name": "DevelopsSoftware",
+      "end1_asset_type": "DevelopmentEnvironment",
+      "end1_role_name": "developerEnvironment",
+      "end1_multiplicity": "1",
+      "end2_asset_type": "SoftwareProduct",
+      "end2_role_name": "developedSoftware",
+      "end2_multiplicity": "*"
+    },
+    {
+      "association_name": "DevelopsFirmware",
+      "end1_asset_type": "DevelopmentEnvironment",
+      "end1_role_name": "firmwareDeveloperEnvironment",
+      "end1_multiplicity": "1",
+      "end2_asset_type": "HardwareProduct",
+      "end2_role_name": "developedFirmware",
+      "end2_multiplicity": "*"
+    },
+    {
+      "association_name": "DistributesSoftware",
+      "end1_asset_type": "DistributionMechanism",
+      "end1_role_name": "softwareDistributor",
+      "end1_multiplicity": "1",
+      "end2_asset_type": "SoftwareProduct",
+      "end2_role_name": "distributedSoftware",
+      "end2_multiplicity": "*"
+    },
+    {
+      "association_name": "DistributesHardware",
+      "end1_asset_type": "DistributionMechanism",
+      "end1_role_name": "hardwareDistributor",
+      "end1_multiplicity": "1",
+      "end2_asset_type": "HardwareProduct",
+      "end2_role_name": "distributedHardware",
+      "end2_multiplicity": "*"
+    },
+    {
+      "association_name": "SoftwareUsage",
+      "end1_asset_type": "SoftwareProduct",
+      "end1_role_name": "usedSoftware",
+      "end1_multiplicity": "*",
+      "end2_asset_type": "TargetSystem",
+      "end2_role_name": "targetSystems",
+      "end2_multiplicity": "*"
+    },
+    {
+      "association_name": "HardwareUsage",
+      "end1_asset_type": "HardwareProduct",
+      "end1_role_name": "usedHardware",
+      "end1_multiplicity": "*",
+      "end2_asset_type": "TargetSystem",
+      "end2_role_name": "targetSystems",
+      "end2_multiplicity": "*"
+    }
+  ]
+}

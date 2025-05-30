@@ -1,0 +1,246 @@
+[
+  {
+  "aspect_description": "Category definition for organizing Person-related assets.",
+  "evidence_code": "category Person {"
+  },
+  {
+  "aspect_description": "Asset definition for 'Employee' within the 'Person' category.",
+  "evidence_code": "asset Employee {"
+  },
+  {
+  "aspect_description": "Asset definition for 'Adversary' within the 'Person' category.",
+  "evidence_code": "asset Adversary {"
+  },
+  {
+  "aspect_description": "Category definition for organizing Hardware-related assets.",
+  "evidence_code": "category Hardware{"
+  },
+  {
+  "aspect_description": "Asset definition for 'Computer' within the 'Hardware' category.",
+  "evidence_code": "asset Computer{"
+  },
+  {
+  "aspect_description": "Category definition for organizing Software-related assets.",
+  "evidence_code": "category Software{"
+  },
+  {
+  "aspect_description": "Asset definition for 'Browser' within the 'Software' category.",
+  "evidence_code": "asset Browser{"
+  },
+  {
+  "aspect_description": "Abstract asset definition for 'OS' within the 'Software' category.",
+  "evidence_code": "abstractAsset OS{"
+  },
+  {
+  "aspect_description": "Attack step 'pageVisited' on Employee.",
+  "evidence_code": "| pageVisited"
+  },
+  {
+  "aspect_description": "Attack step 'adLinkClicked' on Employee.",
+  "evidence_code": "| adLinkClicked"
+  },
+  {
+  "aspect_description": "Attack step 'maliciousWebsite' on Adversary.",
+  "evidence_code": "| maliciousWebsite"
+  },
+  {
+  "aspect_description": "Attack step 'maliciousAds' on Adversary.",
+  "evidence_code": "| maliciousAds"
+  },
+  {
+  "aspect_description": "Attack step 'infectedComputer' on Computer.",
+  "evidence_code": "| infectedComputer"
+  },
+  {
+  "aspect_description": "Attack step 'maliciousWebsite' on Browser.",
+  "evidence_code": "| maliciousWebsite"
+  },
+  {
+  "aspect_description": "Attack step 'checkBrowser' on Browser.",
+  "evidence_code": "& checkBrowser"
+  },
+  {
+  "aspect_description": "Defense 'nonVulnerableBrowser' on Browser.",
+  "evidence_code": "# nonVulnerableBrowser"
+  },
+  {
+  "aspect_description": "Attack step 'checkPlugin' on Browser.",
+  "evidence_code": "& checkPlugin"
+  },
+  {
+  "aspect_description": "Defense 'nonVulnerablePlugin' on Browser.",
+  "evidence_code": "# nonVulnerablePlugin"
+  },
+  {
+  "aspect_description": "Attack step 'maliciousAds' on Browser.",
+  "evidence_code": "| maliciousAds"
+  },
+  {
+  "aspect_description": "Attack step 'compromisedBrowser' on Browser.",
+  "evidence_code": "& compromisedBrowser"
+  },
+  {
+  "aspect_description": "Defense 'adblocker' on Browser.",
+  "evidence_code": "# adblocker"
+  },
+  {
+  "aspect_description": "Attack step 'maliciousContent' on Browser.",
+  "evidence_code": "| maliciousContent"
+  },
+  {
+  "aspect_description": "Attack step 'codeDelivered' on OS.",
+  "evidence_code": "| codeDelivered"
+  },
+  {
+  "aspect_description": "Attack step 'antivirusCheck' on OS.",
+  "evidence_code": "& antivirusCheck"
+  },
+  {
+  "aspect_description": "Defense 'antivirus' on OS.",
+  "evidence_code": "# antivirus"
+  },
+  {
+  "aspect_description": "Attack step 'runCode' on OS.",
+  "evidence_code": "| runCode"
+  },
+  {
+  "aspect_description": "Flow: Employee visits page resulting in maliciousWebsite attack step on browser.",
+  "evidence_code": "pageVisited\n            -> browser.maliciousWebsite"
+  },
+  {
+  "aspect_description": "Flow: Employee clicks ad resulting in maliciousAds attack step on browser.",
+  "evidence_code": "adLinkClicked\n            -> browser.maliciousAds"
+  },
+  {
+  "aspect_description": "Flow: Adversary hosts malicious website resulting in maliciousWebsite attack step on browser and pageVisited attack step on employee.",
+  "evidence_code": "maliciousWebsite\n            -> browser.maliciousWebsite, employee.pageVisited"
+  },
+  {
+  "aspect_description": "Flow: Adversary hosts malicious ads resulting in maliciousAds attack step on browser and adLinkClicked attack step on employee.",
+  "evidence_code": "maliciousAds\n            -> browser.maliciousAds, employee.adLinkClicked"
+  },
+  {
+  "aspect_description": "Flow: Malicious website attack step on browser requires checkPlugin OR checkBrowser.",
+  "evidence_code": "maliciousWebsite\n            -> checkPlugin, checkBrowser"
+  },
+  {
+  "aspect_description": "Flow: checkBrowser attack step on browser results in codeDelivered attack step on os.",
+  "evidence_code": "& checkBrowser\n            -> os.codeDelivered"
+  },
+  {
+  "aspect_description": "Flow: nonVulnerableBrowser defense on browser prevents checkBrowser attack step.",
+  "evidence_code": "# nonVulnerableBrowser\n            -> checkBrowser"
+  },
+  {
+  "aspect_description": "Flow: checkPlugin attack step on browser results in codeDelivered attack step on os.",
+  "evidence_code": "& checkPlugin\n            -> os.codeDelivered"
+  },
+  {
+  "aspect_description": "Flow: nonVulnerablePlugin defense on browser prevents checkPlugin attack step.",
+  "evidence_code": "# nonVulnerablePlugin\n            -> checkPlugin"
+  },
+  {
+  "aspect_description": "Flow: Malicious ads attack step on browser results in compromisedBrowser attack step.",
+  "evidence_code": "maliciousAds\n            -> compromisedBrowser"
+  },
+  {
+  "aspect_description": "Flow: compromisedBrowser attack step on browser results in codeDelivered attack step on os.",
+  "evidence_code": "& compromisedBrowser\n            -> os.codeDelivered"
+  },
+  {
+  "aspect_description": "Flow: adblocker defense on browser prevents compromisedBrowser attack step.",
+  "evidence_code": "# adblocker\n            -> compromisedBrowser"
+  },
+  {
+  "aspect_description": "Flow: codeDelivered attack step on os results in antivirusCheck attack step.",
+  "evidence_code": "codeDelivered\n            -> antivirusCheck"
+  },
+  {
+  "aspect_description": "Flow: antivirusCheck attack step on os requires antivirus defense.",
+  "evidence_code": "& antivirusCheck\n            -> runCode"
+  },
+  {
+  "aspect_description": "Flow: antivirus defense on os prevents antivirusCheck attack step.",
+  "evidence_code": "# antivirus\n            -> antivirusCheck"
+  },
+  {
+  "aspect_description": "Flow: runCode attack step on os results in infectedComputer attack step on computer.",
+  "evidence_code": "runCode\n            -> computer.infectedComputer"
+  },
+  {
+  "aspect_description": "Association: Employee uses Browser (1 Employee to 1 or more Browsers).",
+  "evidence_code": "Employee [employee] 1 <--use--> 1-* [browser] Browser"
+  },
+  {
+  "aspect_description": "Association: Adversary attacks Employee (1 Adversary to 1 or more Employees).",
+  "evidence_code": "Adversary [adversary] 1 <-- attack --> 1-* [employee] Employee"
+  },
+  {
+  "aspect_description": "Association: Adversary attacks Browser (1 Adversary to 1 or more Browsers).",
+  "evidence_code": "Adversary [adversary] 1 <-- attack --> 1-* [browser] Browser"
+  },
+  {
+  "aspect_description": "Association: Browser software runs on OS (1 or more Browsers to 1 OS).",
+  "evidence_code": "Browser [browser] 1-* <-- software --> 1 [os] OS"
+  },
+  {
+  "aspect_description": "Association: OS is a system on Computer (1 OS to 1 or more Computers).",
+  "evidence_code": "OS [os] 1 <-- system --> 1-* [computer] Computer"
+  },
+  {
+  "aspect_description": "Attacker Objective: Cause an employee to visit a malicious page.",
+  "evidence_code": "pageVisited\n            -> browser.maliciousWebsite"
+  },
+  {
+  "aspect_description": "Attacker Objective: Cause an employee to click a malicious ad.",
+  "evidence_code": "adLinkClicked\n            -> browser.maliciousAds"
+  },
+  {
+  "aspect_description": "Attacker Objective: Deliver malicious content/code via browser.",
+  "evidence_code": "-> os.codeDelivered"
+  },
+  {
+  "aspect_description": "Attacker Objective: Execute malicious code on the OS.",
+  "evidence_code": "| runCode"
+  },
+  {
+  "aspect_description": "Attacker Objective: Infect the computer.",
+  "evidence_code": "-> computer.infectedComputer"
+  },
+  {
+  "aspect_description": "Logical Connector: Flow relation '->'.",
+  "evidence_code": "->"
+  },
+  {
+  "aspect_description": "Logical Connector: Attack step 'AND' requirement.",
+  "evidence_code": "&"
+  },
+  {
+  "aspect_description": "Logical Connector: Defense 'prevents' relation '#'.",
+  "evidence_code": "#"
+  },
+  {
+  "aspect_description": "Logical Connector: Association relation '<--'.",
+  "evidence_code": "<--"
+  },
+  {
+  "aspect_description": "Logical Connector: Association relation '-->'.",
+  "evidence_code": "-->"
+  },
+    {
+  "aspect_description": "Defense prevents attack step: nonVulnerableBrowser prevents checkBrowser.",
+  "evidence_code": "# nonVulnerableBrowser \n            -> checkBrowser"
+  },
+    {
+  "aspect_description": "Defense prevents attack step: nonVulnerablePlugin prevents checkPlugin.",
+  "evidence_code": "# nonVulnerablePlugin \n            -> checkPlugin"
+  },
+    {
+  "aspect_description": "Defense prevents attack step: adblocker prevents compromisedBrowser.",
+  "evidence_code": "# adblocker \n            -> compromisedBrowser"
+  },
+    {
+  "aspect_description": "Defense prevents attack step: antivirus prevents antivirusCheck.",
+  "evidence_code": "# antivirus \n            -> antivirusCheck"
+  }
+ ]

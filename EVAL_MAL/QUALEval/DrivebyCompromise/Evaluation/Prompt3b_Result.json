@@ -1,0 +1,603 @@
+{
+  "matched_pairs": [
+  {
+  "reference_aspect_id": "A_0",
+  "generated_aspect_id": "B_2",
+  "match_reason": "Both describe the definition of a category for organizing assets, though the categories differ.",
+  "confidence_score": 0.8
+  },
+  {
+  "reference_aspect_id": "A_1",
+  "generated_aspect_id": "B_3",
+  "match_reason": "Both describe an asset definition representing an end-user entity/system.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_2",
+  "generated_aspect_id": "B_4",
+  "match_reason": "Both describe an asset definition representing the attacker entity.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_3",
+  "generated_aspect_id": "B_5",
+  "match_reason": "Both describe the definition of a category for hardware-related assets, though the categories differ.",
+  "confidence_score": 0.8
+  },
+  {
+  "reference_aspect_id": "A_4",
+  "generated_aspect_id": "B_6",
+  "match_reason": "Both describe an asset definition representing a computer/endpoint.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_5",
+  "generated_aspect_id": "B_7",
+  "match_reason": "Both describe the definition of a category for software-related assets, though the categories differ.",
+  "confidence_score": 0.8
+  },
+  {
+  "reference_aspect_id": "A_6",
+  "generated_aspect_id": "B_8",
+  "match_reason": "Both describe an asset definition representing a web browser.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_7",
+  "generated_aspect_id": "B_9",
+  "match_reason": "Both describe an abstract asset definition for the Operating System.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_8",
+  "generated_aspect_id": "B_10",
+  "match_reason": "Both describe an initial attack step representing a user visiting a malicious page/website.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_9",
+  "generated_aspect_id": "B_11",
+  "match_reason": "Both describe an initial attack step representing a user interacting with malicious content (clicking ad/allowing push notification).",
+  "confidence_score": 0.85
+  },
+  {
+  "reference_aspect_id": "A_10",
+  "generated_aspect_id": "B_28",
+  "match_reason": "Both describe an attack step where the adversary provides malicious content/website.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_11",
+  "generated_aspect_id": "B_35",
+  "match_reason": "Both describe an attack step where the adversary provides malicious advertising content.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_13",
+  "generated_aspect_id": "B_15",
+  "match_reason": "Both describe an attack step related to malicious content interaction within the browser context.",
+  "confidence_score": 0.8
+  },
+  {
+  "reference_aspect_id": "A_14",
+  "generated_aspect_id": "B_16",
+  "match_reason": "Both describe an attack step related to checking browser characteristics or state.",
+  "confidence_score": 0.7
+  },
+  {
+  "reference_aspect_id": "A_15",
+  "generated_aspect_id": "B_20",
+  "match_reason": "Both describe a defense preventing a browser vulnerability exploit step.",
+  "confidence_score": 0.85
+  },
+  {
+  "reference_aspect_id": "A_16",
+  "generated_aspect_id": "B_17",
+  "match_reason": "Both describe an attack step related to browser plugin processing.",
+  "confidence_score": 0.75
+  },
+  {
+  "reference_aspect_id": "A_17",
+  "generated_aspect_id": "B_22",
+  "match_reason": "Both describe a defense preventing exploitation via plugins or scripts.",
+  "confidence_score": 0.8
+  },
+  {
+  "reference_aspect_id": "A_18",
+  "generated_aspect_id": "B_18",
+  "match_reason": "Both describe an attack step involving malicious ads in the browser.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_19",
+  "generated_aspect_id": "B_19",
+  "match_reason": "Both describe an attack step representing a compromised state of the browser.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_20",
+  "generated_aspect_id": "B_23",
+  "match_reason": "Both describe a defense preventing malicious ad interactions.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_22",
+  "generated_aspect_id": "B_24",
+  "match_reason": "Both describe an attack step representing code being delivered to the system/OS.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_23",
+  "generated_aspect_id": "B_25",
+  "match_reason": "Both describe an attack step representing an antivirus check or similar security scan.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_24",
+  "generated_aspect_id": "B_26",
+  "match_reason": "Both describe a defense representing active antivirus or endpoint security software.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_25",
+  "generated_aspect_id": "B_27",
+  "match_reason": "Both describe an attack step representing the execution of malicious code.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_26",
+  "generated_aspect_id": "B_12",
+  "match_reason": "Both describe an attack step where the computer/endpoint becomes infected or compromised.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_27",
+  "generated_aspect_id": "B_41",
+  "match_reason": "Both describe a flow where a user action (page visit) leads to a browser attack step.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_28",
+  "generated_aspect_id": "B_42",
+  "match_reason": "Both describe a flow where a user action (ad click/push notification) leads to a browser attack step.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_29",
+  "generated_aspect_id": "B_43",
+  "match_reason": "Both describe a flow where the adversary's malicious content enables attack steps on the browser and potentially user action.",
+  "confidence_score": 0.85
+  },
+  {
+  "reference_aspect_id": "A_30",
+  "generated_aspect_id": "B_44",
+  "match_reason": "Both describe a flow where the adversary's malicious ads enable attack steps on the browser and user action.",
+  "confidence_score": 0.85
+  },
+  {
+  "reference_aspect_id": "A_31",
+  "generated_aspect_id": "B_45",
+  "match_reason": "Both describe a flow where interaction with malicious content in the browser requires/leads to subsequent checks/steps.",
+  "confidence_score": 0.8
+  },
+  {
+  "reference_aspect_id": "A_32",
+  "generated_aspect_id": "B_47",
+  "match_reason": "Both describe a flow where a browser check step leads to code delivery to the OS.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_33",
+  "generated_aspect_id": "B_48",
+  "match_reason": "Both describe a flow where a defense (non-vulnerable browser/updates) prevents a browser check/exploit step.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_34",
+  "generated_aspect_id": "B_49",
+  "match_reason": "Both describe a flow where a browser plugin check step leads to code delivery to the OS.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_35",
+  "generated_aspect_id": "B_50",
+  "match_reason": "Both describe a flow where a defense (non-vulnerable plugin/script blocking) prevents a browser plugin/script step.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_36",
+  "generated_aspect_id": "B_51",
+  "match_reason": "Both describe a flow where malicious ads in the browser lead to a compromised state.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_37",
+  "generated_aspect_id": "B_52",
+  "match_reason": "Both describe a flow where a compromised browser state leads to code delivery to the OS.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_38",
+  "generated_aspect_id": "B_53",
+  "match_reason": "Both describe a flow where an ad-blocking defense prevents a malicious ad interaction step.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_39",
+  "generated_aspect_id": "B_54",
+  "match_reason": "Both describe a flow where delivered code leads to an antivirus check step.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_40",
+  "generated_aspect_id": "B_25",
+  "match_reason": "Both describe the flow requirement for the antivirusCheck step on OS.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_41",
+  "generated_aspect_id": "B_56",
+  "match_reason": "Both describe a flow where antivirus defense prevents the antivirus check step.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_42",
+  "generated_aspect_id": "B_57",
+  "match_reason": "Both describe a flow where code execution on the OS leads to computer infection/compromise.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_43",
+  "generated_aspect_id": "B_61",
+  "match_reason": "Both describe an association between the user endpoint and the browser.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_44",
+  "generated_aspect_id": "B_63",
+  "match_reason": "Both describe an association representing the attacker interacting with the user/employee asset.",
+  "confidence_score": 0.8
+  },
+  {
+  "reference_aspect_id": "A_45",
+  "generated_aspect_id": "B_64",
+  "match_reason": "Both describe an association representing the attacker interacting with the browser asset.",
+  "confidence_score": 0.8
+  },
+  {
+  "reference_aspect_id": "A_46",
+  "generated_aspect_id": "B_62",
+  "match_reason": "Both describe an association between the browser and the OS.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_47",
+  "generated_aspect_id": "B_65",
+  "match_reason": "Both describe an association between the OS and the computer/endpoint.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_48",
+  "generated_aspect_id": "B_67",
+  "match_reason": "Both describe the attacker objective of getting the user to visit a website.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_49",
+  "generated_aspect_id": "B_68",
+  "match_reason": "Both describe the attacker objective of getting the user to interact with malicious content (ad click/push notification).",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_50",
+  "generated_aspect_id": "B_70",
+  "match_reason": "Both describe the attacker objective of delivering malicious code/payload via the browser.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_51",
+  "generated_aspect_id": "B_75",
+  "match_reason": "Both describe the attacker objective of executing code on the target system.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_52",
+  "generated_aspect_id": "B_12",
+  "match_reason": "Both describe the attacker objective of infecting or compromising the computer/endpoint.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_53",
+  "generated_aspect_id": "B_82",
+  "match_reason": "Both describe the logical connector for flow ('->').",
+  "confidence_score": 1.0
+  },
+  {
+  "reference_aspect_id": "A_54",
+  "generated_aspect_id": "B_83",
+  "match_reason": "Both describe the logical connector for 'AND' requirements ('&').",
+  "confidence_score": 1.0
+  },
+  {
+  "reference_aspect_id": "A_55",
+  "generated_aspect_id": "B_84",
+  "match_reason": "Both describe the logical connector for defense ('#').",
+  "confidence_score": 1.0
+  },
+  {
+  "reference_aspect_id": "A_56",
+  "generated_aspect_id": "B_85",
+  "match_reason": "Both describe the logical connector for the left side of an association ('<--').",
+  "confidence_score": 1.0
+  },
+  {
+  "reference_aspect_id": "A_57",
+  "generated_aspect_id": "B_86",
+  "match_reason": "Both describe the logical connector for the right side of an association ('-->').",
+  "confidence_score": 1.0
+  },
+  {
+  "reference_aspect_id": "A_58",
+  "generated_aspect_id": "B_48",
+  "match_reason": "Both describe a defense preventing a browser vulnerability exploitation step.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_59",
+  "generated_aspect_id": "B_50",
+  "match_reason": "Both describe a defense preventing malicious script or plugin processing.",
+  "confidence_score": 0.9
+  },
+  {
+  "reference_aspect_id": "A_60",
+  "generated_aspect_id": "B_53",
+  "match_reason": "Both describe a defense preventing malicious ad interaction.",
+  "confidence_score": 0.95
+  },
+  {
+  "reference_aspect_id": "A_61",
+  "generated_aspect_id": "B_56",
+  "match_reason": "Both describe a defense preventing or checking code execution (antivirus).",
+  "confidence_score": 0.95
+  }
+  ],
+  "unmatched_list_a": [
+  {
+  "id": "A_12",
+  "aspect_description": "Attack step 'infectedComputer' on Computer.",
+  "evidence_code": "| infectedComputer"
+  },
+  {
+  "id": "A_21",
+  "aspect_description": "Attack step 'maliciousContent' on Browser.",
+  "evidence_code": "| maliciousContent"
+  },
+  {
+  "id": "A_40",
+  "aspect_description": "Flow: antivirusCheck attack step on os requires antivirus defense.",
+  "evidence_code": "& antivirusCheck\n            -> runCode"
+  },
+  {
+  "id": "A_52",
+  "aspect_description": "Attacker Objective: Infect the computer.",
+  "evidence_code": "-> computer.infectedComputer"
+  }
+  ],
+  "unmatched_list_b": [
+  {
+  "id": "B_0",
+  "aspect_description": "Model identifier and version.",
+  "evidence_code": "#id: \"com.mitre.attack.driveby.compromise.v2\"\n#version: \"1.0.0\""
+  },
+  {
+  "id": "B_1",
+  "aspect_description": "Category definition for organizing Client Infrastructure assets.",
+  "evidence_code": "category ClientInfrastructure {"
+  },
+  {
+  "id": "B_13",
+  "aspect_description": "Category definition for organizing Web Infrastructure assets.",
+  "evidence_code": "category WebInfrastructure {"
+  },
+  {
+  "id": "B_14",
+  "aspect_description": "Asset definition for 'Website' within the 'WebInfrastructure' category.",
+  "evidence_code": "asset Website {"
+  },
+  {
+  "id": "B_21",
+  "aspect_description": "Defense 'sandboxingEffectivelyEnabled' on Browser.",
+  "evidence_code": "# sandboxingEffectivelyEnabled"
+  },
+  {
+  "id": "B_29",
+  "aspect_description": "Asset definition for 'AdProvider' within the 'WebInfrastructure' category.",
+  "evidence_code": "asset AdProvider {"
+  },
+  {
+  "id": "B_32",
+  "aspect_description": "Asset definition for 'CloudStorageBucket' within the 'WebInfrastructure' category.",
+  "evidence_code": "asset CloudStorageBucket {"
+  },
+  {
+  "id": "B_34",
+  "aspect_description": "Defense 'robustAdContentScreening' on AdProvider.",
+  "evidence_code": "# robustAdContentScreening"
+  },
+  {
+  "id": "B_38",
+  "aspect_description": "Defense 'strongBucketAccessControls' on CloudStorageBucket.",
+  "evidence_code": "# strongBucketWriteAccess"
+  },
+  {
+  "id": "B_39",
+  "aspect_description": "Defense 'scriptFileIntegrityMonitoring' on CloudStorageBucket.",
+  "evidence_code": "# scriptFileIntegrityMonitoring"
+  },
+  {
+  "id": "B_46",
+  "aspect_description": "Flow: fetchAndRenderContent on Browser results in deliverPayloadToBrowserUponVisit on associated Website and fingerprintBrowser on Browser.",
+  "evidence_code": "& fetchAndRenderContent -> accessesWebsite.deliverPayloadToBrowserUponVisit, fingerprintBrowser"
+  },
+  {
+  "id": "B_55",
+  "aspect_description": "Flow: antivirusCheck attack step on os requires antivirus defense.",
+  "evidence_code": "& antivirusCheck -> runCode"
+  },
+  {
+  "id": "B_58",
+  "aspect_description": "Flow: compromiseLegitimateSite on Website results in enablePayloadDelivery on Website.",
+  "evidence_code": "| compromiseLegitimateSite [Exponential(0.01)] -> enablePayloadDelivery"
+  },
+  {
+  "id": "B_59",
+  "aspect_description": "Flow: injectXSSPayload on Website results in enablePayloadDelivery on Website.",
+  "evidence_code": "| injectXSSPayload [Exponential(0.05)] -> enablePayloadDelivery"
+  },
+  {
+  "id": "B_60",
+  "aspect_description": "Flow: receiveMaliciousAd on Website results in enablePayloadDelivery on Website.",
+  "evidence_code": "| receiveMaliciousAd -> enablePayloadDelivery"
+  },
+  {
+  "id": "B_66",
+  "aspect_description": "Association: Website accesses Website (Any number of Browsers to any number of Websites).",
+  "evidence_code": "Browser [isAccessedByBrowser] * <-- BrowserWebsiteConnection --> * [accessesWebsite] Website"
+  },
+  {
+  "id": "B_69",
+  "aspect_description": "Attacker Objective: Fetch and render website content in the browser.",
+  "evidence_code": "& fetchAndRenderContent"
+  },
+  {
+  "id": "B_71",
+  "aspect_description": "Attacker Objective: Fingerprint the user's browser.",
+  "evidence_code": "| fingerprintBrowser [Exponential(0.5)]"
+  },
+  {
+  "id": "B_72",
+  "aspect_description": "Attacker Objective: Process malicious scripts in the browser.",
+  "evidence_code": "& processMaliciousScripts [Exponential(0.8)]"
+  },
+  {
+  "id": "B_73",
+  "aspect_description": "Attacker Objective: Deliver a targeted exploit to the browser.",
+  "evidence_code": "& deliverTargetedExploit"
+  },
+  {
+  "id": "B_74",
+  "aspect_description": "Attacker Objective: Exploit a browser vulnerability.",
+  "evidence_code": "& exploitBrowserVulnerability [Gamma(2.0,2.0)]"
+  },
+  {
+  "id": "B_76",
+  "aspect_description": "Attacker Objective: Compromise a legitimate website.",
+  "evidence_code": "| compromiseLegitimateSite [Exponential(0.01)]"
+  },
+  {
+  "id": "B_77",
+  "aspect_description": "Attacker Objective: Inject an XSS payload into a website.",
+  "evidence_code": "| injectXSSPayload [Exponential(0.05)]"
+  },
+  {
+  "id": "B_78",
+  "aspect_description": "Attacker Objective: Accept a malicious ad campaign.",
+  "evidence_code": "| acceptMaliciousAdCampaign [Uniform(1.0,5.0)]"
+  },
+  {
+  "id": "B_79",
+  "aspect_description": "Attacker Objective: Distribute a malicious ad to websites.",
+  "evidence_code": "& distributeMaliciousAdToWebsites"
+  },
+  {
+  "id": "B_80",
+  "aspect_description": "Attacker Objective: Compromise Cloud Storage Bucket write access.",
+  "evidence_code": "| compromiseBucketWriteAccess [Exponential(0.03)]"
+  },
+  {
+  "id": "B_81",
+  "aspect_description": "Attacker Objective: Modify stored script files in a Cloud Storage Bucket.",
+  "evidence_code": "& modifyStoredScriptFiles"
+  },
+  {
+  "id": "B_85",
+  "aspect_description": "Logical Connector: Association relation '<--'.",
+  "evidence_code": "<--"
+  },
+  {
+  "id": "B_86",
+  "aspect_description": "Logical Connector: Association relation '-->'.",
+  "evidence_code": "-->"
+  },
+  {
+  "id": "B_88",
+  "aspect_description": "Logical Connector: Range quantifier '..'.",
+  "evidence_code": ".."
+  },
+  {
+  "id": "B_89",
+  "aspect_description": "Logical Connector: Wildcard quantifier '*'.",
+  "evidence_code": "*"
+  },
+  {
+  "id": "B_90",
+  "aspect_description": "Logical Connector: Association name 'UserBrowserUsage'.",
+  "evidence_code": "UserBrowserUsage"
+  },
+  {
+  "id": "B_91",
+  "aspect_description": "Logical Connector: Association name 'BrowserWebsiteConnection'.",
+  "evidence_code": "BrowserWebsiteConnection"
+  },
+  {
+  "id": "B_92",
+  "aspect_description": "Logical Connector: Association name 'WebsiteAdIntegration'.",
+  "evidence_code": "WebsiteAdIntegration"
+  },
+  {
+  "id": "B_93",
+  "aspect_description": "Logical Connector: Association name 'WebsiteScriptSourcing'.",
+  "evidence_code": "WebsiteScriptSourcing"
+  },
+  {
+  "id": "B_94",
+  "aspect_description": "Logical Connector: Association role 'runsOnEndpoint'.",
+  "evidence_code": "[runsOnEndpoint]"
+  },
+  {
+  "id": "B_95",
+  "aspect_description": "Logical Connector: Association role 'usesBrowser'.",
+  "evidence_code": "[usesBrowser]"
+  },
+  {
+  "id": "B_96",
+  "aspect_description": "Logical Connector: Association role 'isAccessedByBrowser'.",
+  "evidence_code": "[isAccessedByBrowser]"
+  },
+  {
+  "id": "B_97",
+  "aspect_description": "Logical Connector: Association role 'accessesWebsite'.",
+  "evidence_code": "[accessesWebsite]"
+  },
+  {
+  "id": "B_98",
+  "aspect_description": "Logical Connector: Association role 'servesAdsToWebsite'.",
+  "evidence_code": "[servesAdsToWebsite]"
+  },
+  {
+  "id": "B_99",
+  "aspect_description": "Logical Connector: Association role 'displaysAdsFrom'.",
+  "evidence_code": "[displaysAdsFrom]"
+  },
+  {
+  "id": "B_100",
+  "aspect_description": "Logical Connector: Association role 'providesScriptsToWebsite'.",
+  "evidence_code": "[providesScriptsToWebsite]"
+  },
+  {
+  "id": "B_101",
+  "aspect_description": "Logical Connector: Association role 'sourcesScriptsFrom'.",
+  "evidence_code": "[sourcesScriptsFrom]"
+  }
+  ]
+ }

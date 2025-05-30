@@ -1,0 +1,246 @@
+[
+  {
+    "aspect_description": "Metadata: Defines the unique identifier for the MAL model.",
+    "evidence_code": "#id: \"com.example.spearphishing.attachment\""
+  },
+  {
+    "aspect_description": "Metadata: Defines the version of the MAL model.",
+    "evidence_code": "#version: \"1.0.1\""
+  },
+  {
+    "aspect_description": "Category definition for grouping identity-related assets.",
+    "evidence_code": "category Identities {"
+  },
+  {
+    "aspect_description": "Asset definition for 'UserAccount' within the 'Identities' category.",
+    "evidence_code": "asset UserAccount {"
+  },
+  {
+    "aspect_description": "Attack step definition: A user account receiving a spearphishing email (entry point). Includes a probability distribution for the next step.",
+    "evidence_code": "| receivesSpearphishingEmail [Bernoulli(0.95)] -> isDeceivedByEmailContent"
+  },
+  {
+    "aspect_description": "Attack step definition: A user account being deceived by the email content (entry point). Includes a probability distribution for the next step.",
+    "evidence_code": "| isDeceivedByEmailContent [Bernoulli(0.4)] -> associatedWorkstation.userInteractsWithAttachment"
+  },
+  {
+    "aspect_description": "Defense definition: Security awareness training prevents the user account from being deceived by email content.",
+    "evidence_code": "# securityAwarenessTraining -> isDeceivedByEmailContent"
+  },
+  {
+    "aspect_description": "Category definition for grouping data-related assets.",
+    "evidence_code": "category Data {"
+  },
+  {
+    "aspect_description": "Asset definition for 'Email' within the 'Data' category.",
+    "evidence_code": "asset Email {"
+  },
+  {
+    "aspect_description": "Attack step definition: The email is maliciously crafted (entry point).",
+    "evidence_code": "| isMaliciouslyCrafted"
+  },
+  {
+    "aspect_description": "Attack step definition: The attachment within the email passes server-side scanning (entry point).",
+    "evidence_code": "| attachmentPassesToServerScanning"
+  },
+  {
+    "aspect_description": "Attack step definition: The email content passes server-side anti-spoofing checks (entry point).",
+    "evidence_code": "| contentPassesToServerSpoofingChecks"
+  },
+  {
+    "aspect_description": "Attack step definition: The email is successfully delivered to the user's mailbox.",
+    "evidence_code": "& deliveredToUserMailbox -> recipient.receivesSpearphishingEmail"
+  },
+  {
+    "aspect_description": "Category definition for grouping software-related assets.",
+    "evidence_code": "category Software {"
+  },
+  {
+    "aspect_description": "Asset definition for 'MaliciousAttachment' within the 'Software' category.",
+    "evidence_code": "asset MaliciousAttachment {"
+  },
+  {
+    "aspect_description": "Attack step definition: The malicious attachment contains a viable payload (entry point).",
+    "evidence_code": "| containsViablePayload"
+  },
+  {
+    "aspect_description": "Category definition for grouping system-related assets.",
+    "evidence_code": "category Systems {"
+  },
+  {
+    "aspect_description": "Asset definition for 'Workstation' within the 'Systems' category.",
+    "evidence_code": "asset Workstation {"
+  },
+  {
+    "aspect_description": "Attack step definition: The user interacts with the attachment on the workstation (entry point).",
+    "evidence_code": "| userInteractsWithAttachment"
+  },
+  {
+    "aspect_description": "Attack step definition: The payload from the attachment is executed on the workstation (entry point). Includes a time distribution for the next step.",
+    "evidence_code": "| executePayloadFromAttachment [Exponential(1.0)] -> gainExecutionPrivileges"
+  },
+  {
+    "aspect_description": "Attack step definition: Execution privileges are gained on the workstation (entry point). Includes a time distribution for the next step.",
+    "evidence_code": "| gainExecutionPrivileges [LogNormal(2.0,1.0)] -> establishOutboundC2"
+  },
+  {
+    "aspect_description": "Attack step definition: An outbound command and control (C2) connection is established from the workstation (entry point). Includes a time distribution for the next step.",
+    "evidence_code": "| establishOutboundC2 [Exponential(0.5)] -> c2ServerConnection.acceptInboundC2"
+  },
+  {
+    "aspect_description": "Defense definition: Active endpoint antivirus prevents payload execution from the attachment.",
+    "evidence_code": "# endpointAntivirusActive -> executePayloadFromAttachment"
+  },
+  {
+    "aspect_description": "Defense definition: Application hardening enabled prevents gaining execution privileges.",
+    "evidence_code": "# applicationHardeningEnabled -> gainExecutionPrivileges"
+  },
+  {
+    "aspect_description": "Defense definition: Egress traffic filtering active prevents establishing outbound C2.",
+    "evidence_code": "# egressTrafficFilteringActive -> establishOutboundC2"
+  },
+  {
+    "aspect_description": "Asset definition for 'EmailServer' within the 'Systems' category.",
+    "evidence_code": "asset EmailServer {"
+  },
+  {
+    "aspect_description": "Attack step definition: The email server receives an inbound email (entry point).",
+    "evidence_code": "| receiveInboundEmail"
+  },
+  {
+    "aspect_description": "Defense definition: Active attachment scanning on the email server prevents the attachment from passing server scanning.",
+    "evidence_code": "# attachmentScanningActive -> processedEmails.attachmentPassesToServerScanning"
+  },
+  {
+    "aspect_description": "Defense definition: Active anti-spoofing on the email server prevents content from passing server spoofing checks.",
+    "evidence_code": "# antiSpoofingActive -> processedEmails.contentPassesToServerSpoofingChecks"
+  },
+  {
+    "aspect_description": "Asset definition for 'RemoteSystem' within the 'Systems' category.",
+    "evidence_code": "asset RemoteSystem {"
+  },
+  {
+    "aspect_description": "Attack step definition: The remote system (C2 server) accepts an inbound C2 connection (entry point/objective).",
+    "evidence_code": "| acceptInboundC2"
+  },
+  {
+    "aspect_description": "Definition of associations between assets.",
+    "evidence_code": "associations {"
+  },
+  {
+    "aspect_description": "Association: A UserAccount is linked to exactly one Workstation.",
+    "evidence_code": "UserAccount [accountOwner] 1 <-- UserWorkstationLink --> 1 [associatedWorkstation] Workstation"
+  },
+  {
+    "aspect_description": "Association: One or more Emails are linked to zero or more UserAccounts (recipients).",
+    "evidence_code": "Email [receivedEmails] 1..* <-- EmailRecipients --> * [recipient] UserAccount"
+  },
+  {
+    "aspect_description": "Association: Zero or one Email contains exactly one MaliciousAttachment.",
+    "evidence_code": "Email [emailContainer] 0..1 <-- EmailAttachmentContainment --> 1 [embeddedAttachment] MaliciousAttachment"
+  },
+  {
+    "aspect_description": "Association: Zero or more EmailServers handle exactly one Email.",
+    "evidence_code": "EmailServer [handlingServer] * <-- EmailServerHandling --> 1 [processedEmails] Email"
+  },
+  {
+    "aspect_description": "Association: Zero or more Workstations are linked to zero or more RemoteSystems via a C2 connection link.",
+    "evidence_code": "Workstation [c2ClientOrigin] * <-- WorkstationC2Link --> * [c2ServerConnection] RemoteSystem"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'receivesSpearphishingEmail' step on UserAccount leads to the 'isDeceivedByEmailContent' step on UserAccount with a Bernoulli probability of 0.95.",
+    "evidence_code": "-> isDeceivedByEmailContent"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'isDeceivedByEmailContent' step on UserAccount leads to the 'userInteractsWithAttachment' step on the associated Workstation with a Bernoulli probability of 0.4.",
+    "evidence_code": "-> associatedWorkstation.userInteractsWithAttachment"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'securityAwarenessTraining' defense on UserAccount prevents the 'isDeceivedByEmailContent' step on UserAccount.",
+    "evidence_code": "-> isDeceivedByEmailContent"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'deliveredToUserMailbox' step on Email leads to the 'receivesSpearphishingEmail' step on the recipient UserAccount.",
+    "evidence_code": "-> recipient.receivesSpearphishingEmail"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'executePayloadFromAttachment' step on Workstation leads to the 'gainExecutionPrivileges' step on Workstation with an Exponential time distribution (lambda=1.0).",
+    "evidence_code": "-> gainExecutionPrivileges"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'gainExecutionPrivileges' step on Workstation leads to the 'establishOutboundC2' step on Workstation with a LogNormal time distribution (mean=2.0, stddev=1.0).",
+    "evidence_code": "-> establishOutboundC2"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'establishOutboundC2' step on Workstation leads to the 'acceptInboundC2' step on the associated RemoteSystem (C2 server) with an Exponential time distribution (lambda=0.5).",
+    "evidence_code": "-> c2ServerConnection.acceptInboundC2"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'endpointAntivirusActive' defense on Workstation prevents the 'executePayloadFromAttachment' step on Workstation.",
+    "evidence_code": "-> executePayloadFromAttachment"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'applicationHardeningEnabled' defense on Workstation prevents the 'gainExecutionPrivileges' step on Workstation.",
+    "evidence_code": "-> gainExecutionPrivileges"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'egressTrafficFilteringActive' defense on Workstation prevents the 'establishOutboundC2' step on Workstation.",
+    "evidence_code": "-> establishOutboundC2"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'attachmentScanningActive' defense on EmailServer prevents the 'attachmentPassesToServerScanning' step on the associated Email.",
+    "evidence_code": "-> processedEmails.attachmentPassesToServerScanning"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'antiSpoofingActive' defense on EmailServer prevents the 'contentPassesToServerSpoofingChecks' step on the associated Email.",
+    "evidence_code": "-> processedEmails.contentPassesToServerSpoofingChecks"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: Crafting a malicious email.",
+    "evidence_code": "isMaliciouslyCrafted"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The malicious attachment successfully passing server scanning.",
+    "evidence_code": "attachmentPassesToServerScanning"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The email content successfully passing server anti-spoofing checks.",
+    "evidence_code": "contentPassesToServerSpoofingChecks"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The email being delivered to the user's mailbox.",
+    "evidence_code": "deliveredToUserMailbox"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The malicious attachment containing a payload.",
+    "evidence_code": "containsViablePayload"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The user receiving the spearphishing email.",
+    "evidence_code": "receivesSpearphishingEmail"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The user being deceived by the email content.",
+    "evidence_code": "isDeceivedByEmailContent"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The user interacting with the attachment.",
+    "evidence_code": "userInteractsWithAttachment"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: Executing the payload from the attachment.",
+    "evidence_code": "executePayloadFromAttachment"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: Gaining execution privileges.",
+    "evidence_code": "gainExecutionPrivileges"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: Establishing an outbound command and control connection.",
+    "evidence_code": "establishOutboundC2"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The remote system accepting the inbound command and control connection.",
+    "evidence_code": "acceptInboundC2"
+  }
+]

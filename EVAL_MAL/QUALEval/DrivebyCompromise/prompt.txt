@@ -1,0 +1,300 @@
+Generate a MAL (Meta Attack Language) model definition for the following Website.
+
+
+ATT&CK v17 has been released! Check out the blog post for more information.
+TECHNIQUES 
+
+Home
+Techniques
+Enterprise
+Drive-by Compromise
+Drive-by Compromise
+Adversaries may gain access to a system through a user visiting a website over the normal course of browsing. Multiple ways of delivering exploit code to a browser exist (i.e., Drive-by Target), including:
+
+A legitimate website is compromised, allowing adversaries to inject malicious code
+Script files served to a legitimate website from a publicly writeable cloud storage bucket are modified by an adversary
+Malicious ads are paid for and served through legitimate ad providers (i.e., Malvertising)
+Built-in web application interfaces that allow user-controllable content are leveraged for the insertion of malicious scripts or iFrames (e.g., cross-site scripting)
+Browser push notifications may also be abused by adversaries and leveraged for malicious code injection via User Execution. By clicking "allow" on browser push notifications, users may be granting a website permission to run JavaScript code on their browser.[1][2][3]
+
+Often the website used by an adversary is one visited by a specific community, such as government, a particular industry, or a particular region, where the goal is to compromise a specific user or set of users based on a shared interest. This kind of targeted campaign is often referred to a strategic web compromise or watering hole attack. There are several known examples of this occurring.[4]
+
+Typical drive-by compromise process:
+
+A user visits a website that is used to host the adversary controlled content.
+Scripts automatically execute, typically searching versions of the browser and plugins for a potentially vulnerable version. The user may be required to assist in this process by enabling scripting, notifications, or active website components and ignoring warning dialog boxes.
+Upon finding a vulnerable version, exploit code is delivered to the browser.
+If exploitation is successful, the adversary will gain code execution on the user's system unless other protections are in place. In some cases, a second visit to the website after the initial scan is required before exploit code is delivered.
+Unlike Exploit Public-Facing Application, the focus of this technique is to exploit software on a client endpoint upon visiting a website. This will commonly give an adversary access to systems on the internal network instead of external systems that may be in a DMZ.
+
+ID: T1189
+Sub-techniques:  No sub-techniques
+ⓘ
+Tactic: Initial Access
+ⓘ
+Platforms: Identity Provider, Linux, Windows, macOS
+Contributors: Frank Angiolelli; Jeff Sakowicz, Microsoft Identity Developer Platform Services (IDPM Services); Saisha Agrawal, Microsoft Threat Intelligent Center (MSTIC)
+Version: 1.7
+Created: 18 April 2018
+Last Modified: 15 April 2025
+Version Permalink
+Procedure Examples
+ID	Name	Description
+G0138	Andariel	
+Andariel has used watering hole attacks, often with zero-day exploits, to gain initial access to victims within a specific IP range.[5][6]
+
+G0073	APT19	
+APT19 performed a watering hole attack on forbes.com in 2014 to compromise targets.[7]
+
+G0007	APT28	
+APT28 has compromised targets via strategic web compromise utilizing custom exploit kits.[8] APT28 used reflected cross-site scripting (XSS) against government websites to redirect users to phishing webpages.[9]
+
+G0050	APT32	
+APT32 has infected victims by tricking them into visiting compromised watering hole websites.[10][11]
+
+G0067	APT37	
+APT37 has used strategic web compromises, particularly of South Korean websites, to distribute malware. The group has also used torrent file-sharing sites to more indiscriminately disseminate malware to victims. As part of their compromises, the group has used a Javascript based profiler called RICECURRY to profile a victim's web browser and deliver malicious code accordingly.[12][13][14]
+
+G0082	APT38	
+APT38 has conducted watering holes schemes to gain initial access to victims.[15][16]
+
+G0001	Axiom	
+Axiom has used watering hole attacks to gain access.[17]
+
+S0606	Bad Rabbit	
+Bad Rabbit spread through watering holes on popular sites by injecting JavaScript into the HTML body or a .js file.[18][19]
+
+G0060	BRONZE BUTLER	
+BRONZE BUTLER compromised three Japanese websites using a Flash exploit to perform watering hole attacks.[20]
+
+S0482	Bundlore	
+Bundlore has been spread through malicious advertisements on websites.[21]
+
+C0010	C0010	
+During C0010, UNC3890 actors likely established a watering hole that was hosted on a login page of a legitimate Israeli shipping company that was active until at least November 2021.[22]
+
+G1012	CURIUM	
+CURIUM has used strategic website compromise to infect victims with malware such as IMAPLoader.[23]
+
+G1034	Daggerfly	
+Daggerfly has used strategic website compromise for initial access against victims.[24]
+
+G0070	Dark Caracal	
+Dark Caracal leveraged a watering hole to serve up malicious code.[25]
+
+G0012	Darkhotel	
+Darkhotel used embedded iframes on hotel login portals to redirect selected victims to download malware.[26]
+
+G0035	Dragonfly	
+Dragonfly has compromised targets via strategic web compromise (SWC) utilizing a custom exploit kit.[27][28][29]
+
+G1006	Earth Lusca	
+Earth Lusca has performed watering hole attacks.[30]
+
+G0066	Elderwood	
+Elderwood has delivered zero-day exploits and malware to victims by injecting malicious code into specific public Web pages visited by targets within a particular sector.[31][32][33]
+
+S0531	Grandoreiro	
+Grandoreiro has used compromised websites and Google Ads to bait victims into downloading its installer.[34][35]
+
+S0483	IcedID	
+IcedID has cloned legitimate websites/applications to distribute the malware.[36]
+
+S0215	KARAE	
+KARAE was distributed through torrent file-sharing websites to South Korean victims, using a YouTube video downloader application as a lure.[13]
+
+G0032	Lazarus Group	
+Lazarus Group delivered RATANKBA and other malicious code to victims via a compromised legitimate website.[37][38]
+
+G0077	Leafminer	
+Leafminer has infected victims using watering holes.[39]
+
+G0065	Leviathan	
+Leviathan has infected victims using watering holes.[40]
+
+S0451	LoudMiner	
+LoudMiner is typically bundled with pirated copies of Virtual Studio Technology (VST) for Windows and macOS.[41]
+
+G0095	Machete	
+Machete has distributed Machete through a fake blog website.[42]
+
+G0059	Magic Hound	
+Magic Hound has conducted watering-hole attacks through media and magazine websites.[43]
+
+G1020	Mustard Tempest	
+Mustard Tempest has used drive-by downloads for initial infection, often using fake browser updates as a lure.[44][45][46][47]
+
+C0016	Operation Dust Storm	
+During Operation Dust Storm, the threat actors used a watering hole attack on a popular software reseller to exploit the then-zero-day Internet Explorer vulnerability CVE-2014-0322.[48]
+
+G0040	Patchwork	
+Patchwork has used watering holes to deliver files with exploits to initial victims.[49][50]
+
+G0068	PLATINUM	
+PLATINUM has sometimes used drive-by attacks against vulnerable browser plugins.[51]
+
+S0216	POORAIM	
+POORAIM has been delivered through compromised sites acting as watering holes.[13]
+
+G0056	PROMETHIUM	
+PROMETHIUM has used watering hole attacks to deliver malicious versions of legitimate installers.[52]
+
+S0496	REvil	
+REvil has infected victim machines through compromised websites and exploit kits.[53][54][55][56]
+
+G0048	RTM	
+RTM has distributed its malware via the RIG and SUNDOWN exploit kits, as well as online advertising network Yandex.Direct.[57][58]
+
+S1086	Snip3	
+Snip3 has been delivered to targets via downloads from malicious domains.[59]
+
+S1124	SocGholish	
+SocGholish has been distributed through compromised websites with malicious content often masquerading as browser updates.[44]
+
+G0027	Threat Group-3390	
+Threat Group-3390 has extensively used strategic web compromises to target victims.[60][61]
+
+G0134	Transparent Tribe	
+Transparent Tribe has used websites with malicious hyperlinks and iframes to infect targeted victims with Crimson, njRAT, and other malicious tools.[62][63][64]
+
+G0010	Turla	
+Turla has infected victims using watering holes.[65][66]
+
+G0124	Windigo	
+Windigo has distributed Windows malware via drive-by downloads.[67]
+
+G0112	Windshift	
+Windshift has used compromised websites to register custom URL schemes on a remote system.[68]
+
+G1035	Winter Vivern	
+Winter Vivern created dedicated web pages mimicking legitimate government websites to deliver malicious fake anti-virus software.[69]
+
+Mitigations
+ID	Mitigation	Description
+M1048	Application Isolation and Sandboxing	
+Browser sandboxes can be used to mitigate some of the impact of exploitation, but sandbox escapes may still exist.[70][71]
+
+Other types of virtualization and application microsegmentation may also mitigate the impact of client-side exploitation. The risks of additional exploits and weaknesses in implementation may still exist for these types of systems.[71]
+
+M1050	Exploit Protection	
+Security applications that look for behavior used during exploitation such as Windows Defender Exploit Guard (WDEG) and the Enhanced Mitigation Experience Toolkit (EMET) can be used to mitigate some exploitation behavior.[72] Control flow integrity checking is another way to potentially identify and stop a software exploit from occurring.[73] Many of these protections depend on the architecture and target application binary for compatibility.
+
+M1021	Restrict Web-Based Content	
+Adblockers can help prevent malicious code served through ads from executing in the first place. Script blocking extensions can also help to prevent the execution of JavaScript.
+
+Consider disabling browser push notifications from certain applications and browsers.[74][75][76]
+
+M1051	Update Software	
+Ensuring that all browsers and plugins are kept updated can help prevent the exploit phase of this technique. Use modern browsers with security features turned on.[77]
+
+M1017	User Training	
+Train users to be aware of access or manipulation attempts by an adversary to reduce the risk of successful spearphishing, social engineering, and other techniques that involve user interaction.
+
+Detection
+ID	Data Source	Data Component	Detects
+DS0015	Application Log	Application Log Content	
+Firewalls and proxies can inspect URLs for potentially known-bad domains or parameters. They can also do reputation-based analytics on websites and their requested resources such as how old a domain is, who it's registered to, if it's on a known bad list, or how many other users have connected to it before.
+
+DS0022	File	File Creation	
+Monitor for newly constructed files written to disk to gain access to a system through a user visiting a website over the normal course of browsing. Detect browser process dropping files in suspicious locations (AppData, Temp, /tmp, /var/tmp). Identify exploit payloads (DLLs, JavaScript, shell scripts) written by the browser process.
+
+(sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=11 Image="C:\Program Files\Mozilla Firefox\firefox.exe" OR Image="C:\Program Files\Google\Chrome\Application\chrome.exe")OR (sourcetype="/var/log/audit/audit.log" SYSCALL="open" path="/tmp/%" process="firefox" OR process="chrome")| eval risk_score = case( like(path, "%\Temp\%"), 5, like(path, "%AppData%"), 4, like(path, "%/var/tmp%"), 6)| where risk_score >= 5| table _time, host, process, path, risk_score
+
+DS0029	Network Traffic	Network Connection Creation	
+Monitor for newly constructed network connections to untrusted hosts that are used to send or receive data. Identify browser processes initiating connections to known malicious domains.Detect browser requests to suspicious IPs or domains classified under newly registered domains.Look for anomalous DNS queries and HTTP request patterns.
+
+(sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=3 process="chrome.exe" OR process="firefox.exe")OR (source="cloud_dns_logs" category="newly_registered_domain")OR (source="/var/log/zeek/conn.log" dest_ip IN (malicious_ip_list))| stats count by src_ip, dest_ip, domain, process| where count > 5
+
+Network Traffic Content	
+Detect suspicious script execution over HTTP/S. Identify JavaScript payloads with obfuscation or encoded execution. Look for exploit attempts in network payloads.
+
+(EventCode=5156 dest_port=80 OR dest_port=443 process="chrome.exe" OR process="firefox.exe")OR (source="/var/log/zeek/http.log" method="GET" uri IN (suspicious_js_files))| stats count by src_ip, dest_ip, uri, user_agent| where count > 3
+
+DS0009	Process	Process Creation	
+Look for behaviors on the endpoint system that might indicate successful compromise, such as abnormal behaviors of browser processes. This could include suspicious files written to disk, evidence of Process Injection for attempts to hide execution, or evidence of Discovery.
+
+References
+Gaurav Sethi. (2021, December 14). The Dark Side of Web Push Notifications. Retrieved March 14, 2025.
+Craig Schmugar. (2021, May 17). Scammers Impersonating Windows Defender to Push Malicious Windows Apps. Retrieved March 14, 2025.
+Pieter Arntz. (2019, January 22). Browser push notifications: a feature asking to be abused. Retrieved March 14, 2025.
+Adair, S., Moran, N. (2012, May 15). Cyber Espionage & Strategic Web Compromises – Trusted Websites Serving Dangerous Results. Retrieved March 13, 2018.
+AhnLab. (2018, June 23). Targeted attacks by Andariel Threat Group, a subgroup of the Lazarus. Retrieved September 29, 2021.
+Chen, Joseph. (2018, July 16). New Andariel Reconnaissance Tactics Uncovered. Retrieved September 29, 2021.
+Grunzweig, J., Lee, B. (2016, January 22). New Attacks Linked to C0d0so0 Group. Retrieved August 2, 2018.
+Secureworks CTU. (2017, March 30). IRON TWILIGHT Supports Active Measures. Retrieved February 28, 2022.
+Billy Leonard. (2023, April 19). Ukraine remains Russia’s biggest cyber focus in 2023. Retrieved March 1, 2024.
+Foltýn, T. (2018, March 13). OceanLotus ships new backdoor using old tricks. Retrieved May 22, 2018.
+Adair, S. and Lancaster, T. (2020, November 6). OceanLotus: Extending Cyber Espionage Operations Through Fake Websites. Retrieved November 20, 2020.
+Raiu, C., and Ivanov, A. (2016, June 17). Operation Daybreak. Retrieved February 15, 2018.
+FireEye. (2018, February 20). APT37 (Reaper): The Overlooked North Korean Actor. Retrieved November 17, 2024.
+Cash, D., Grunzweig, J., Meltzer, M., Adair, S., Lancaster, T. (2021, August 17). North Korean APT InkySquid Infects Victims Using Browser Exploits. Retrieved September 30, 2021.
+FireEye. (2018, October 03). APT38: Un-usual Suspects. Retrieved November 17, 2024.
+DHS/CISA. (2020, August 26). FASTCash 2.0: North Korea's BeagleBoyz Robbing Banks. Retrieved September 29, 2021.
+Esler, J., Lee, M., and Williams, C. (2014, October 14). Threat Spotlight: Group 72. Retrieved January 14, 2016.
+M.Léveille, M-E.. (2017, October 24). Bad Rabbit: Not‑Petya is back with improved ransomware. Retrieved January 28, 2021.
+Mamedov, O. Sinitsyn, F. Ivanov, A.. (2017, October 24). Bad Rabbit ransomware. Retrieved January 28, 2021.
+DiMaggio, J. (2016, April 28). Tick cyberespionage group zeros in on Japan. Retrieved July 16, 2018.
+Sushko, O. (2019, April 17). macOS Bundlore: Mac Virus Bypassing macOS Security Features. Retrieved June 30, 2020.
+Mandiant Israel Research Team. (2022, August 17). Suspected Iranian Actor Targeting Israeli Shipping, Healthcare, Government and Energy Sectors. Retrieved September 21, 2022.
+PwC Threat Intelligence. (2023, October 25). Yellow Liderc ships its scripts and delivers IMAPLoader malware. Retrieved August 14, 2024.
+Ahn Ho, Facundo Muñoz, & Marc-Etienne M.Léveillé. (2024, March 7). Evasive Panda leverages Monlam Festival to target Tibetans. Retrieved July 25, 2024.
+Blaich, A., et al. (2018, January 18). Dark Caracal: Cyber-espionage at a Global Scale. Retrieved April 11, 2018.
+Kaspersky Lab's Global Research and Analysis Team. (2014, November). The Darkhotel APT A Story of Unusual Hospitality. Retrieved November 12, 2014.
+Secureworks. (2019, July 24). Resurgent Iron Liberty Targeting Energy Sector. Retrieved August 12, 2020.
+US-CERT. (2018, March 16). Alert (TA18-074A): Russian Government Cyber Activity Targeting Energy and Other Critical Infrastructure Sectors. Retrieved June 6, 2018.
+Slowik, J. (2021, October). THE BAFFLING BERSERK BEAR: A DECADE’S ACTIVITY TARGETING CRITICAL INFRASTRUCTURE. Retrieved December 6, 2021.
+Chen, J., et al. (2022). Delving Deep: An Analysis of Earth Lusca’s Operations. Retrieved July 1, 2022.
+O'Gorman, G., and McDonald, G.. (2012, September 6). The Elderwood Project. Retrieved November 17, 2024.
+Clayton, M.. (2012, September 14). Stealing US business secrets: Experts ID two huge cyber 'gangs' in China. Retrieved February 15, 2018.
+Paganini, P. (2012, September 9). Elderwood project, who is behind Op. Aurora and ongoing attacks?. Retrieved February 13, 2018.
+GReAT. (2020, July 14). The Tetrade: Brazilian banking malware goes global. Retrieved November 9, 2020.
+Abramov, D. (2020, April 13). Grandoreiro Malware Now Targeting Banks in Spain. Retrieved November 12, 2020.
+Kenefick , I. (2022, December 23). IcedID Botnet Distributors Abuse Google PPC to Distribute Malware. Retrieved July 24, 2024.
+Trend Micro. (2017, February 27). RATANKBA: Delving into Large-scale Watering Holes against Enterprises. Retrieved May 22, 2018.
+Weidemann, A. (2021, January 25). New campaign targeting security researchers. Retrieved December 20, 2021.
+Symantec Security Response. (2018, July 25). Leafminer: New Espionage Campaigns Targeting Middle Eastern Regions. Retrieved August 28, 2018.
+CISA. (2021, July 19). (AA21-200A) Joint Cybersecurity Advisory – Tactics, Techniques, and Procedures of Indicted APT40 Actors Associated with China’s MSS Hainan State Security Department. Retrieved August 12, 2021.
+Malik, M. (2019, June 20). LoudMiner: Cross-platform mining in cracked VST software. Retrieved May 18, 2020.
+Kaspersky Global Research and Analysis Team. (2014, August 20). El Machete. Retrieved September 13, 2019.
+ClearSky Research Team. (2020, August 1). The Kittens Are Back in Town 3 - Charming Kitten Campaign Evolved and Deploying Spear-Phishing link by WhatsApp. Retrieved April 21, 2021.
+Andrew Northern. (2022, November 22). SocGholish, a very real threat from a very fake update. Retrieved February 13, 2024.
+Milenkoski, A. (2022, November 7). SocGholish Diversifies and Expands Its Malware Staging Infrastructure to Counter Defenders. Retrieved March 22, 2024.
+Red Canary. (2024, March). Red Canary 2024 Threat Detection Report: SocGholish. Retrieved March 22, 2024.
+Secureworks. (n.d.). GOLD PRELUDE . Retrieved March 22, 2024.
+Gross, J. (2016, February 23). Operation Dust Storm. Retrieved December 22, 2021.
+Hamada, J.. (2016, July 25). Patchwork cyberespionage group expands targets from governments to wide range of industries. Retrieved August 17, 2016.
+Meltzer, M, et al. (2018, June 07). Patchwork APT Group Targets US Think Tanks. Retrieved July 16, 2018.
+Windows Defender Advanced Threat Hunting Team. (2016, April 29). PLATINUM: Targeted attacks in South and Southeast Asia. Retrieved February 15, 2018.
+Tudorica, R. et al. (2020, June 30). StrongPity APT - Revealing Trojanized Tools, Working Hours and Infrastructure. Retrieved July 20, 2020.
+Counter Threat Unit Research Team. (2019, September 24). REvil/Sodinokibi Ransomware. Retrieved August 4, 2020.
+McAfee. (2019, October 2). McAfee ATR Analyzes Sodinokibi aka REvil Ransomware-as-a-Service – What The Code Tells Us. Retrieved August 4, 2020.
+Ozarslan, S. (2020, January 15). A Brief History of Sodinokibi. Retrieved August 5, 2020.
+Secureworks . (2019, September 24). REvil: The GandCrab Connection. Retrieved August 4, 2020.
+Faou, M. and Boutin, J. (2017, February). Read The Manual: A Guide to the RTM Banking Trojan. Retrieved March 9, 2017.
+ESET Research. (2019, April 30). Buhtrap backdoor and Buran ransomware distributed via major advertising platform. Retrieved May 11, 2020.
+Jornet, A. (2021, December 23). Snip3, an investigation into malware. Retrieved September 19, 2023.
+Dell SecureWorks Counter Threat Unit Threat Intelligence. (2015, August 5). Threat Group-3390 Targets Organizations for Cyberespionage. Retrieved August 18, 2018.
+Legezo, D. (2018, June 13). LuckyMouse hits national data center to organize country-level waterholing campaign. Retrieved August 18, 2018.
+Huss, D. (2016, March 1). Operation Transparent Tribe. Retrieved June 8, 2016.
+Falcone, R. and Conant S. (2016, March 25). ProjectM: Link Found Between Pakistani Actor and Operation Transparent Tribe. Retrieved September 2, 2021.
+Malhotra, A. et al. (2021, May 13). Transparent Tribe APT expands its Windows malware arsenal. Retrieved September 2, 2021.
+Faou, M. (2020, May). From Agent.btz to ComRAT v4: A ten-year journey. Retrieved June 15, 2020.
+Secureworks CTU. (n.d.). IRON HUNTER. Retrieved February 22, 2022.
+Bilodeau, O., Bureau, M., Calvet, J., Dorais-Joncas, A., Léveillé, M., Vanheuverzwijn, B. (2014, March 18). Operation Windigo – the vivisection of a large Linux server‑side credential‑stealing malware campaign. Retrieved February 10, 2021.
+Wardle, Patrick. (2018, December 20). Middle East Cyber-Espionage analyzing WindShift's implant: OSX.WindTail (part 1). Retrieved October 3, 2019.
+CERT-UA. (2023, February 1). UAC-0114 aka Winter Vivern to target Ukrainian and Polish GOV entities (CERT-UA#5909). Retrieved July 29, 2024.
+Cowan, C. (2017, March 23). Strengthening the Microsoft Edge Sandbox. Retrieved March 12, 2018.
+Goodin, D. (2017, March 17). Virtual machine escape fetches $105,000 at Pwn2Own hacking contest - updated. Retrieved March 12, 2018.
+Nunez, N. (2017, August 9). Moving Beyond EMET II – Windows Defender Exploit Guard. Retrieved March 12, 2018.
+Wikipedia. (2018, January 11). Control-flow integrity. Retrieved March 12, 2018.
+David Balaban. (2022, October 7). Remove Guroshied virus popup from Mac. Retrieved March 14, 2025.
+Dan Virgillito. (2022, January 27). Malicious push notifications: Is that a real or fake Windows Defender update?. Retrieved March 14, 2025.
+Frank Angiolelli, Indelible LLC, Malwarebytes, McAfee, Norton, Pieter Arntz, PushWelcome. (2020, November 17). Be Very Sparing in Allowing Site Notifications. Retrieved March 14, 2025.
+Dusty Miller. (2023, October 17). Are You Sure Your Browser is Up to Date? The Current Landscape of Fake Browser Updates . Retrieved February 13, 2024.
+
+Contact Us
+Terms of Use
+Privacy Policy
+Website Changelog
+© 2015 - 2025, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.
+ 

@@ -1,0 +1,106 @@
+[
+  {
+   "aspect_description": "Category definition for grouping software-related elements.",
+   "evidence_code": "category Software { ... }"
+  },
+  {
+   "aspect_description": "Asset definition for a 'Service' within the Software category.",
+   "evidence_code": "asset Service { ... }"
+  },
+  {
+   "aspect_description": "Attack step definition modeling a 'supplyChainCompromise' on a Service.",
+   "evidence_code": "& supplyChainCompromise"
+  },
+  {
+   "aspect_description": "Informational text describing the 'supplyChainCompromise' attack step.",
+   "evidence_code": "info: \"Supply chain compromise is the manipulation of products or product delivery mechanisms prior to receipt by a final consumer for the purpose of data or system compromise.\""
+  },
+  {
+   "aspect_description": "Logical relationship indicating that 'supplyChainCompromise' implies the compromise of systems on an OS.",
+   "evidence_code": "->  os.compromisedSystems"
+  },
+  {
+   "aspect_description": "Defense definition for 'updateSoftware'.",
+   "evidence_code": "# updateSoftware"
+  },
+  {
+   "aspect_description": "Informational text providing a link to a relevant MITRE mitigation (M1051) for 'updateSoftware'.",
+   "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1051/\""
+  },
+  {
+   "aspect_description": "Logical relationship indicating that the 'updateSoftware' defense prevents 'supplyChainCompromise'.",
+   "evidence_code": "->  supplyChainCompromise"
+  },
+  {
+   "aspect_description": "Abstract asset definition for an Operating System (OS).",
+   "evidence_code": "abstractAsset OS { ... }"
+  },
+  {
+   "aspect_description": "Definition of 'compromisedSystems' as a potential state or step result associated with the abstract asset OS.",
+   "evidence_code": "| compromisedSystems"
+  },
+  {
+   "aspect_description": "Category definition for grouping network-related elements.",
+   "evidence_code": "category Network { ... }"
+  },
+  {
+   "aspect_description": "Asset definition for an 'InternalNetwork'.",
+   "evidence_code": "asset InternalNetwork { ... }"
+  },
+  {
+   "aspect_description": "Defense definition for 'vulnerabilityScanning'.",
+   "evidence_code": "# vulnerabilityScanning"
+  },
+  {
+   "aspect_description": "Informational text describing the purpose of 'vulnerabilityScanning'.",
+   "evidence_code": "info: \"// Regularly scan the internal network for available services to identify new and potentially vulnerable services.\""
+  },
+  {
+   "aspect_description": "Informational text providing a link to a relevant MITRE mitigation (M1016) for 'vulnerabilityScanning'.",
+   "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1016/\""
+  },
+  {
+   "aspect_description": "Logical relationship indicating that 'vulnerabilityScanning' defense prevents 'supplyChainCompromise' on a service.",
+   "evidence_code": "->  service.supplyChainCompromise"
+  },
+  {
+   "aspect_description": "Block defining associations between assets.",
+   "evidence_code": "associations { ... }"
+  },
+  {
+   "aspect_description": "Association defining that an OS contains one or more Services.",
+   "evidence_code": "OS [os] 1 <--Contain--> 1-* [service] Service"
+  },
+  {
+   "aspect_description": "Association defining that an InternalNetwork contains one or more Services.",
+   "evidence_code": "InternalNetwork [internalNetwork] 1 <--Contain--> 1-* [service] Service"
+  },
+    {
+   "aspect_description": "Attacker behavior: Performing a supply chain compromise.",
+   "evidence_code": "& supplyChainCompromise"
+  },
+  {
+   "aspect_description": "Attacker objective: Compromising systems on the OS.",
+   "evidence_code": "os.compromisedSystems"
+  },
+  {
+   "aspect_description": "Logical connector: Implies/results in (used in attack step).",
+   "evidence_code": "->"
+  },
+    {
+   "aspect_description": "Logical connector: Prevents (inferred by defense).",
+   "evidence_code": "->"
+  },
+  {
+   "aspect_description": "Logical connector: Association/Containment.",
+   "evidence_code": "<--Contain-->"
+  },
+    {
+   "aspect_description": "Cardinality: Exactly one.",
+   "evidence_code": "1"
+  },
+    {
+   "aspect_description": "Cardinality: One or more.",
+   "evidence_code": "1-*"
+  }
+ ]

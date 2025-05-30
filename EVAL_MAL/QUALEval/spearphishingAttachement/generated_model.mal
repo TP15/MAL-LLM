@@ -1,0 +1,53 @@
+#id: "com.example.spearphishing.attachment"
+#version: "1.0.1"
+
+category Identities {
+  asset UserAccount {
+    | receivesSpearphishingEmail [Bernoulli(0.95)] -> isDeceivedByEmailContent
+    | isDeceivedByEmailContent [Bernoulli(0.4)] -> associatedWorkstation.userInteractsWithAttachment
+    # securityAwarenessTraining -> isDeceivedByEmailContent
+  }
+}
+
+category Data {
+  asset Email {
+    | isMaliciouslyCrafted
+    | attachmentPassesToServerScanning
+    | contentPassesToServerSpoofingChecks
+    & deliveredToUserMailbox -> recipient.receivesSpearphishingEmail
+  }
+}
+
+category Software {
+  asset MaliciousAttachment {
+    | containsViablePayload
+  }
+}
+
+category Systems {
+  asset Workstation {
+    | userInteractsWithAttachment
+    | executePayloadFromAttachment [Exponential(1.0)] -> gainExecutionPrivileges
+    | gainExecutionPrivileges [LogNormal(2.0,1.0)] -> establishOutboundC2
+    | establishOutboundC2 [Exponential(0.5)] -> c2ServerConnection.acceptInboundC2
+    # endpointAntivirusActive -> executePayloadFromAttachment
+    # applicationHardeningEnabled -> gainExecutionPrivileges
+    # egressTrafficFilteringActive -> establishOutboundC2
+  }
+  asset EmailServer {
+    | receiveInboundEmail
+    # attachmentScanningActive -> processedEmails.attachmentPassesToServerScanning
+    # antiSpoofingActive -> processedEmails.contentPassesToServerSpoofingChecks
+  }
+  asset RemoteSystem {
+    | acceptInboundC2
+  }
+}
+
+associations {
+  UserAccount [accountOwner] 1 <-- UserWorkstationLink --> 1 [associatedWorkstation] Workstation
+  Email [receivedEmails] 1..* <-- EmailRecipients --> * [recipient] UserAccount
+  Email [emailContainer] 0..1 <-- EmailAttachmentContainment --> 1 [embeddedAttachment] MaliciousAttachment
+  EmailServer [handlingServer] * <-- EmailServerHandling --> 1 [processedEmails] Email
+  Workstation [c2ClientOrigin] * <-- WorkstationC2Link --> * [c2ServerConnection] RemoteSystem
+}

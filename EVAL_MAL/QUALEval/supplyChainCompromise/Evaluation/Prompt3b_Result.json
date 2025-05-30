@@ -1,0 +1,857 @@
+{
+  "matched_aspects": [
+  {
+   "reference_aspect_id": "A2",
+   "generated_aspect_id": "B31",
+   "match_reason": "Both represent a product (SoftwareProduct) that is part of the supply chain, conceptually similar to the general 'Service' asset in the reference.",
+   "confidence_score": 0.85
+  },
+  {
+   "reference_aspect_id": "A2",
+   "generated_aspect_id": "B39",
+   "match_reason": "Both represent a product (HardwareProduct) that is part of the supply chain, conceptually similar to the general 'Service' asset in the reference.",
+   "confidence_score": 0.85
+  },
+  {
+   "reference_aspect_id": "A2",
+   "generated_aspect_id": "B49",
+   "match_reason": "The 'Service' in the reference is implied to be used on a system, which maps to the 'TargetSystem' abstract asset where compromised products end up in the generated model.",
+   "confidence_score": 0.8
+  },
+  {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B5",
+   "match_reason": "Both represent a core compromise attack step, though B is specific to VendorWebsite compromise and A is a general supply chain compromise on a Service.",
+   "confidence_score": 0.7
+  },
+  {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B7",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to hosting malicious software.",
+   "confidence_score": 0.7
+  },
+  {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B14",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to injecting malware in software build.",
+   "confidence_score": 0.7
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B17",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to injecting malware in firmware build.",
+   "confidence_score": 0.7
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B23",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to substituting with malicious software.",
+   "confidence_score": 0.7
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B26",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to substituting with compromised hardware.",
+   "confidence_score": 0.7
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B32",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to a software product being trojanized.",
+   "confidence_score": 0.75
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B35",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to a software product placed on a compromised host.",
+   "confidence_score": 0.75
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B40",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to a hardware product being counterfeit.",
+   "confidence_score": 0.75
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B43",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to hardware firmware being compromised.",
+   "confidence_score": 0.75
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B45",
+   "match_reason": "Both represent steps contributing to supply chain compromise. A is general; B is specific to a hardware product being substituted.",
+   "confidence_score": 0.75
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B50",
+   "match_reason": "Both represent concepts related to the initial access vector of supply chain compromise.",
+   "confidence_score": 0.8
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B51",
+   "match_reason": "Both represent concepts related to the introduction/installation phase of supply chain compromise.",
+   "confidence_score": 0.8
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B52",
+   "match_reason": "Both represent concepts related to the outcome of supply chain compromise (receiving compromised code/hardware).",
+   "confidence_score": 0.8
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B54",
+   "match_reason": "Both represent concepts related to the outcome of supply chain compromise (receiving compromised code/hardware).",
+   "confidence_score": 0.8
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B56",
+   "match_reason": "Both represent steps within the overall supply chain compromise attack flow.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B59",
+   "match_reason": "Both represent steps within the overall supply chain compromise attack flow.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B62",
+   "match_reason": "Both represent steps within the overall supply chain compromise attack flow, leading to impact.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B65",
+   "match_reason": "Both represent steps within the overall supply chain compromise attack flow, leading to impact.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B68",
+   "match_reason": "Both represent the ultimate impact step of the supply chain compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A3",
+   "generated_aspect_id": "B70",
+   "match_reason": "Both represent the ultimate impact step of the supply chain compromise.",
+   "confidence_score": 0.9
+  },
+  {
+   "reference_aspect_id": "A5",
+   "generated_aspect_id": "B112",
+   "match_reason": "Both describe the result of the supply chain attack impacting a system, specifically receiving compromised software.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A5",
+   "generated_aspect_id": "B113",
+   "match_reason": "Both describe the result of the supply chain attack impacting a system, specifically receiving compromised hardware.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A5",
+   "generated_aspect_id": "B116",
+   "match_reason": "Both describe a state/action resulting from the supply chain compromise leading to impact.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A5",
+   "generated_aspect_id": "B117",
+   "match_reason": "Both describe a state/action resulting from the supply chain compromise leading to impact.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A5",
+   "generated_aspect_id": "B118",
+   "match_reason": "Both describe the final outcome/impact on the system resulting from the supply chain compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A5",
+   "generated_aspect_id": "B119",
+   "match_reason": "Both describe the final outcome/impact on the system resulting from the supply chain compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A6",
+   "generated_aspect_id": "B76",
+   "match_reason": "Both represent a defense related to managing and updating software as a mitigation.",
+   "confidence_score": 1.0
+  },
+  {
+   "reference_aspect_id": "A8",
+   "generated_aspect_id": "B76",
+   "match_reason": "Both describe the prevention aspect of software update/patching defense against supply chain compromise. The specific target of prevention differs.",
+   "confidence_score": 0.7
+  },
+  {
+   "reference_aspect_id": "A9",
+   "generated_aspect_id": "B49",
+   "match_reason": "Both define an abstract asset representing the target system/environment that is affected by the supply chain compromise.",
+   "confidence_score": 0.95
+  },
+  {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B52",
+   "match_reason": "Both represent a compromised state or result on the target system (receiving trojanized software being a form of system compromise).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B54",
+   "match_reason": "Both represent a compromised state or result on the target system (receiving compromised hardware being a form of system compromise).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B62",
+   "match_reason": "Both represent a state or step indicating the system is compromised (executing malicious payload).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B65",
+   "match_reason": "Both represent a state or step indicating the system is compromised (executing malicious payload).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B68",
+   "match_reason": "Both represent the final state of system compromise (achieving system impact).",
+   "confidence_score": 0.95
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B70",
+   "match_reason": "Both represent the final state of system compromise (achieving system impact).",
+   "confidence_score": 0.95
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B112",
+   "match_reason": "Both describe the state of target systems receiving compromised software, which is a result of the supply chain compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B113",
+   "match_reason": "Both describe the state of target systems receiving compromised hardware, which is a result of the supply chain compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B114",
+   "match_reason": "Both describe the action of installing compromised software, a step towards system compromise.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B115",
+   "match_reason": "Both describe the action of activating compromised hardware, a step towards system compromise.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B116",
+   "match_reason": "Both describe the action of executing software payload, a direct step causing system compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B117",
+   "match_reason": "Both describe the action of executing hardware payload, a direct step causing system compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B118",
+   "match_reason": "Both describe achieving system impact, the final result of the compromise.",
+   "confidence_score": 0.95
+  },
+    {
+   "reference_aspect_id": "A10",
+   "generated_aspect_id": "B119",
+   "match_reason": "Both describe achieving system impact, the final result of the compromise.",
+   "confidence_score": 0.95
+  },
+  {
+   "reference_aspect_id": "A13",
+   "generated_aspect_id": "B77",
+   "match_reason": "Both define a defense mechanism involving vulnerability scanning.",
+   "confidence_score": 1.0
+  },
+  {
+   "reference_aspect_id": "A16",
+   "generated_aspect_id": "B77",
+   "match_reason": "Both describe the prevention aspect of vulnerability scanning. The specific target of prevention differs.",
+   "confidence_score": 0.7
+  },
+  {
+   "reference_aspect_id": "A17",
+   "generated_aspect_id": "B91",
+   "match_reason": "Both represent the block in MAL code used to define associations between assets.",
+   "confidence_score": 1.0
+  },
+  {
+   "reference_aspect_id": "A18",
+   "generated_aspect_id": "B129",
+   "match_reason": "Both model a containment/usage relationship between a system asset (OS/TargetSystem) and a product asset (Service/SoftwareProduct).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A18",
+   "generated_aspect_id": "B130",
+   "match_reason": "Both model a containment/usage relationship between a system asset (OS/TargetSystem) and a product asset (Service/HardwareProduct).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B99",
+   "match_reason": "Both describe performing a supply chain compromise, with B being specific to VendorWebsite compromise and A being the overall concept.",
+   "confidence_score": 0.8
+  },
+  {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B100",
+   "match_reason": "Both describe attacker actions within the supply chain compromise context.",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B101",
+   "match_reason": "Both describe attacker actions within the supply chain compromise context (injecting malware).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B102",
+   "match_reason": "Both describe attacker actions within the supply chain compromise context (injecting malware).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B103",
+   "match_reason": "Both describe attacker actions within the supply chain compromise context (substitution).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B104",
+   "match_reason": "Both describe attacker actions within the supply chain compromise context (substitution).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B105",
+   "match_reason": "Both describe attacker actions/states within the supply chain compromise context (trojanized product).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B106",
+   "match_reason": "Both describe attacker actions/states within the supply chain compromise context (product on compromised host).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B107",
+   "match_reason": "Both describe attacker actions/states within the supply chain compromise context (counterfeit product).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B108",
+   "match_reason": "Both describe attacker actions/states within the supply chain compromise context (compromised firmware).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B109",
+   "match_reason": "Both describe attacker actions/states within the supply chain compromise context (substituted product).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B110",
+   "match_reason": "Both describe a state relevant to the attacker's ability to introduce compromised elements.",
+   "confidence_score": 0.8
+  },
+    {
+   "reference_aspect_id": "A20",
+   "generated_aspect_id": "B111",
+   "match_reason": "Both describe a state relevant to the attacker's ability to install compromised elements.",
+   "confidence_score": 0.8
+  },
+    {
+   "reference_aspect_id": "A21",
+   "generated_aspect_id": "B112",
+   "match_reason": "Both describe the outcome on the target system (receiving compromised software).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A21",
+   "generated_aspect_id": "B113",
+   "match_reason": "Both describe the outcome on the target system (receiving compromised hardware).",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A21",
+   "generated_aspect_id": "B114",
+   "match_reason": "Both describe an action leading to system compromise (installing trojanized software).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A21",
+   "generated_aspect_id": "B115",
+   "match_reason": "Both describe an action leading to system compromise (activating compromised hardware).",
+   "confidence_score": 0.85
+  },
+    {
+   "reference_aspect_id": "A21",
+   "generated_aspect_id": "B116",
+   "match_reason": "Both describe the action of executing malicious payload, a direct objective for system compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A21",
+   "generated_aspect_id": "B117",
+   "match_reason": "Both describe the action of executing malicious payload, a direct objective for system compromise.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A21",
+   "generated_aspect_id": "B118",
+   "match_reason": "Both describe the final objective: achieving system impact.",
+   "confidence_score": 0.95
+  },
+    {
+   "reference_aspect_id": "A21",
+   "generated_aspect_id": "B119",
+   "match_reason": "Both describe the final objective: achieving system impact.",
+   "confidence_score": 0.95
+  },
+  {
+   "reference_aspect_id": "A22",
+   "generated_aspect_id": "B120",
+   "match_reason": "Both describe the logical connector '->' used to indicate that one step/state implies or results in another.",
+   "confidence_score": 1.0
+  },
+  {
+   "reference_aspect_id": "A23",
+   "generated_aspect_id": "B121",
+   "match_reason": "Both describe the logical connector '->' when used in the context of a defense preventing an attack step.",
+   "confidence_score": 1.0
+  },
+  {
+   "reference_aspect_id": "A24",
+   "generated_aspect_id": "B124",
+   "match_reason": "Both describe the concept of defining associations between assets, using similar syntax.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A24",
+   "generated_aspect_id": "B125",
+   "match_reason": "Both describe the concept of defining associations between assets, using similar syntax.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A24",
+   "generated_aspect_id": "B126",
+   "match_reason": "Both describe the concept of defining associations between assets, using similar syntax.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A24",
+   "generated_aspect_id": "B127",
+   "match_reason": "Both describe the concept of defining associations between assets, using similar syntax.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A24",
+   "generated_aspect_id": "B128",
+   "match_reason": "Both describe the concept of defining associations between assets, using similar syntax.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A24",
+   "generated_aspect_id": "B129",
+   "match_reason": "Both describe the concept of defining associations between assets, using similar syntax.",
+   "confidence_score": 0.9
+  },
+    {
+   "reference_aspect_id": "A24",
+   "generated_aspect_id": "B130",
+   "match_reason": "Both describe the concept of defining associations between assets, using similar syntax.",
+   "confidence_score": 0.9
+  },
+  {
+   "reference_aspect_id": "A25",
+   "generated_aspect_id": "B131",
+   "match_reason": "Both represent the cardinality of exactly one in an association.",
+   "confidence_score": 1.0
+  },
+  {
+   "reference_aspect_id": "A26",
+   "generated_aspect_id": "B132",
+   "match_reason": "Both represent a cardinality of one or more (* includes one or more) in an association.",
+   "confidence_score": 0.9
+  }
+  ],
+  "unmatched_aspects_a": [
+  {
+   "id": "A1",
+   "aspect_description": "Category definition for grouping software-related elements.",
+   "evidence_code": "category Software { ... }"
+  },
+  {
+   "id": "A4",
+   "aspect_description": "Informational text describing the 'supplyChainCompromise' attack step.",
+   "evidence_code": "info: \"Supply chain compromise is the manipulation of products or product delivery mechanisms prior to receipt by a final consumer for the purpose of data or system compromise.\""
+  },
+  {
+   "id": "A7",
+   "aspect_description": "Informational text providing a link to a relevant MITRE mitigation (M1051) for 'updateSoftware'.",
+   "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1051/\""
+  },
+  {
+   "id": "A11",
+   "aspect_description": "Category definition for grouping network-related elements.",
+   "evidence_code": "category Network { ... }"
+  },
+  {
+   "id": "A12",
+   "aspect_description": "Asset definition for an 'InternalNetwork'.",
+   "evidence_code": "asset InternalNetwork { ... }"
+  },
+  {
+   "id": "A14",
+   "aspect_description": "Informational text describing the purpose of 'vulnerabilityScanning'.",
+   "evidence_code": "info: \"// Regularly scan the internal network for available services to identify new and potentially vulnerable services.\""
+  },
+  {
+   "id": "A15",
+   "aspect_description": "Informational text providing a link to a relevant MITRE mitigation (M1016) for 'vulnerabilityScanning'.",
+   "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1016/\""
+  },
+  {
+   "id": "A19",
+   "aspect_description": "Association defining that an InternalNetwork contains one or more Services.",
+   "evidence_code": "InternalNetwork [internalNetwork] 1 <--Contain--> 1-* [service] Service"
+  }
+  ],
+  "unmatched_aspects_b": [
+  {
+   "id": "B1",
+   "aspect_description": "MAL model identifier.",
+   "evidence_code": "#id: \"mitre.attack.ics.supplychain.t0862\""
+  },
+  {
+   "id": "B2",
+   "aspect_description": "MAL model version.",
+   "evidence_code": "#version: \"1.1.0\""
+  },
+  {
+   "id": "B3",
+   "aspect_description": "Category definition for 'SupplyChainInfrastructure'.",
+   "evidence_code": "category SupplyChainInfrastructure { ... }"
+  },
+  {
+   "id": "B4",
+   "aspect_description": "Asset definition for 'VendorWebsite'.",
+   "evidence_code": "asset VendorWebsite { ... }"
+  },
+  {
+   "id": "B6",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.01.",
+   "evidence_code": "[Exponential(0.01)]"
+  },
+  {
+   "id": "B8",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.2.",
+   "evidence_code": "[Exponential(0.2)]"
+  },
+  {
+   "id": "B9",
+   "aspect_description": "Logical relationship: Hosting malicious software implies the hosted software is placed on a compromised host.",
+   "evidence_code": "-> hostedSoftware.bePlacedOnCompromisedHost"
+  },
+  {
+   "id": "B10",
+   "aspect_description": "Defense definition: WebsiteHardeningAndMonitoring.",
+   "evidence_code": "# WebsiteHardeningAndMonitoring"
+  },
+  {
+   "id": "B12",
+   "aspect_description": "Asset definition for 'DevelopmentEnvironment'.",
+   "evidence_code": "asset DevelopmentEnvironment { ... }"
+  },
+  {
+   "id": "B13",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.005.",
+   "evidence_code": "[Exponential(0.005)]"
+  },
+  {
+   "id": "B15",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.1.",
+   "evidence_code": "[Exponential(0.1)]"
+  },
+  {
+   "id": "B16",
+   "aspect_description": "Logical relationship: Injecting malware in software build implies the developed software is trojanized.",
+   "evidence_code": "-> developedSoftware.beTrojanized"
+  },
+  {
+   "id": "B18",
+   "aspect_description": "Logical relationship: Injecting malware in firmware build implies the developed firmware is compromised.",
+   "evidence_code": "-> developedFirmware.firmwareCompromised"
+  },
+  {
+   "id": "B19",
+   "aspect_description": "Defense definition: SecureDevelopmentLifecycle.",
+   "evidence_code": "# SecureDevelopmentLifecycle"
+  },
+  {
+   "id": "B21",
+   "aspect_description": "Asset definition for 'DistributionMechanism'.",
+   "evidence_code": "asset DistributionMechanism { ... }"
+  },
+  {
+   "id": "B22",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.03.",
+   "evidence_code": "[Exponential(0.03)]"
+  },
+  {
+   "id": "B24",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.15.",
+   "evidence_code": "[Exponential(0.15)]"
+  },
+  {
+   "id": "B25",
+   "aspect_description": "Logical relationship: Substituting with malicious software implies the distributed software is placed on a compromised host.",
+   "evidence_code": "-> distributedSoftware.bePlacedOnCompromisedHost"
+  },
+  {
+   "id": "B27",
+   "aspect_description": "Logical relationship: Substituting with compromised hardware implies the distributed hardware is substituted in the supply chain.",
+   "evidence_code": "-> distributedHardware.beSubstitutedInSupplyChain"
+  },
+  {
+   "id": "B28",
+   "aspect_description": "Defense definition: DistributionIntegrityControls.",
+   "evidence_code": "# DistributionIntegrityControls"
+  },
+  {
+   "id": "B30",
+   "aspect_description": "Category definition for 'CompromisableProducts'.",
+   "evidence_code": "category CompromisableProducts { ... }"
+  },
+  {
+   "id": "B33",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.05.",
+   "evidence_code": "[Exponential(0.05)]"
+  },
+  {
+   "id": "B36",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.1.",
+   "evidence_code": "[Exponential(0.1)]"
+  },
+  {
+   "id": "B38",
+   "aspect_description": "Defense definition: CodeSigningAndVerificationChain.",
+   "evidence_code": "# CodeSigningAndVerificationChain"
+  },
+  {
+   "id": "B41",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.02.",
+   "evidence_code": "[Exponential(0.02)]"
+  },
+  {
+   "id": "B44",
+   "aspect_description": "Logical relationship: Compromised firmware implies target systems receive compromised hardware.",
+   "evidence_code": "-> targetSystems.receiveCompromisedHardware"
+  },
+  {
+   "id": "B46",
+   "aspect_description": "Logical relationship: Substituted hardware implies target systems receive compromised hardware.",
+   "evidence_code": "-> targetSystems.receiveCompromisedHardware"
+  },
+  {
+   "id": "B47",
+   "aspect_description": "Defense definition: HardwareAuthenticityChecks.",
+   "evidence_code": "# HardwareAuthenticityChecks"
+  },
+  {
+   "id": "B48",
+   "aspect_description": "Category definition for 'TargetICSAssets'.",
+   "evidence_code": "category TargetICSAssets { ... }"
+  },
+  {
+   "id": "B53",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.8.",
+   "evidence_code": "[Exponential(0.8)]"
+  },
+  {
+   "id": "B55",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.8.",
+   "evidence_code": "[Exponential(0.8)]"
+  },
+  {
+   "id": "B57",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.5.",
+   "evidence_code": "[Exponential(0.5)]"
+  },
+  {
+   "id": "B60",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.5.",
+   "evidence_code": "[Exponential(0.5)]"
+  },
+  {
+   "id": "B63",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.1.",
+   "evidence_code": "[Exponential(0.1)]"
+  },
+  {
+   "id": "B66",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.1.",
+   "evidence_code": "[Exponential(0.1)]"
+  },
+  {
+   "id": "B69",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.02.",
+   "evidence_code": "[Exponential(0.02)]"
+  },
+  {
+   "id": "B71",
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.02.",
+   "evidence_code": "[Exponential(0.02)]"
+  },
+  {
+   "id": "B72",
+   "aspect_description": "Defense definition: SupplyChainRiskManagementProgram.",
+   "evidence_code": "# SupplyChainRiskManagementProgram"
+  },
+  {
+   "id": "B74",
+   "aspect_description": "Defense definition: ProductIntegrityVerification.",
+   "evidence_code": "# ProductIntegrityVerification"
+  },
+  {
+   "id": "B78",
+   "aspect_description": "Asset definition: ApplicationServer extends TargetSystem.",
+   "evidence_code": "asset ApplicationServer extends TargetSystem { }"
+  },
+  {
+   "id": "B79",
+   "aspect_description": "Asset definition: ControlServer extends TargetSystem.",
+   "evidence_code": "asset ControlServer extends TargetSystem { }"
+  },
+  {
+   "id": "B80",
+   "aspect_description": "Asset definition: DataGateway extends TargetSystem.",
+   "evidence_code": "asset DataGateway extends TargetSystem { }"
+  },
+  {
+   "id": "B81",
+   "aspect_description": "Asset definition: DataHistorian extends TargetSystem.",
+   "evidence_code": "asset DataHistorian extends TargetSystem { }"
+  },
+  {
+   "id": "B82",
+   "aspect_description": "Asset definition: FieldIO extends TargetSystem.",
+   "evidence_code": "asset FieldIO extends TargetSystem { }"
+  },
+  {
+   "id": "B83",
+   "aspect_description": "Asset definition: HMI extends TargetSystem.",
+   "evidence_code": "asset HMI extends TargetSystem { }"
+  },
+  {
+   "id": "B84",
+   "aspect_description": "Asset definition: IED extends TargetSystem.",
+   "evidence_code": "asset IED extends TargetSystem { }"
+  },
+  {
+   "id": "B85",
+   "aspect_description": "Asset definition: JumpHost extends TargetSystem.",
+   "evidence_code": "asset JumpHost extends TargetSystem { }"
+  },
+  {
+   "id": "B86",
+   "aspect_description": "Asset definition: PLC extends TargetSystem.",
+   "evidence_code": "asset PLC extends TargetSystem { }"
+  },
+  {
+   "id": "B87",
+   "aspect_description": "Asset definition: RTU extends TargetSystem.",
+   "evidence_code": "asset RTU extends TargetSystem { }"
+  },
+  {
+   "id": "B88",
+   "aspect_description": "Asset definition: SafetyController extends TargetSystem.",
+   "evidence_code": "asset SafetyController extends TargetSystem { }"
+  },
+  {
+   "id": "B89",
+   "aspect_description": "Asset definition: VPNServer extends TargetSystem.",
+   "evidence_code": "asset VPNServer extends TargetSystem { }"
+  },
+  {
+   "id": "B90",
+   "aspect_description": "Asset definition: Workstation extends TargetSystem.",
+   "evidence_code": "asset Workstation extends TargetSystem { }"
+  },
+  {
+   "id": "B92",
+   "aspect_description": "Association: VendorWebsite hosts one or more SoftwareProducts.",
+   "evidence_code": "VendorWebsite [hostingSite] 1 <-- HostsSoftware --> * [hostedSoftware] SoftwareProduct"
+  },
+  {
+   "id": "B93",
+   "aspect_description": "Association: DevelopmentEnvironment develops one or more SoftwareProducts.",
+   "evidence_code": "DevelopmentEnvironment [developerEnvironment] 1 <-- DevelopsSoftware --> * [developedSoftware] SoftwareProduct"
+  },
+  {
+   "id": "B94",
+   "aspect_description": "Association: DevelopmentEnvironment develops one or more HardwareProducts (firmware).",
+   "evidence_code": "DevelopmentEnvironment [firmwareDeveloperEnvironment] 1 <-- DevelopsFirmware --> * [developedFirmware] HardwareProduct"
+  },
+  {
+   "id": "B95",
+   "aspect_description": "Association: DistributionMechanism distributes one or more SoftwareProducts.",
+   "evidence_code": "DistributionMechanism [softwareDistributor] 1 <-- DistributesSoftware --> * [distributedSoftware] SoftwareProduct"
+  },
+  {
+   "id": "B96",
+   "aspect_description": "Association: DistributionMechanism distributes one or more HardwareProducts.",
+   "evidence_code": "DistributionMechanism [hardwareDistributor] 1 <-- DistributesHardware --> * [distributedHardware] HardwareProduct"
+  },
+  {
+   "id": "B97",
+   "aspect_description": "Association: SoftwareProduct is used by one or more TargetSystems.",
+   "evidence_code": "SoftwareProduct [usedSoftware] * <-- SoftwareUsage --> * [targetSystems] TargetSystem"
+  },
+  {
+   "id": "B98",
+   "aspect_description": "Association: HardwareProduct is used by one or more TargetSystems.",
+   "evidence_code": "HardwareProduct [usedHardware] * <-- HardwareUsage --> * [targetSystems] TargetSystem"
+  },
+    {
+   "id": "B122",
+   "aspect_description": "Logical connector: Abstract asset state/step result.",
+   "evidence_code": "|"
+  },
+  {
+   "id": "B123",
+   "aspect_description": "Logical connector: Asset inheritance.",
+   "evidence_code": "extends"
+  }
+  ]
+ }

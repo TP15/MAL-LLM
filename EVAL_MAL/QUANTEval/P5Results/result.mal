@@ -1,0 +1,43 @@
+
+
+#id: "org.mal-lang.examplelang"
+#version: "1.0.0"
+
+category Infrastructure {
+  asset Gateway {
+    | linkAccess
+      -> machine.linkedAccess
+  }
+
+  asset Machine {
+    | login
+      -> access
+    | access
+      -> linkAccess
+    | linkedAccess
+      -> access
+    & access
+    # MFA
+      -> credentials.verified
+  }
+
+  asset Operator {
+    | launchPhishing
+      -> phishingHit
+    | phishingHit [Exponential(0.1)]
+      -> credentials.exfiltrate
+  }
+
+  asset Credentials {
+    | exfiltrate
+      -> machine.login
+    | rotate
+    | verified
+  }
+}
+associations {
+  Gateway [gateways] * <-- linkAccess --> * [machines] Machine
+  Machine [machine] * <-- AuthData  --> * [credentials] Credentials
+  Operator [operator] 1 <-- Credentials --> * [credentials] Credentials
+}
+

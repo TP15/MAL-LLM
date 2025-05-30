@@ -1,0 +1,40 @@
+
+
+#id: "org.mal-lang.examplelang"
+#version: "1.0.0"
+
+category System {
+  asset Operator {
+    | launchPhishing
+      -> phishingHit [Exponential(0.10)]
+
+    | phishingHit 
+      -> credentials.extract     
+  }
+
+  asset Credentials {
+    
+      -> machines.login
+
+  }
+  asset Machine {
+    | login
+      -> entry
+    | entry 
+      -> link
+    #MFA
+     -> login
+
+  }
+
+  asset Gateway {
+
+  }
+
+}
+
+associations {
+  Gateway [gateways] * <-- LinkAccess --> * [machines] Machine
+  Machine [machines] 1 <-- AuthData --> * [operators] Operator
+  
+}

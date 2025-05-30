@@ -1,0 +1,170 @@
+[
+  {
+    "aspect_description": "Category definition for grouping person-related assets.",
+    "evidence_code": "category Person {"
+  },
+  {
+    "aspect_description": "Asset definition for 'User' within the 'Person' category.",
+    "evidence_code": "asset User {"
+  },
+  {
+    "aspect_description": "Attack step definition: Successful download of a spearphishing attachment by a user.",
+    "evidence_code": "& spearphishingAttachmentDownload"
+  },
+  {
+    "aspect_description": "Attack step definition: Execution of code by a user, resulting from a previous step.",
+    "evidence_code": "& userExecution"
+  },
+  {
+    "aspect_description": "Defense definition: User training to prevent spearphishing attachment download and user execution.",
+    "evidence_code": "# userTraining"
+  },
+  {
+    "aspect_description": "Category definition for grouping software-related assets.",
+    "evidence_code": "category Software {"
+  },
+  {
+    "aspect_description": "Asset definition for 'Browser' within the 'Software' category.",
+    "evidence_code": "asset Browser {"
+  },
+  {
+    "aspect_description": "Attack step definition: Initial attempt to deliver a spearphishing attachment via a browser.",
+    "evidence_code": "| attemptSpearhishingAttachment"
+  },
+  {
+    "aspect_description": "Attack step definition: A spearphishing attachment reaching the browser.",
+    "evidence_code": "& spearphishingAttachment"
+  },
+  {
+    "aspect_description": "Defense definition: Restricting web-based content to prevent spearphishing attachments.",
+    "evidence_code": "# restrictWebBasedContent"
+  },
+  {
+    "aspect_description": "Asset definition for 'OS' within the 'Software' category.",
+    "evidence_code": "asset OS { \n    # antivirus\n    user info: \"https://attack.mitre.org/mitigations/M1049/\"\n    -> browser1.spearphishingAttachment\n}"
+  },
+  {
+    "aspect_description": "Defense definition: Antivirus protection on the OS.",
+    "evidence_code": "# antivirus"
+  },
+  {
+    "aspect_description": "Annotation for the 'antivirus' defense, providing a link to MITRE ATT&CK mitigation M1049.",
+    "evidence_code": "user info: \"https://attack.mitre.org/mitigations/M1049/\""
+  },
+  {
+    "aspect_description": "Category definition for grouping hardware-related assets.",
+    "evidence_code": "category Hardware {"
+  },
+  {
+    "aspect_description": "Asset definition for 'Computer' within the 'Hardware' category.",
+    "evidence_code": "asset Computer {"
+  },
+  {
+    "aspect_description": "Attack step definition: The computer becoming infected, likely as a result of user execution.",
+    "evidence_code": "| infectedComputer"
+  },
+  {
+    "aspect_description": "Category definition for grouping network-related assets.",
+    "evidence_code": "category Network {"
+  },
+  {
+    "aspect_description": "Asset definition for 'InternalNetwork' within the 'Network' category.",
+    "evidence_code": "asset InternalNetwork {"
+  },
+  {
+    "aspect_description": "Defense definition: Network intrusion prevention on the Internal Network.",
+    "evidence_code": "# networkIntrusionPrevention"
+  },
+  {
+    "aspect_description": "Asset definition for 'ExternalNetwork' within the 'Network' category.",
+    "evidence_code": "asset ExternalNetwork {"
+  },
+  {
+    "aspect_description": "Defense definition: Network intrusion prevention on the External Network.",
+    "evidence_code": "# networkIntrusionPrevention"
+  },
+  {
+    "aspect_description": "Definition of associations between assets.",
+    "evidence_code": "associations {"
+  },
+  {
+    "aspect_description": "Association: A User uses one or more Computers.",
+    "evidence_code": "User [user] 1 <--Use--> * [computer] Computer"
+  },
+  {
+    "aspect_description": "Association: A User uses one or more Browsers.",
+    "evidence_code": "User [user] * <--Use--> * [browser] Browser"
+  },
+  {
+    "aspect_description": "Association: A Browser runs on one or more Computers.",
+    "evidence_code": "Browser [computerBrowser] * <--Run--> 1..* [computer] Computer"
+  },
+  {
+    "aspect_description": "Association: A Browser is associated with zero or more OS instances via the 'Software' relationship.",
+    "evidence_code": "Browser [browser1] * <--Software--> * [os] OS"
+  },
+  {
+    "aspect_description": "Association: A Browser connects to zero or more Internal Networks via the 'Connect' relationship.",
+    "evidence_code": "Browser [browser6] * <--Connect--> * [internalNetwork1] InternalNetwork"
+  },
+  {
+    "aspect_description": "Association: A Browser connects to zero or more External Networks via the 'Connect' relationship.",
+    "evidence_code": "Browser [browser7] * <--Connect--> * [externalNetwork1] ExternalNetwork"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'spearphishingAttachmentDownload' attack step on User leads to the 'userExecution' attack step on User.",
+    "evidence_code": "-> userExecution"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'userExecution' attack step on User leads to the 'infectedComputer' attack step on an associated Computer.",
+    "evidence_code": "-> computer.infectedComputer"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'userTraining' defense on User prevents the 'spearphishingAttachmentDownload' and 'userExecution' attack steps on User.",
+    "evidence_code": "-> spearphishingAttachmentDownload,\n                 userExecution"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'attemptSpearhishingAttachment' attack step on Browser leads to the 'spearphishingAttachment' attack step on Browser.",
+    "evidence_code": "-> spearphishingAttachment"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'spearphishingAttachment' attack step on Browser leads to the 'spearphishingAttachmentDownload' attack step on an associated User.",
+    "evidence_code": "-> user.spearphishingAttachmentDownload"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'restrictWebBasedContent' defense on Browser prevents the 'spearphishingAttachment' attack step on Browser.",
+    "evidence_code": "-> spearphishingAttachment"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'antivirus' defense on OS prevents the 'spearphishingAttachment' attack step on an associated Browser (specifically via the 'browser1' role).",
+    "evidence_code": "-> browser1.spearphishingAttachment"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'networkIntrusionPrevention' defense on InternalNetwork prevents the 'spearphishingAttachment' attack step on an associated Browser (specifically via the 'browser6' role).",
+    "evidence_code": "-> browser6.spearphishingAttachment"
+  },
+  {
+    "aspect_description": "Logical connector/relationship: The 'networkIntrusionPrevention' defense on ExternalNetwork prevents the 'spearphishingAttachment' attack step on an associated Browser (specifically via the 'browser7' role).",
+    "evidence_code": "-> browser7.spearphishingAttachment"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: Initiating the spearphishing attempt.",
+    "evidence_code": "attemptSpearhishingAttachment"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The spearphishing attachment successfully reaching the browser.",
+    "evidence_code": "spearphishingAttachment"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The user downloading the spearphishing attachment.",
+    "evidence_code": "spearphishingAttachmentDownload"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The user executing the malicious content from the attachment.",
+    "evidence_code": "userExecution"
+  },
+  {
+    "aspect_description": "Attacker objective/behavior: The final state where the computer is compromised/infected.",
+    "evidence_code": "infectedComputer"
+  }
+]

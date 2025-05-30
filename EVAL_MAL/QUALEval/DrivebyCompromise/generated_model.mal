@@ -1,0 +1,57 @@
+#id: "com.mitre.attack.driveby.compromise.v2"
+#version: "1.0.0"
+
+category ClientInfrastructure {
+  asset UserEndpoint {
+    | visitWebsite -> usesBrowser.fetchAndRenderContent
+    | allowMaliciousPushNotification -> usesBrowser.executePushNotificationPayload
+    & gainSystemAccess [Exponential(0.1)]
+    # endpointSecuritySoftwareActive -> gainSystemAccess
+    # userSecurityAwareness -> allowMaliciousPushNotification
+  }
+  asset Browser {
+    & fetchAndRenderContent -> accessesWebsite.deliverPayloadToBrowserUponVisit, fingerprintBrowser
+    | fingerprintBrowser [Exponential(0.5)] -> deliverTargetedExploit
+    & processMaliciousScripts [Exponential(0.8)] -> exploitBrowserVulnerability
+    & deliverTargetedExploit -> exploitBrowserVulnerability
+    & exploitBrowserVulnerability [Gamma(2.0,2.0)] -> runsOnEndpoint.gainSystemAccess
+    & executePushNotificationPayload [Exponential(0.7)] -> runsOnEndpoint.gainSystemAccess
+    # softwareUpdatesApplied -> exploitBrowserVulnerability
+    # sandboxingEffectivelyEnabled -> runsOnEndpoint.gainSystemAccess
+    # scriptBlockingActive -> processMaliciousScripts, fingerprintBrowser
+    # pushNotificationsRestrictedByUser -> executePushNotificationPayload
+  }
+}
+
+category WebInfrastructure {
+  asset Website {
+    | compromiseLegitimateSite [Exponential(0.01)] -> enablePayloadDelivery
+    | injectXSSPayload [Exponential(0.05)] -> enablePayloadDelivery
+    | receiveMaliciousAd -> enablePayloadDelivery
+    | receiveCompromisedScript -> enablePayloadDelivery
+    | enablePayloadDelivery -> deliverPayloadToBrowserUponVisit
+    & deliverPayloadToBrowserUponVisit -> isAccessedByBrowser.processMaliciousScripts
+    # websitePlatformHardening -> compromiseLegitimateSite
+    # xssProtectionsInPlace -> injectXSSPayload
+    # thirdPartyContentVettingProcess -> receiveMaliciousAd, receiveCompromisedScript
+  }
+  asset AdProvider {
+    | acceptMaliciousAdCampaign [Uniform(1.0,5.0)] -> distributeMaliciousAdToWebsites
+    & distributeMaliciousAdToWebsites -> servesAdsToWebsite.receiveMaliciousAd
+    # robustAdContentScreening -> acceptMaliciousAdCampaign
+  }
+  asset CloudStorageBucket {
+    | compromiseBucketWriteAccess [Exponential(0.03)] -> modifyStoredScriptFiles
+    & modifyStoredScriptFiles -> distributeCompromisedScriptToWebsites
+    & distributeCompromisedScriptToWebsites -> providesScriptsToWebsite.receiveCompromisedScript
+    # strongBucketAccessControls -> compromiseBucketWriteAccess
+    # scriptFileIntegrityMonitoring -> modifyStoredScriptFiles
+  }
+}
+
+associations {
+  UserEndpoint [runsOnEndpoint] 1..* <-- UserBrowserUsage --> 1..* [usesBrowser] Browser
+  Browser [isAccessedByBrowser] * <-- BrowserWebsiteConnection --> * [accessesWebsite] Website
+  Website [servesAdsToWebsite] * <-- WebsiteAdIntegration --> * [displaysAdsFrom] AdProvider
+  Website [providesScriptsToWebsite] * <-- WebsiteScriptSourcing --> * [sourcesScriptsFrom] CloudStorageBucket
+}

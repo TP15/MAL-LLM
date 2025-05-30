@@ -1,0 +1,45 @@
+Silas
+#id: "org.mal-lang.thomas"
+#version: "1.0.0"
+
+category System {
+  asset Gateway {
+    | link
+      -> machines.login
+    # networkSegmentiation
+      -> machines.login
+    # monitorAbnormalBehaviour
+      -> machines.login
+  }
+
+  asset Machine {
+    | login
+      -> entry
+    | entry
+      -> gateway.link
+    # rotateCredentials
+      -> gateway.link
+  }
+
+  asset Operator {
+    | launchPhishing
+      -> phishingHit
+    | phishingHit [Exponential(0.2)]
+      -> credentials.extract
+    # phishingAwareness
+      -> credentials.extract
+  }
+
+  asset Credentials {
+    | extract
+      -> machines.login
+    # multiFactorAuthentication
+      -> machines.login
+  }
+}
+
+associations {
+  Gateway [gateway] 1 <-- LinkAccess --> * [machines] Machine
+  Operator [operator] 1 <-- AuthData --> * [credentials] Credentials
+  Machine [machines] 1 <-- AuthData --> * [credentials] Credentials
+}

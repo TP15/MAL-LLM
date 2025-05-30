@@ -1,0 +1,49 @@
+
+
+#id: "org.mal-lang.examplelang"
+#version: "1.0.0"
+
+category System {
+  asset Gateway {
+    | entry
+      -> machines.link
+  }
+
+  asset Machine {
+    | link
+      -> entry
+    | login
+      -> entry
+    | guessPassword
+      -> guessedPassword,
+         guessedPasswordHarder
+    | guessedPassword [Exponential(0.02)]
+      -> login
+    | guessedPasswordHarder [Exponential(0.05)]
+      -> login
+    & entry
+    # MFA
+      -> guessedPassword
+  }
+
+  asset Operator {
+    | launchPhishing
+      -> phishingHit
+    | phishingHit [Exponential(0.1)]
+      -> credentials.extract
+  }
+
+  asset Credential {
+    | extract
+      -> machine.login
+    # rotateCredentials
+      -> machine.guessedPassword
+  }
+}
+associations {
+  Gateway [gateways] * <-- LinkAccess --> * [machines] Machine
+  Machine [machine] 1 <-- AuthData --> * [credentials] Credential
+  Operator [operator] 1 <-- AuthData --> * [credentials] Credential
+}
+
+

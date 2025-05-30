@@ -1,0 +1,51 @@
+You are a domain expert system specialized in Meta Attack Language (MAL) and the MITRE ATT&CK framework. Your task is to analyze the given MAL code that models the MITRE ATT&CK technique: **[MITRE_TECHNIQUE_ID_AND_NAME]**.
+
+Your objective is to extract **discrete atomic "aspects"** from the MAL code and match each with its precise **evidence** in the code — a snippet or line that substantiates the aspect.
+
+---
+
+### Aspects to Extract:
+For each of the following categories, identify and extract relevant entries from the MAL code:
+
+1. **Asset Definitions**  
+   - Declarations of assets (e.g., `asset CriticalData extends Data`).
+
+2. **Attack Step Definitions**  
+   - Attack steps: names, target assets, `requires`, `results in`, and `implies` clauses.  
+   - (e.g., `attackStep ExploitVulnerability on WebServer requires (vulnerability.exists) results in (WebServer.compromised)`).
+
+3. **Defense Definitions**  
+   - Definitions of defenses with `prevents` or `detects` clauses.  
+   - (e.g., `defense BackupRecovery prevents dataLoss`).
+
+4. **Abstract Elements / Categories**  
+   - Abstract assets, attack steps, or organizational structures.  
+   - (e.g., `abstract attackStep LateralMovementTechnique`, `category NetworkAssets`).
+
+5. **Attacker Objectives or Behaviors**  
+   - The attacker’s goal or intent in a given attack step.  
+   - Inferred from step name and context (e.g., privilege escalation, data exfiltration).
+
+6. **Logical Connectors & Relationships**  
+   - Explicit flow logic (`->`, `AND`, `OR`, `EOR`) or causal modeling (e.g., `UserAccount.compromised -> Host.administrativeAccess`).
+
+---
+
+### 🔍 For Each Aspect Identified, Output:
+Provide a JSON object with:
+
+- `aspect_description`: A concise, human-readable summary (e.g., "Asset definition for 'WebServer'", "Attack step modeling exploitation").
+- `evidence_code`: Exact code snippet(s) from the MAL code that supports this aspect.
+
+Return all extracted aspects as a **JSON array of objects**.
+
+---
+
+### Target MITRE Technique:
+**[MITRE_TECHNIQUE_ID_AND_NAME]**
+
+---
+
+### MAL Code to Analyze:
+```mal
+[MAL_CODE_TO_ANALYZE_HERE]

@@ -1,0 +1,92 @@
+Generate a MAL (Meta Attack Language) model definition for the following Website.
+            
+ATT&CK v17 has been released! Check out the blog post for more information.
+TECHNIQUES 
+
+Home
+Techniques
+ICS
+Supply Chain Compromise
+Supply Chain Compromise
+Adversaries may perform supply chain compromise to gain control systems environment access by means of infected products, software, and workflows. Supply chain compromise is the manipulation of products, such as devices or software, or their delivery mechanisms before receipt by the end consumer. Adversary compromise of these products and mechanisms is done for the goal of data or system compromise, once infected products are introduced to the target environment.
+
+Supply chain compromise can occur at all stages of the supply chain, from manipulation of development tools and environments to manipulation of developed products and tools distribution mechanisms. This may involve the compromise and replacement of legitimate software and patches, such as on third party or vendor websites. Targeting of supply chain compromise can be done in attempts to infiltrate the environments of a specific audience. In control systems environments with assets in both the IT and OT networks, it is possible a supply chain compromise affecting the IT environment could enable further access to the OT environment.
+
+Counterfeit devices may be introduced to the global supply chain posing safety and cyber risks to asset owners and operators. These devices may not meet the safety, engineering and manufacturing requirements of regulatory bodies but may feature tagging indicating conformance with industry standards. Due to the lack of adherence to standards and overall lesser quality, the counterfeit products may pose a serious safety and operational risk. [1]
+
+Yokogawa identified instances in which their customers received counterfeit differential pressure transmitters using the Yokogawa logo. The counterfeit transmitters were nearly indistinguishable with a semblance of functionality and interface that mimics the genuine product. [1]
+
+F-Secure Labs analyzed the approach the adversary used to compromise victim systems with Havex. [2] The adversary planted trojanized software installers available on legitimate ICS/SCADA vendor websites. After being downloaded, this software infected the host computer with a Remote Access Trojan (RAT).
+
+ID: T0862
+Sub-techniques:  No sub-techniques
+ⓘ
+Tactic: Initial Access
+ⓘ
+Platforms: None
+Version: 1.1
+Created: 21 May 2020
+Last Modified: 16 April 2025
+Version Permalink
+Procedure Examples
+ID	Name	Description
+S0093	Backdoor.Oldrea	
+The Backdoor.Oldrea RAT is distributed through trojanized installers planted on compromised vendor sites. [2]
+
+G0035	Dragonfly	
+Dragonfly trojanized legitimate ICS equipment providers software packages available for download on their websites.[3]
+
+G0088	TEMP.Veles	
+TEMP.Veles targeted several ICS vendors and manufacturers. [4]
+
+Targeted Assets
+ID	Asset
+A0008	Application Server
+A0007	Control Server
+A0009	Data Gateway
+A0006	Data Historian
+A0013	Field I/O
+A0002	Human-Machine Interface (HMI)
+A0005	Intelligent Electronic Device (IED)
+A0012	Jump Host
+A0003	Programmable Logic Controller (PLC)
+A0004	Remote Terminal Unit (RTU)
+A0010	Safety Controller
+A0011	Virtual Private Network (VPN) Server
+A0001	Workstation
+Mitigations
+ID	Mitigation	Description
+M0947	Audit	
+Perform audits or scans of systems, permissions, insecure software, insecure configurations, etc. to identify potential weaknesses. Perform periodic integrity checks of the device to validate the correctness of the firmware, software, programs, and configurations. Integrity checks, which typically include cryptographic hashes or digital signatures, should be compared to those obtained at known valid states, especially after events like device reboots, program downloads, or program restarts.
+
+M0945	Code Signing	
+When available utilize hardware and software root-of-trust to verify the authenticity of a system. This may be achieved through cryptographic means, such as digital signatures or hashes, of critical software and firmware throughout the supply chain.
+
+M0817	Supply Chain Management	
+A supply chain management program should include methods the assess the trustworthiness and technical maturity of a supplier, along with technical methods (e.g., code-signing, bill of materials) needed to validate the integrity of newly obtained devices and components. Develop procurement language that emphasizes the expectations for suppliers regarding the artifacts, audit records, and technical capabilities needed to validate the integrity of the devices supply chain. [5]
+
+M0951	Update Software	
+A patch management process should be implemented to check unused dependencies, unmaintained and/or previously vulnerable dependencies, unnecessary features, components, files, and documentation.
+
+M0916	Vulnerability Scanning	
+Implement continuous monitoring of vulnerability sources. Also, use automatic and manual code review tools. [6]
+
+Detection
+ID	Data Source	Data Component	Detects
+DS0022	File	File Metadata	
+Use verification of distributed binaries through hash checking or other integrity checking mechanisms. Scan downloads for malicious signatures.
+
+References
+Control Global 2019, May 29 Yokogawa announcement warns of counterfeit transmitters Retrieved. 2021/04/09
+Daavid Hentunen, Antti Tikkanen 2014, June 23 Havex Hunts For ICS/SCADA Systems Retrieved. 2019/04/01
+Symantec Security Response 2014, July 7 Dragonfly: Cyberespionage Attacks Against Energy Suppliers Retrieved. 2016/04/08
+Dragos Threat Intelligence 2019, August Global Oil and Gas Cyber Threat Perspective Retrieved. 2020/01/03
+Robert A. Martin 2021, January TRUSTING OUR SUPPLY CHAINS: A COMPREHENSIVE DATA-DRIVEN APPROACH Retrieved. 2021/04/12
+OWASP Top 10 Web Application Security Risks Retrieved. 2020/09/25
+
+Contact Us
+Terms of Use
+Privacy Policy
+Website Changelog
+© 2015 - 2025, The MITRE Corporation. MITRE ATT&CK and ATT&CK are registered trademarks of The MITRE Corporation.
+ 

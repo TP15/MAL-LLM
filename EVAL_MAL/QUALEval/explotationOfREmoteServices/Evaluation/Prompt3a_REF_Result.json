@@ -1,0 +1,150 @@
+[
+  {
+    "aspect_description": "Category definition for grouping Person assets.",
+    "evidence_code": "category Person {"
+  },
+  {
+    "aspect_description": "Asset definition for 'User' within the Person category.",
+    "evidence_code": "asset User {"
+  },
+  {
+    "aspect_description": "Attack step/capability 'userRights' on the User asset.",
+    "evidence_code": "| userRights"
+  },
+  {
+    "aspect_description": "Logical relationship: userRights capability enables access to service.externalRemoteServices.",
+    "evidence_code": "->  service.externalRemoteServices"
+  },
+  {
+    "aspect_description": "Category definition for grouping Software assets.",
+    "evidence_code": "category Software {"
+  },
+  {
+    "aspect_description": "Asset definition for 'Service' within the Software category.",
+    "evidence_code": "asset Service {"
+  },
+  {
+    "aspect_description": "Attack step/capability 'externalRemoteServices' on the Service asset, representing the entry point for the technique.",
+    "evidence_code": "& externalRemoteServices"
+  },
+  {
+    "aspect_description": "Information annotation for the externalRemoteServices step, linking it to the ATT&CK technique description.",
+    "evidence_code": "info: \"Adversaries may use remote services to initially access and/or persist within a network.\""
+  },
+  {
+    "aspect_description": "Logical relationship: externalRemoteServices capability results in internalNetwork.persistence and internalNetwork.remoteAccess.",
+    "evidence_code": "->  internalNetwork.persistence,\n internalNetwork.remoteAccess"
+  },
+  {
+    "aspect_description": "Abstract asset definition for 'OS' within the Software category.",
+    "evidence_code": "abstractAsset OS {"
+  },
+  {
+    "aspect_description": "Attack step/capability '_validAccounts' on the OS asset, representing the use of valid accounts.",
+    "evidence_code": "& _validAccounts"
+  },
+  {
+    "aspect_description": "Information annotation for the _validAccounts step.",
+    "evidence_code": "info: \"Adversaries may steal the credentials of a specific user or service account using Credential Access techniques or capture credentials earlier in their reconnaissance process through social engineering for means of gaining Initial Access.\""
+  },
+  {
+    "aspect_description": "Logical relationship: _validAccounts capability enables access to service.externalRemoteServices.",
+    "evidence_code": "->  service.externalRemoteServices"
+  },
+  {
+    "aspect_description": "Defense/mitigation step 'disableOrRemoveFeatureOrProgram' on the OS asset.",
+    "evidence_code": "# disableOrRemoveFeatureOrProgram"
+  },
+  {
+    "aspect_description": "Information annotation for the disableOrRemoveFeatureOrProgram mitigation, linking to ATT&CK M1064.",
+    "evidence_code": "info: \"https://attack.mitre.org/techniques/T1064/\""
+  },
+  {
+    "aspect_description": "Logical relationship: disableOrRemoveFeatureOrProgram mitigation prevents access to service.externalRemoteServices.",
+    "evidence_code": "->  service.externalRemoteServices"
+  },
+  {
+    "aspect_description": "Asset definition for 'Windows' extending the abstract OS asset.",
+    "evidence_code": "asset Windows extends OS {"
+  },
+  {
+    "aspect_description": "Attack step/capability 'windowsRemoteManagement' on the Windows asset.",
+    "evidence_code": "& windowsRemoteManagement"
+  },
+  {
+    "aspect_description": "Logical relationship: windowsRemoteManagement capability enables access to service.externalRemoteServices.",
+    "evidence_code": "->  service.externalRemoteServices"
+  },
+  {
+    "aspect_description": "Comment explaining the use of Windows Remote Management.",
+    "evidence_code": "// Windows Remote Management can also be used externally"
+  },
+  {
+    "aspect_description": "Category definition for grouping Network assets.",
+    "evidence_code": "category Network {"
+  },
+  {
+    "aspect_description": "Asset definition for 'InternalNetwork' within the Network category.",
+    "evidence_code": "asset InternalNetwork {"
+  },
+  {
+    "aspect_description": "Attacker objective/capability 'persistence' on the InternalNetwork asset.",
+    "evidence_code": "| persistence"
+  },
+  {
+    "aspect_description": "Attacker objective/capability 'remoteAccess' on the InternalNetwork asset.",
+    "evidence_code": "| remoteAccess"
+  },
+  {
+    "aspect_description": "Defense/mitigation step 'limitAccessToResourceOverNetwork' on the InternalNetwork asset.",
+    "evidence_code": "# limitAccessToResourceOverNetwork"
+  },
+  {
+    "aspect_description": "Information annotation for the limitAccessToResourceOverNetwork mitigation, linking to ATT&CK M1035.",
+    "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1035/\""
+  },
+  {
+    "aspect_description": "Logical relationship: limitAccessToResourceOverNetwork mitigation prevents access to service.externalRemoteServices.",
+    "evidence_code": "->  service.externalRemoteServices"
+  },
+  {
+    "aspect_description": "Defense/mitigation step 'multiFactorAuthentication' on the InternalNetwork asset.",
+    "evidence_code": "# multiFactorAuthentication"
+  },
+  {
+    "aspect_description": "Information annotation for the multiFactorAuthentication mitigation, linking to ATT&CK M1032.",
+    "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1032/\""
+  },
+  {
+    "aspect_description": "Logical relationship: multiFactorAuthentication mitigation prevents access to service.externalRemoteServices.",
+    "evidence_code": "->  service.externalRemoteServices"
+  },
+  {
+    "aspect_description": "Defense/mitigation step 'networkSegmentation' on the InternalNetwork asset.",
+    "evidence_code": "# networkSegmentation"
+  },
+  {
+    "aspect_description": "Information annotation for the networkSegmentation mitigation, linking to ATT&CK M1030.",
+    "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1030/\""
+  },
+  {
+    "aspect_description": "Logical relationship: networkSegmentation mitigation prevents access to service.externalRemoteServices.",
+    "evidence_code": "->  service.externalRemoteServices"
+  },
+  {
+    "aspect_description": "Associations block defining relationships between assets.",
+    "evidence_code": "associations {"
+  },
+  {
+    "aspect_description": "Association: User assets Use Service assets (one User uses one or more Services).",
+    "evidence_code": "User [user] 1 <--Use--> 1-* [service] Service"
+  },
+  {
+    "aspect_description": "Association: InternalNetwork assets Contain Service assets (one InternalNetwork contains one or more Services).",
+    "evidence_code": "InternalNetwork [internalNetwork] 1 <--Contain--> 1-* [service] Service"
+  },
+  {
+    "aspect_description": "Association: OS assets Contain Service assets (one OS contains one or more Services).",
+    "evidence_code": "OS [os] 1 <--Contain--> 1-* [service] Service"
+  }
+]

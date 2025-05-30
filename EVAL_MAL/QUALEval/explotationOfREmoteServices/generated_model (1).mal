@@ -1,0 +1,41 @@
+#id: "com.example.external_remote_services"
+#version: "1.0.0"
+
+category NetworkEndpoints {
+  asset RemoteService {
+    & scanAndIdentify [Exponential(0.8)] -> tryExploitVulnerability, attemptBruteForceLogin
+    & tryExploitVulnerability [LogNormal(5.0,2.0)]
+    & attemptBruteForceLogin [Gamma(4.0,8.0)]
+    & prepareStolenCredentialAttack [Uniform(0.01,0.01)] -> attemptLoginWithStolenCreds
+    & attemptLoginWithStolenCreds [Exponential(0.7)]
+    & successfulExploit [Uniform(0.1,0.1)] -> accessAchieved
+    & successfulBruteForceLogin [Uniform(0.1,0.1)] -> accessAchieved
+    & successfulStolenCredentialLogin [Uniform(0.1,0.1)] -> accessAchieved
+    | accessAchieved [Uniform(0.01,0.01)] -> accessibleSystems.establishFoothold
+    # ServiceIsRegularlyPatched -> successfulExploit
+    # MFAImplemented -> successfulBruteForceLogin, successfulStolenCredentialLogin
+    # StrongPasswordPolicyInEffect -> successfulBruteForceLogin
+  }
+}
+
+category IdentityAssets {
+  asset UserCredentials {
+    & compromise [Exponential(0.05)] -> authenticatesToServices.prepareStolenCredentialAttack
+    # UserSecurityAwarenessTraining -> compromise
+  }
+}
+
+category CoreInfrastructure {
+  asset InternalSystem {
+    & establishFoothold [Exponential(0.3)] -> performLateralMovement, exfiltrateData
+    & performLateralMovement [LogNormal(6.0,2.0)]
+    & exfiltrateData [Gamma(3.0,3.0)]
+    # NetworkSegmentationImplemented -> performLateralMovement
+    # EndpointDetectionAndResponseActive -> establishFoothold
+  }
+}
+
+associations {
+  RemoteService [entryPoints] * <-- ServiceToSystemConnection --> * [accessibleSystems] InternalSystem
+  UserCredentials [authenticatedByCredentials] * <-- CredentialToServiceLink --> * [authenticatesToServices] RemoteService
+}

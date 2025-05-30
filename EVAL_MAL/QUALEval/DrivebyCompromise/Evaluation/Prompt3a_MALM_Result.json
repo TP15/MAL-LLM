@@ -1,0 +1,498 @@
+[
+  {
+  "aspect_description": "Model identifier and version.",
+  "evidence_code": "#id: \"com.mitre.attack.driveby.compromise.v2\"\n#version: \"1.0.0\""
+  },
+  {
+  "aspect_description": "Category definition for organizing Client Infrastructure assets.",
+  "evidence_code": "category ClientInfrastructure {"
+  },
+  {
+  "aspect_description": "Asset definition for 'UserEndpoint' within the 'ClientInfrastructure' category.",
+  "evidence_code": "asset UserEndpoint {"
+  },
+  {
+  "aspect_description": "Asset definition for 'Browser' within the 'ClientInfrastructure' category.",
+  "evidence_code": "asset Browser {"
+  },
+  {
+  "aspect_description": "Category definition for organizing Web Infrastructure assets.",
+  "evidence_code": "category WebInfrastructure {"
+  },
+  {
+  "aspect_description": "Asset definition for 'Website' within the 'WebInfrastructure' category.",
+  "evidence_code": "asset Website {"
+  },
+  {
+  "aspect_description": "Asset definition for 'AdProvider' within the 'WebInfrastructure' category.",
+  "evidence_code": "asset AdProvider {"
+  },
+  {
+  "aspect_description": "Asset definition for 'CloudStorageBucket' within the 'WebInfrastructure' category.",
+  "evidence_code": "asset CloudStorageBucket {"
+  },
+  {
+  "aspect_description": "Attack step 'visitWebsite' on UserEndpoint.",
+  "evidence_code": "| visitWebsite"
+  },
+  {
+  "aspect_description": "Attack step 'allowMaliciousPushNotification' on UserEndpoint.",
+  "evidence_code": "| allowMaliciousPushNotification"
+  },
+  {
+  "aspect_description": "Attack step 'gainSystemAccess' on UserEndpoint with Exponential probability (rate 0.1).",
+  "evidence_code": "& gainSystemAccess [Exponential(0.1)]"
+  },
+  {
+  "aspect_description": "Defense 'endpointSecuritySoftwareActive' on UserEndpoint.",
+  "evidence_code": "# endpointSecuritySoftwareActive"
+  },
+  {
+  "aspect_description": "Defense 'userSecurityAwareness' on UserEndpoint.",
+  "evidence_code": "# userSecurityAwareness"
+  },
+  {
+  "aspect_description": "Attack step 'fetchAndRenderContent' on Browser.",
+  "evidence_code": "& fetchAndRenderContent"
+  },
+  {
+  "aspect_description": "Attack step 'fingerprintBrowser' on Browser with Exponential probability (rate 0.5).",
+  "evidence_code": "| fingerprintBrowser [Exponential(0.5)]"
+  },
+  {
+  "aspect_description": "Attack step 'processMaliciousScripts' on Browser with Exponential probability (rate 0.8).",
+  "evidence_code": "& processMaliciousScripts [Exponential(0.8)]"
+  },
+  {
+  "aspect_description": "Attack step 'deliverTargetedExploit' on Browser.",
+  "evidence_code": "& deliverTargetedExploit"
+  },
+  {
+  "aspect_description": "Attack step 'exploitBrowserVulnerability' on Browser with Gamma probability (alpha 2.0, beta 2.0).",
+  "evidence_code": "& exploitBrowserVulnerability [Gamma(2.0,2.0)]"
+  },
+  {
+  "aspect_description": "Attack step 'executePushNotificationPayload' on Browser with Exponential probability (rate 0.7).",
+  "evidence_code": "& executePushNotificationPayload [Exponential(0.7)]"
+  },
+  {
+  "aspect_description": "Defense 'softwareUpdatesApplied' on Browser.",
+  "evidence_code": "# softwareUpdatesApplied"
+  },
+  {
+  "aspect_description": "Defense 'sandboxingEffectivelyEnabled' on Browser.",
+  "evidence_code": "# sandboxingEffectivelyEnabled"
+  },
+  {
+  "aspect_description": "Defense 'scriptBlockingActive' on Browser.",
+  "evidence_code": "# scriptBlockingActive"
+  },
+  {
+  "aspect_description": "Defense 'pushNotificationsRestrictedByUser' on Browser.",
+  "evidence_code": "# pushNotificationsRestrictedByUser"
+  },
+  {
+  "aspect_description": "Attack step 'compromiseLegitimateSite' on Website with Exponential probability (rate 0.01).",
+  "evidence_code": "| compromiseLegitimateSite [Exponential(0.01)]"
+  },
+  {
+  "aspect_description": "Attack step 'injectXSSPayload' on Website with Exponential probability (rate 0.05).",
+  "evidence_code": "| injectXSSPayload [Exponential(0.05)]"
+  },
+  {
+  "aspect_description": "Attack step 'receiveMaliciousAd' on Website.",
+  "evidence_code": "| receiveMaliciousAd"
+  },
+  {
+  "aspect_description": "Attack step 'receiveCompromisedScript' on Website.",
+  "evidence_code": "| receiveCompromisedScript"
+  },
+  {
+  "aspect_description": "Attack step 'enablePayloadDelivery' on Website.",
+  "evidence_code": "| enablePayloadDelivery"
+  },
+  {
+  "aspect_description": "Attack step 'deliverPayloadToBrowserUponVisit' on Website.",
+  "evidence_code": "& deliverPayloadToBrowserUponVisit"
+  },
+  {
+  "aspect_description": "Defense 'websitePlatformHardening' on Website.",
+  "evidence_code": "# websitePlatformHardening"
+  },
+  {
+  "aspect_description": "Defense 'xssProtectionsInPlace' on Website.",
+  "evidence_code": "# xssProtectionsInPlace"
+  },
+  {
+  "aspect_description": "Defense 'thirdPartyContentVettingProcess' on Website.",
+  "evidence_code": "# thirdPartyContentVettingProcess"
+  },
+  {
+  "aspect_description": "Attack step 'acceptMaliciousAdCampaign' on AdProvider with Uniform probability (min 1.0, max 5.0).",
+  "evidence_code": "| acceptMaliciousAdCampaign [Uniform(1.0,5.0)]"
+  },
+  {
+  "aspect_description": "Attack step 'distributeMaliciousAdToWebsites' on AdProvider.",
+  "evidence_code": "& distributeMaliciousAdToWebsites"
+  },
+  {
+  "aspect_description": "Defense 'robustAdContentScreening' on AdProvider.",
+  "evidence_code": "# robustAdContentScreening"
+  },
+  {
+  "aspect_description": "Attack step 'compromiseBucketWriteAccess' on CloudStorageBucket with Exponential probability (rate 0.03).",
+  "evidence_code": "| compromiseBucketWriteAccess [Exponential(0.03)]"
+  },
+  {
+  "aspect_description": "Attack step 'modifyStoredScriptFiles' on CloudStorageBucket.",
+  "evidence_code": "& modifyStoredScriptFiles"
+  },
+  {
+  "aspect_description": "Attack step 'distributeCompromisedScriptToWebsites' on CloudStorageBucket.",
+  "evidence_code": "& distributeCompromisedScriptToWebsites"
+  },
+  {
+  "aspect_description": "Defense 'strongBucketAccessControls' on CloudStorageBucket.",
+  "evidence_code": "# strongBucketAccessControls"
+  },
+  {
+  "aspect_description": "Defense 'scriptFileIntegrityMonitoring' on CloudStorageBucket.",
+  "evidence_code": "# scriptFileIntegrityMonitoring"
+  },
+  {
+  "aspect_description": "Flow: visitWebsite on UserEndpoint results in fetchAndRenderContent on associated Browser.",
+  "evidence_code": "visitWebsite -> usesBrowser.fetchAndRenderContent"
+  },
+  {
+  "aspect_description": "Flow: allowMaliciousPushNotification on UserEndpoint results in executePushNotificationPayload on associated Browser.",
+  "evidence_code": "allowMaliciousPushNotification -> usesBrowser.executePushNotificationPayload"
+  },
+  {
+  "aspect_description": "Flow: endpointSecuritySoftwareActive defense on UserEndpoint prevents gainSystemAccess.",
+  "evidence_code": "# endpointSecuritySoftwareActive -> gainSystemAccess"
+  },
+  {
+  "aspect_description": "Flow: userSecurityAwareness defense on UserEndpoint prevents allowMaliciousPushNotification.",
+  "evidence_code": "# userSecurityAwareness -> allowMaliciousPushNotification"
+  },
+  {
+  "aspect_description": "Flow: fetchAndRenderContent on Browser results in deliverPayloadToBrowserUponVisit on associated Website and fingerprintBrowser on Browser.",
+  "evidence_code": "& fetchAndRenderContent -> accessesWebsite.deliverPayloadToBrowserUponVisit, fingerprintBrowser"
+  },
+  {
+  "aspect_description": "Flow: fingerprintBrowser on Browser results in deliverTargetedExploit on Browser.",
+  "evidence_code": "| fingerprintBrowser [Exponential(0.5)] -> deliverTargetedExploit"
+  },
+  {
+  "aspect_description": "Flow: processMaliciousScripts on Browser results in exploitBrowserVulnerability on Browser.",
+  "evidence_code": "& processMaliciousScripts [Exponential(0.8)] -> exploitBrowserVulnerability"
+  },
+  {
+  "aspect_description": "Flow: deliverTargetedExploit on Browser results in exploitBrowserVulnerability on Browser.",
+  "evidence_code": "& deliverTargetedExploit -> exploitBrowserVulnerability"
+  },
+  {
+  "aspect_description": "Flow: exploitBrowserVulnerability on Browser results in gainSystemAccess on associated UserEndpoint.",
+  "evidence_code": "& exploitBrowserVulnerability [Gamma(2.0,2.0)] -> runsOnEndpoint.gainSystemAccess"
+  },
+  {
+  "aspect_description": "Flow: executePushNotificationPayload on Browser results in gainSystemAccess on associated UserEndpoint.",
+  "evidence_code": "& executePushNotificationPayload [Exponential(0.7)] -> runsOnEndpoint.gainSystemAccess"
+  },
+  {
+  "aspect_description": "Flow: softwareUpdatesApplied defense on Browser prevents exploitBrowserVulnerability.",
+  "evidence_code": "# softwareUpdatesApplied -> exploitBrowserVulnerability"
+  },
+  {
+  "aspect_description": "Flow: sandboxingEffectivelyEnabled defense on Browser prevents gainSystemAccess on associated UserEndpoint.",
+  "evidence_code": "# sandboxingEffectivelyEnabled -> runsOnEndpoint.gainSystemAccess"
+  },
+  {
+  "aspect_description": "Flow: scriptBlockingActive defense on Browser prevents processMaliciousScripts and fingerprintBrowser.",
+  "evidence_code": "# scriptBlockingActive -> processMaliciousScripts, fingerprintBrowser"
+  },
+  {
+  "aspect_description": "Flow: pushNotificationsRestrictedByUser defense on Browser prevents executePushNotificationPayload.",
+  "evidence_code": "# pushNotificationsRestrictedByUser -> executePushNotificationPayload"
+  },
+  {
+  "aspect_description": "Flow: compromiseLegitimateSite on Website results in enablePayloadDelivery on Website.",
+  "evidence_code": "| compromiseLegitimateSite [Exponential(0.01)] -> enablePayloadDelivery"
+  },
+  {
+  "aspect_description": "Flow: injectXSSPayload on Website results in enablePayloadDelivery on Website.",
+  "evidence_code": "| injectXSSPayload [Exponential(0.05)] -> enablePayloadDelivery"
+  },
+  {
+  "aspect_description": "Flow: receiveMaliciousAd on Website results in enablePayloadDelivery on Website.",
+  "evidence_code": "| receiveMaliciousAd -> enablePayloadDelivery"
+  },
+  {
+  "aspect_description": "Flow: receiveCompromisedScript on Website results in enablePayloadDelivery on Website.",
+  "evidence_code": "| receiveCompromisedScript -> enablePayloadDelivery"
+  },
+  {
+  "aspect_description": "Flow: enablePayloadDelivery on Website results in deliverPayloadToBrowserUponVisit on Website.",
+  "evidence_code": "| enablePayloadDelivery -> deliverPayloadToBrowserUponVisit"
+  },
+  {
+  "aspect_description": "Flow: deliverPayloadToBrowserUponVisit on Website results in processMaliciousScripts on associated Browser.",
+  "evidence_code": "& deliverPayloadToBrowserUponVisit -> isAccessedByBrowser.processMaliciousScripts"
+  },
+  {
+  "aspect_description": "Flow: websitePlatformHardening defense on Website prevents compromiseLegitimateSite.",
+  "evidence_code": "# websitePlatformHardening -> compromiseLegitimateSite"
+  },
+  {
+  "aspect_description": "Flow: xssProtectionsInPlace defense on Website prevents injectXSSPayload.",
+  "evidence_code": "# xssProtectionsInPlace -> injectXSSPayload"
+  },
+  {
+  "aspect_description": "Flow: thirdPartyContentVettingProcess defense on Website prevents receiveMaliciousAd and receiveCompromisedScript.",
+  "evidence_code": "# thirdPartyContentVettingProcess -> receiveMaliciousAd, receiveCompromisedScript"
+  },
+  {
+  "aspect_description": "Flow: acceptMaliciousAdCampaign on AdProvider results in distributeMaliciousAdToWebsites on AdProvider.",
+  "evidence_code": "| acceptMaliciousAdCampaign [Uniform(1.0,5.0)] -> distributeMaliciousAdToWebsites"
+  },
+  {
+  "aspect_description": "Flow: distributeMaliciousAdToWebsites on AdProvider results in receiveMaliciousAd on associated Website.",
+  "evidence_code": "& distributeMaliciousAdToWebsites -> servesAdsToWebsite.receiveMaliciousAd"
+  },
+  {
+  "aspect_description": "Flow: robustAdContentScreening defense on AdProvider prevents acceptMaliciousAdCampaign.",
+  "evidence_code": "# robustAdContentScreening -> acceptMaliciousAdCampaign"
+  },
+  {
+  "aspect_description": "Flow: compromiseBucketWriteAccess on CloudStorageBucket results in modifyStoredScriptFiles on CloudStorageBucket.",
+  "evidence_code": "| compromiseBucketWriteAccess [Exponential(0.03)] -> modifyStoredScriptFiles"
+  },
+  {
+  "aspect_description": "Flow: modifyStoredScriptFiles on CloudStorageBucket results in distributeCompromisedScriptToWebsites on CloudStorageBucket.",
+  "evidence_code": "& modifyStoredScriptFiles -> distributeCompromisedScriptToWebsites"
+  },
+  {
+  "aspect_description": "Flow: distributeCompromisedScriptToWebsites on CloudStorageBucket results in receiveCompromisedScript on associated Website.",
+  "evidence_code": "& distributeCompromisedScriptToWebsites -> providesScriptsToWebsite.receiveCompromisedScript"
+  },
+  {
+  "aspect_description": "Flow: strongBucketAccessControls defense on CloudStorageBucket prevents compromiseBucketWriteAccess.",
+  "evidence_code": "# strongBucketAccessControls -> compromiseBucketWriteAccess"
+  },
+  {
+  "aspect_description": "Flow: scriptFileIntegrityMonitoring defense on CloudStorageBucket prevents modifyStoredScriptFiles.",
+  "evidence_code": "# scriptFileIntegrityMonitoring -> modifyStoredScriptFiles"
+  },
+  {
+  "aspect_description": "Association: UserEndpoint uses Browser (1 or more UserEndpoints to 1 or more Browsers).",
+  "evidence_code": "UserEndpoint [runsOnEndpoint] 1..* <-- UserBrowserUsage --> 1..* [usesBrowser] Browser"
+  },
+  {
+  "aspect_description": "Association: Browser accesses Website (Any number of Browsers to any number of Websites).",
+  "evidence_code": "Browser [isAccessedByBrowser] * <-- BrowserWebsiteConnection --> * [accessesWebsite] Website"
+  },
+  {
+  "aspect_description": "Association: Website displays Ads from AdProvider (Any number of Websites to any number of AdProviders).",
+  "evidence_code": "Website [servesAdsToWebsite] * <-- WebsiteAdIntegration --> * [displaysAdsFrom] AdProvider"
+  },
+  {
+  "aspect_description": "Association: Website sources Scripts from CloudStorageBucket (Any number of Websites to any number of CloudStorageBuckets).",
+  "evidence_code": "Website [providesScriptsToWebsite] * <-- WebsiteScriptSourcing --> * [sourcesScriptsFrom] CloudStorageBucket"
+  },
+  {
+  "aspect_description": "Attacker Objective: Cause a user to visit a website.",
+  "evidence_code": "| visitWebsite"
+  },
+  {
+  "aspect_description": "Attacker Objective: Cause a user to allow malicious push notifications.",
+  "evidence_code": "| allowMaliciousPushNotification"
+  },
+  {
+  "aspect_description": "Attacker Objective: Gain system access on the user's endpoint.",
+  "evidence_code": "& gainSystemAccess [Exponential(0.1)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Fetch and render website content in the browser.",
+  "evidence_code": "& fetchAndRenderContent"
+  },
+  {
+  "aspect_description": "Attacker Objective: Fingerprint the user's browser.",
+  "evidence_code": "| fingerprintBrowser [Exponential(0.5)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Process malicious scripts in the browser.",
+  "evidence_code": "& processMaliciousScripts [Exponential(0.8)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Deliver a targeted exploit to the browser.",
+  "evidence_code": "& deliverTargetedExploit"
+  },
+  {
+  "aspect_description": "Attacker Objective: Exploit a browser vulnerability.",
+  "evidence_code": "& exploitBrowserVulnerability [Gamma(2.0,2.0)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Execute a push notification payload in the browser.",
+  "evidence_code": "& executePushNotificationPayload [Exponential(0.7)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Compromise a legitimate website.",
+  "evidence_code": "| compromiseLegitimateSite [Exponential(0.01)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Inject an XSS payload into a website.",
+  "evidence_code": "| injectXSSPayload [Exponential(0.05)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Have a website receive a malicious ad.",
+  "evidence_code": "| receiveMaliciousAd"
+  },
+  {
+  "aspect_description": "Attacker Objective: Have a website receive a compromised script.",
+  "evidence_code": "| receiveCompromisedScript"
+  },
+  {
+  "aspect_description": "Attacker Objective: Enable payload delivery from a website.",
+  "evidence_code": "| enablePayloadDelivery"
+  },
+  {
+  "aspect_description": "Attacker Objective: Deliver payload to the browser upon website visit.",
+  "evidence_code": "& deliverPayloadToBrowserUponVisit"
+  },
+  {
+  "aspect_description": "Attacker Objective: Accept a malicious ad campaign.",
+  "evidence_code": "| acceptMaliciousAdCampaign [Uniform(1.0,5.0)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Distribute a malicious ad to websites.",
+  "evidence_code": "& distributeMaliciousAdToWebsites"
+  },
+  {
+  "aspect_description": "Attacker Objective: Compromise Cloud Storage Bucket write access.",
+  "evidence_code": "| compromiseBucketWriteAccess [Exponential(0.03)]"
+  },
+  {
+  "aspect_description": "Attacker Objective: Modify stored script files in a Cloud Storage Bucket.",
+  "evidence_code": "& modifyStoredScriptFiles"
+  },
+  {
+  "aspect_description": "Attacker Objective: Distribute compromised script to websites.",
+  "evidence_code": "& distributeCompromisedScriptToWebsites"
+  },
+  {
+  "aspect_description": "Logical Connector: Flow relation '->'.",
+  "evidence_code": "->"
+  },
+  {
+  "aspect_description": "Logical Connector: Attack step 'AND' requirement.",
+  "evidence_code": "&"
+  },
+  {
+  "aspect_description": "Logical Connector: Defense 'prevents' relation '#'.",
+  "evidence_code": "#"
+  },
+  {
+  "aspect_description": "Logical Connector: Association relation '<--'.",
+  "evidence_code": "<--"
+  },
+  {
+  "aspect_description": "Logical Connector: Association relation '-->'.",
+  "evidence_code": "-->"
+  },
+  {
+  "aspect_description": "Logical Connector: Asset relation '->'.",
+  "evidence_code": "->"
+  },
+  {
+  "aspect_description": "Logical Connector: Range quantifier '..'.",
+  "evidence_code": ".."
+  },
+  {
+  "aspect_description": "Logical Connector: Wildcard quantifier '*'.",
+  "evidence_code": "*"
+  },
+  {
+  "aspect_description": "Logical Connector: Association name 'UserBrowserUsage'.",
+  "evidence_code": "UserBrowserUsage"
+  },
+  {
+  "aspect_description": "Logical Connector: Association name 'BrowserWebsiteConnection'.",
+  "evidence_code": "BrowserWebsiteConnection"
+  },
+  {
+  "aspect_description": "Logical Connector: Association name 'WebsiteAdIntegration'.",
+  "evidence_code": "WebsiteAdIntegration"
+  },
+  {
+  "aspect_description": "Logical Connector: Association name 'WebsiteScriptSourcing'.",
+  "evidence_code": "WebsiteScriptSourcing"
+  },
+  {
+  "aspect_description": "Logical Connector: Association role 'runsOnEndpoint'.",
+  "evidence_code": "[runsOnEndpoint]"
+  },
+  {
+  "aspect_description": "Logical Connector: Association role 'usesBrowser'.",
+  "evidence_code": "[usesBrowser]"
+  },
+  {
+  "aspect_description": "Logical Connector: Association role 'isAccessedByBrowser'.",
+  "evidence_code": "[isAccessedByBrowser]"
+  },
+  {
+  "aspect_description": "Logical Connector: Association role 'accessesWebsite'.",
+  "evidence_code": "[accessesWebsite]"
+  },
+  {
+  "aspect_description": "Logical Connector: Association role 'servesAdsToWebsite'.",
+  "evidence_code": "[servesAdsToWebsite]"
+  },
+  {
+  "aspect_description": "Logical Connector: Association role 'displaysAdsFrom'.",
+  "evidence_code": "[displaysAdsFrom]"
+  },
+  {
+  "aspect_description": "Logical Connector: Association role 'providesScriptsToWebsite'.",
+  "evidence_code": "[providesScriptsToWebsite]"
+  },
+  {
+  "aspect_description": "Logical Connector: Association role 'sourcesScriptsFrom'.",
+  "evidence_code": "[sourcesScriptsFrom]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Exponential distribution for gainSystemAccess.",
+  "evidence_code": "[Exponential(0.1)]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Exponential distribution for fingerprintBrowser.",
+  "evidence_code": "[Exponential(0.5)]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Exponential distribution for processMaliciousScripts.",
+  "evidence_code": "[Exponential(0.8)]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Gamma distribution for exploitBrowserVulnerability.",
+  "evidence_code": "[Gamma(2.0,2.0)]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Exponential distribution for executePushNotificationPayload.",
+  "evidence_code": "[Exponential(0.7)]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Exponential distribution for compromiseLegitimateSite.",
+  "evidence_code": "[Exponential(0.01)]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Exponential distribution for injectXSSPayload.",
+  "evidence_code": "[Exponential(0.05)]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Uniform distribution for acceptMaliciousAdCampaign.",
+  "evidence_code": "[Uniform(1.0,5.0)]"
+  },
+    {
+  "aspect_description": "Attack Step Probability: Exponential distribution for compromiseBucketWriteAccess.",
+  "evidence_code": "[Exponential(0.03)]"
+  }
+ ]

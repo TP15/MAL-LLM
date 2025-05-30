@@ -1,0 +1,96 @@
+
+#id: "com.infrastructure.threatmodel" #version: "1.0.0"
+
+category Infrastructure {
+
+    // Human attacker capable of social-engineering campaigns
+    asset Operator { 
+        // attackSteps { [PARSER ERROR] <result.mal:8:9> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+
+            // Attacker launches the phishing campaign
+            & launchPhishing   // launchPhishing {  [PARSER ERROR] <result.mal:11:13> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+                -> phishingHit //; [LEXER ERROR] <result.mal:12:32> Unexpected token ';'
+            //}
+
+            // A single victim falls for the phishing mail
+            & phisingHit [Exponential(10)] //phishingHit [Exponential(10)] { [PARSER ERROR] <result.mal:16:13> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+
+              -> credential.extract  //-> [credential]Credential.extract; //[PARSER ERROR] <result.mal:18:20> expected '(' or identifier, found '['
+            //}
+        // }
+    }
+
+    // Secrets that enable authenticated log-in
+    asset Credential {
+        //attackSteps { [PARSER ERROR] <result.mal:25:9> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+
+            // Theft of the credential
+            & extract //extract { [PARSER ERROR] <result.mal:28:13> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+               -> compromised //-> compromised; [LEXER ERROR] <result.mal:29:31> Unexpected token ';'
+            //}
+
+            // Stolen / fully compromised state
+            & compromised //compromised { [PARSER ERROR] <result.mal:30:13> expected 'info', found '}'
+                -> Machine.login //-> [machine]Machine.login; [PARSER ERROR] <result.mal:34:20> expected '(' or identifier, found '['
+
+            //}
+        //}
+    }
+
+    // Compute node that can be reached and laterally traversed
+    asset Machine {
+        //attackSteps { [PARSER ERROR] <result.mal:42:9> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+
+            // Interactive or remote log-in
+           & login //login { [PARSER ERROR] <result.mal:45:13> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+                #MFA         // optional multi-factor defence
+               -> entry // -> entry; [LEXER ERROR] <result.mal:47:25> Unexpected token ';'
+            //}
+
+            // Initial foothold on the machine
+            & entry //entry { [LEXER ERROR] <result.mal:47:25> Unexpected token ';'
+                -> link //-> link; [LEXER ERROR] <result.mal:52:24> Unexpected token ';'
+           // }
+
+            // Using internal connectivity to reach other assets
+            & link //link { [LEXER ERROR] <result.mal:56:25> Unexpected token ';'
+                -> Machine.login//-> [target]Machine.login;    lateral within flat network [PARSER ERROR] <result.mal:57:20> expected '(' or identifier, found '['
+
+               //-> [edge]Gateway.forward;   // traverse via gateway [PARSER ERROR] <result.mal:59:17> expected '&', '|', '#', 'E', '!E', 'let', or '}', found '->'
+            //}
+        //}
+    }
+
+    // Network gateway that routes traffic but was not itself breached
+    asset Gateway {
+        // attackSteps { [PARSER ERROR] <result.mal:66:9> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+
+            // Forward traffic deeper into the network
+            & forward// forward { [PARSER ERROR] <result.mal:69:13> expected '&', '|', '#', 'E', '!E', 'let', or '}', found identifier
+
+             -> Machine.login  // -> [internal]Machine.login; [PARSER ERROR] <result.mal:71:20> expected '(' or identifier, found '['
+            //}
+        //}
+    }
+}
+
+associations {
+
+    // Operators possess (or steal) credentials
+    Operator [operator] * <-- HasCredential --> * [credential] Credential
+
+    // Credentials authenticate machine log-in
+    Credential [credential] * <-- Authenticates --> * [machine] Machine
+
+    // Direct machine-to-machine internal links
+    Machine [source] * <-- InternalLink --> * [target] Machine
+
+    // Gateways connect to internal machines
+    Gateway [edge] * <-- LinkAccess --> * [internal] Machine
+}
+[ANALYZER ERROR] <result.mal:12:20> Attack step 'phishingHit' not defined for asset 'Operator'
+[ANALYZER ERROR] <result.mal:34:20> Field 'Machine' not defined for asset 'Credential'
+[ANALYZER ERROR] <result.mal:57:20> Field 'Machine' not defined for asset 'Machine'
+[ANALYZER ERROR] <result.mal:71:17> Field 'Machine' not defined for asset 'Gateway'
+
+

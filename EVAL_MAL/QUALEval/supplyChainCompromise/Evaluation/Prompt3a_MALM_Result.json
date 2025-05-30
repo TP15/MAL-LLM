@@ -1,0 +1,514 @@
+[
+  {
+   "aspect_description": "MAL model identifier.",
+   "evidence_code": "#id: \"mitre.attack.ics.supplychain.t0862\""
+  },
+  {
+   "aspect_description": "MAL model version.",
+   "evidence_code": "#version: \"1.1.0\""
+  },
+  {
+   "aspect_description": "Category definition for 'SupplyChainInfrastructure'.",
+   "evidence_code": "category SupplyChainInfrastructure { ... }"
+  },
+  {
+   "aspect_description": "Asset definition for 'VendorWebsite'.",
+   "evidence_code": "asset VendorWebsite { ... }"
+  },
+  {
+   "aspect_description": "Attack step definition: Compromising a VendorWebsite.",
+   "evidence_code": "& compromise"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.01.",
+   "evidence_code": "[Exponential(0.01)]"
+  },
+  {
+   "aspect_description": "Attack step definition: Hosting malicious software on a VendorWebsite.",
+   "evidence_code": "& hostMaliciousSoftware"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.2.",
+   "evidence_code": "[Exponential(0.2)]"
+  },
+  {
+   "aspect_description": "Logical relationship: Hosting malicious software implies the hosted software is placed on a compromised host.",
+   "evidence_code": "-> hostedSoftware.bePlacedOnCompromisedHost"
+  },
+  {
+   "aspect_description": "Defense definition: WebsiteHardeningAndMonitoring.",
+   "evidence_code": "# WebsiteHardeningAndMonitoring"
+  },
+  {
+   "aspect_description": "Logical relationship: WebsiteHardeningAndMonitoring prevents compromise of the VendorWebsite.",
+   "evidence_code": "-> compromise"
+  },
+  {
+   "aspect_description": "Asset definition for 'DevelopmentEnvironment'.",
+   "evidence_code": "asset DevelopmentEnvironment { ... }"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.005.",
+   "evidence_code": "[Exponential(0.005)]"
+  },
+  {
+   "aspect_description": "Attack step definition: Injecting malware into a software build.",
+   "evidence_code": "& injectMalwareInSoftwareBuild"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.1.",
+   "evidence_code": "[Exponential(0.1)]"
+  },
+  {
+   "aspect_description": "Logical relationship: Injecting malware in software build implies the developed software is trojanized.",
+   "evidence_code": "-> developedSoftware.beTrojanized"
+  },
+  {
+   "aspect_description": "Attack step definition: Injecting malware into a firmware build.",
+   "evidence_code": "& injectMalwareInFirmwareBuild"
+  },
+  {
+   "aspect_description": "Logical relationship: Injecting malware in firmware build implies the developed firmware is compromised.",
+   "evidence_code": "-> developedFirmware.firmwareCompromised"
+  },
+  {
+   "aspect_description": "Defense definition: SecureDevelopmentLifecycle.",
+   "evidence_code": "# SecureDevelopmentLifecycle"
+  },
+  {
+   "aspect_description": "Logical relationship: SecureDevelopmentLifecycle prevents compromise of the DevelopmentEnvironment.",
+   "evidence_code": "-> compromise"
+  },
+  {
+   "aspect_description": "Asset definition for 'DistributionMechanism'.",
+   "evidence_code": "asset DistributionMechanism { ... }"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.03.",
+   "evidence_code": "[Exponential(0.03)]"
+  },
+  {
+   "aspect_description": "Attack step definition: Substituting with malicious software.",
+   "evidence_code": "& substituteWithMaliciousSoftware"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.15.",
+   "evidence_code": "[Exponential(0.15)]"
+  },
+  {
+   "aspect_description": "Logical relationship: Substituting with malicious software implies the distributed software is placed on a compromised host.",
+   "evidence_code": "-> distributedSoftware.bePlacedOnCompromisedHost"
+  },
+  {
+   "aspect_description": "Attack step definition: Substituting with compromised hardware.",
+   "evidence_code": "& substituteWithCompromisedHardware"
+  },
+  {
+   "aspect_description": "Logical relationship: Substituting with compromised hardware implies the distributed hardware is substituted in the supply chain.",
+   "evidence_code": "-> distributedHardware.beSubstitutedInSupplyChain"
+  },
+  {
+   "aspect_description": "Defense definition: DistributionIntegrityControls.",
+   "evidence_code": "# DistributionIntegrityControls"
+  },
+  {
+   "aspect_description": "Logical relationship: DistributionIntegrityControls prevents compromise of the DistributionMechanism.",
+   "evidence_code": "-> compromise"
+  },
+  {
+   "aspect_description": "Category definition for 'CompromisableProducts'.",
+   "evidence_code": "category CompromisableProducts { ... }"
+  },
+  {
+   "aspect_description": "Asset definition for 'SoftwareProduct'.",
+   "evidence_code": "asset SoftwareProduct { ... }"
+  },
+  {
+   "aspect_description": "Attack step definition: Software product is trojanized.",
+   "evidence_code": "& beTrojanized"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.05.",
+   "evidence_code": "[Exponential(0.05)]"
+  },
+  {
+   "aspect_description": "Logical relationship: Trojanized software implies target systems receive trojanized software.",
+   "evidence_code": "-> targetSystems.receiveTrojanizedSoftware"
+  },
+  {
+   "aspect_description": "Attack step definition: Software product is placed on a compromised host.",
+   "evidence_code": "& bePlacedOnCompromisedHost"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.1.",
+   "evidence_code": "[Exponential(0.1)]"
+  },
+  {
+   "aspect_description": "Logical relationship: Software placed on a compromised host implies target systems receive trojanized software.",
+   "evidence_code": "-> targetSystems.receiveTrojanizedSoftware"
+  },
+  {
+   "aspect_description": "Defense definition: CodeSigningAndVerificationChain.",
+   "evidence_code": "# CodeSigningAndVerificationChain"
+  },
+  {
+   "aspect_description": "Asset definition for 'HardwareProduct'.",
+   "evidence_code": "asset HardwareProduct { ... }"
+  },
+  {
+   "aspect_description": "Attack step definition: Hardware product is counterfeit.",
+   "evidence_code": "& beCounterfeit"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.02.",
+   "evidence_code": "[Exponential(0.02)]"
+  },
+  {
+   "aspect_description": "Logical relationship: Counterfeit hardware implies target systems receive compromised hardware.",
+   "evidence_code": "-> targetSystems.receiveCompromisedHardware"
+  },
+  {
+   "aspect_description": "Attack step definition: Hardware firmware is compromised.",
+   "evidence_code": "& firmwareCompromised"
+  },
+  {
+   "aspect_description": "Logical relationship: Compromised firmware implies target systems receive compromised hardware.",
+   "evidence_code": "-> targetSystems.receiveCompromisedHardware"
+  },
+  {
+   "aspect_description": "Attack step definition: Hardware product is substituted in the supply chain.",
+   "evidence_code": "& beSubstitutedInSupplyChain"
+  },
+  {
+   "aspect_description": "Logical relationship: Substituted hardware implies target systems receive compromised hardware.",
+   "evidence_code": "-> targetSystems.receiveCompromisedHardware"
+  },
+  {
+   "aspect_description": "Defense definition: HardwareAuthenticityChecks.",
+   "evidence_code": "# HardwareAuthenticityChecks"
+  },
+  {
+   "aspect_description": "Category definition for 'TargetICSAssets'.",
+   "evidence_code": "category TargetICSAssets { ... }"
+  },
+  {
+   "aspect_description": "Abstract asset definition for 'TargetSystem'.",
+   "evidence_code": "abstract asset TargetSystem { ... }"
+  },
+  {
+   "aspect_description": "Attack step definition: Target system is susceptible to supply chain introduction.",
+   "evidence_code": "& SusceptibleToSupplyChainIntroduction"
+  },
+  {
+   "aspect_description": "Attack step definition: Installation is possible due to lax checks.",
+   "evidence_code": "& InstallationPossibleDueToLaxChecks"
+  },
+  {
+   "aspect_description": "Attack step definition: Target system receives trojanized software (result).",
+   "evidence_code": "| receiveTrojanizedSoftware"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.8.",
+   "evidence_code": "[Exponential(0.8)]"
+  },
+  {
+   "aspect_description": "Attack step definition: Target system receives compromised hardware (result).",
+   "evidence_code": "| receiveCompromisedHardware"
+  },
+  {
+   "aspect_description": "Attack step definition: Installing trojanized software on the target system.",
+   "evidence_code": "& installTrojanizedSoftware"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.5.",
+   "evidence_code": "[Exponential(0.5)]"
+  },
+  {
+   "aspect_description": "Logical relationship: Installing trojanized software implies executing the software payload.",
+   "evidence_code": "-> executeSoftwarePayload"
+  },
+  {
+   "aspect_description": "Attack step definition: Activating compromised hardware on the target system.",
+   "evidence_code": "& activateCompromisedHardware"
+  },
+  {
+   "aspect_description": "Logical relationship: Activating compromised hardware implies executing the hardware payload.",
+   "evidence_code": "-> executeHardwarePayload"
+  },
+  {
+   "aspect_description": "Attack step definition: Executing the software payload.",
+   "evidence_code": "& executeSoftwarePayload"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.1.",
+   "evidence_code": "[Exponential(0.1)]"
+  },
+  {
+   "aspect_description": "Logical relationship: Executing software payload implies achieving system impact via software.",
+   "evidence_code": "-> achieveSystemImpactViaSoftware"
+  },
+  {
+   "aspect_description": "Attack step definition: Executing the hardware payload.",
+   "evidence_code": "& executeHardwarePayload"
+  },
+  {
+   "aspect_description": "Logical relationship: Executing hardware payload implies achieving system impact via hardware.",
+   "evidence_code": "-> achieveSystemImpactViaHardware"
+  },
+  {
+   "aspect_description": "Attack step definition: Achieving system impact via software.",
+   "evidence_code": "& achieveSystemImpactViaSoftware"
+  },
+  {
+   "aspect_description": "Attack step probability: Exponential distribution with rate 0.02.",
+   "evidence_code": "[Exponential(0.02)]"
+  },
+  {
+   "aspect_description": "Attack step definition: Achieving system impact via hardware.",
+   "evidence_code": "& achieveSystemImpactViaHardware"
+  },
+  {
+   "aspect_description": "Defense definition: SupplyChainRiskManagementProgram.",
+   "evidence_code": "# SupplyChainRiskManagementProgram"
+  },
+  {
+   "aspect_description": "Logical relationship: SupplyChainRiskManagementProgram prevents susceptibility to supply chain introduction.",
+   "evidence_code": "-> SusceptibleToSupplyChainIntroduction"
+  },
+  {
+   "aspect_description": "Defense definition: ProductIntegrityVerification.",
+   "evidence_code": "# ProductIntegrityVerification"
+  },
+  {
+   "aspect_description": "Logical relationship: ProductIntegrityVerification prevents installation possible due to lax checks.",
+   "evidence_code": "-> InstallationPossibleDueToLaxChecks"
+  },
+  {
+   "aspect_description": "Defense definition: SoftwareUpdateAndPatchManagement.",
+   "evidence_code": "# SoftwareUpdateAndPatchManagement"
+  },
+  {
+   "aspect_description": "Defense definition: VulnerabilityScanningAndAuditing.",
+   "evidence_code": "# VulnerabilityScanningAndAuditing"
+  },
+  {
+   "aspect_description": "Asset definition: ApplicationServer extends TargetSystem.",
+   "evidence_code": "asset ApplicationServer extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: ControlServer extends TargetSystem.",
+   "evidence_code": "asset ControlServer extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: DataGateway extends TargetSystem.",
+   "evidence_code": "asset DataGateway extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: DataHistorian extends TargetSystem.",
+   "evidence_code": "asset DataHistorian extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: FieldIO extends TargetSystem.",
+   "evidence_code": "asset FieldIO extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: HMI extends TargetSystem.",
+   "evidence_code": "asset HMI extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: IED extends TargetSystem.",
+   "evidence_code": "asset IED extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: JumpHost extends TargetSystem.",
+   "evidence_code": "asset JumpHost extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: PLC extends TargetSystem.",
+   "evidence_code": "asset PLC extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: RTU extends TargetSystem.",
+   "evidence_code": "asset RTU extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: SafetyController extends TargetSystem.",
+   "evidence_code": "asset SafetyController extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: VPNServer extends TargetSystem.",
+   "evidence_code": "asset VPNServer extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Asset definition: Workstation extends TargetSystem.",
+   "evidence_code": "asset Workstation extends TargetSystem { }"
+  },
+  {
+   "aspect_description": "Associations block defining relationships between assets.",
+   "evidence_code": "associations { ... }"
+  },
+  {
+   "aspect_description": "Association: VendorWebsite hosts one or more SoftwareProducts.",
+   "evidence_code": "VendorWebsite [hostingSite] 1 <-- HostsSoftware --> * [hostedSoftware] SoftwareProduct"
+  },
+  {
+   "aspect_description": "Association: DevelopmentEnvironment develops one or more SoftwareProducts.",
+   "evidence_code": "DevelopmentEnvironment [developerEnvironment] 1 <-- DevelopsSoftware --> * [developedSoftware] SoftwareProduct"
+  },
+  {
+   "aspect_description": "Association: DevelopmentEnvironment develops one or more HardwareProducts (firmware).",
+   "evidence_code": "DevelopmentEnvironment [firmwareDeveloperEnvironment] 1 <-- DevelopsFirmware --> * [developedFirmware] HardwareProduct"
+  },
+  {
+   "aspect_description": "Association: DistributionMechanism distributes one or more SoftwareProducts.",
+   "evidence_code": "DistributionMechanism [softwareDistributor] 1 <-- DistributesSoftware --> * [distributedSoftware] SoftwareProduct"
+  },
+  {
+   "aspect_description": "Association: DistributionMechanism distributes one or more HardwareProducts.",
+   "evidence_code": "DistributionMechanism [hardwareDistributor] 1 <-- DistributesHardware --> * [distributedHardware] HardwareProduct"
+  },
+  {
+   "aspect_description": "Association: SoftwareProduct is used by one or more TargetSystems.",
+   "evidence_code": "SoftwareProduct [usedSoftware] * <-- SoftwareUsage --> * [targetSystems] TargetSystem"
+  },
+  {
+   "aspect_description": "Association: HardwareProduct is used by one or more TargetSystems.",
+   "evidence_code": "HardwareProduct [usedHardware] * <-- HardwareUsage --> * [targetSystems] TargetSystem"
+  },
+    {
+   "aspect_description": "Attacker behavior/objective: Compromising a VendorWebsite.",
+   "evidence_code": "& compromise"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Hosting malicious software.",
+   "evidence_code": "& hostMaliciousSoftware"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Injecting malware in software build.",
+   "evidence_code": "& injectMalwareInSoftwareBuild"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Injecting malware in firmware build.",
+   "evidence_code": "& injectMalwareInFirmwareBuild"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Substituting with malicious software.",
+   "evidence_code": "& substituteWithMaliciousSoftware"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Substituting with compromised hardware.",
+   "evidence_code": "& substituteWithCompromisedHardware"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Software product is trojanized.",
+   "evidence_code": "& beTrojanized"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Software product is placed on compromised host.",
+   "evidence_code": "& bePlacedOnCompromisedHost"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Hardware product is counterfeit.",
+   "evidence_code": "& beCounterfeit"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Hardware firmware is compromised.",
+   "evidence_code": "& firmwareCompromised"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Hardware product is substituted in supply chain.",
+   "evidence_code": "& beSubstitutedInSupplyChain"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Target system susceptible to supply chain introduction.",
+   "evidence_code": "& SusceptibleToSupplyChainIntroduction"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Installation possible due to lax checks.",
+   "evidence_code": "& InstallationPossibleDueToLaxChecks"
+  },
+    {
+   "aspect_description": "Attacker objective: Target system receives trojanized software.",
+   "evidence_code": "targetSystems.receiveTrojanizedSoftware"
+  },
+    {
+   "aspect_description": "Attacker objective: Target system receives compromised hardware.",
+   "evidence_code": "targetSystems.receiveCompromisedHardware"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Installing trojanized software.",
+   "evidence_code": "& installTrojanizedSoftware"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Activating compromised hardware.",
+   "evidence_code": "& activateCompromisedHardware"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Executing software payload.",
+   "evidence_code": "& executeSoftwarePayload"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Executing hardware payload.",
+   "evidence_code": "& executeHardwarePayload"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Achieving system impact via software.",
+   "evidence_code": "& achieveSystemImpactViaSoftware"
+  },
+  {
+   "aspect_description": "Attacker behavior/objective: Achieving system impact via hardware.",
+   "evidence_code": "& achieveSystemImpactViaHardware"
+  },
+  {
+   "aspect_description": "Logical connector: Implies/results in.",
+   "evidence_code": "->"
+  },
+   {
+   "aspect_description": "Logical connector: Prevents (inferred by defense).",
+   "evidence_code": "->"
+  },
+  {
+   "aspect_description": "Logical connector: Abstract asset state/step result.",
+   "evidence_code": "|"
+  },
+  {
+   "aspect_description": "Logical connector: Asset inheritance.",
+   "evidence_code": "extends"
+  },
+  {
+   "aspect_description": "Logical connector: Association type.",
+   "evidence_code": "<-- HostsSoftware -->"
+  },
+  {
+   "aspect_description": "Logical connector: Association type.",
+   "evidence_code": "<-- DevelopsSoftware -->"
+  },
+    {
+   "aspect_description": "Logical connector: Association type.",
+   "evidence_code": "<-- DevelopsFirmware -->"
+  },
+    {
+   "aspect_description": "Logical connector: Association type.",
+   "evidence_code": "<-- DistributesSoftware -->"
+  },
+    {
+   "aspect_description": "Logical connector: Association type.",
+   "evidence_code": "<-- DistributesHardware -->"
+  },
+    {
+   "aspect_description": "Logical connector: Association type.",
+   "evidence_code": "<-- SoftwareUsage -->"
+  },
+    {
+   "aspect_description": "Logical connector: Association type.",
+   "evidence_code": "<-- HardwareUsage -->"
+  },
+  {
+   "aspect_description": "Cardinality: Exactly one.",
+   "evidence_code": "1"
+  },
+  {
+   "aspect_description": "Cardinality: Zero or more.",
+   "evidence_code": "*"
+  }
+ ]

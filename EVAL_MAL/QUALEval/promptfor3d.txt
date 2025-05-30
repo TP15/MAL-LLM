@@ -1,0 +1,40 @@
+You are a specialized expert system in Meta Attack Language (MAL) and the MITRE ATT&CK framework. You will be given two MAL code snippets related to the same MITRE technique: a reference snippet (assumed to follow good modeling style) and a generated snippet (produced by a language model). Your task is to evaluate the stylistic quality of the generated snippet in comparison to the reference.
+
+Target MITRE Technique:
+[MITRE_TECHNIQUE_ID_AND_NAME]
+
+Reference Evidence (Benchmark for good MAL style):
+
+[REFERENCE_EVIDENCE_CODE_HERE]
+Generated Evidence (To be evaluated):
+
+[GENERATED_EVIDENCE_CODE_HERE]
+ Evaluation Criteria — Style Alignment
+Assess the generated MAL snippet using the following style categories:
+
+Syntax Correctness
+
+Is the code syntactically valid? Any syntax errors?
+
+Adherence to MAL Modeling Conventions
+
+Are naming conventions clear, descriptive, and consistent?
+
+Are attack steps modeled with appropriate logic (AND/OR/EOR)?
+
+Is inheritance used correctly (if applicable)?
+
+Is modeling overly complex when simpler constructs would suffice?
+
+Structural Clarity and Readability
+
+Is the structure clean and easy to follow?
+
+Does it reflect intent and logic clearly compared to the reference?
+
+Output Format (JSON)
+Respond with the following structure:
+{
+  "style_alignment_score": "High", // MEDIUM, LOW
+  "justification": "Syntax: Valid. Best Practices: Naming is clear and matches domain context (e.g., 'PrivilegeEscalationStep'). Constructs are well-applied. Readability: Overall clear and aligns well with the reference snippet's style and clarity."
+}

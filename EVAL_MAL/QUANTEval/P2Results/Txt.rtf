@@ -1,0 +1,41 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 mal_lang = '''\
+#id: "org.mal-lang.examplelang"\
+#version: "1.0.0"\
+category System \{\
+  asset Operator \{\
+    | launchPhishing\
+      -> phishingHit [Exponential(0.10)]\
+    | phishingHit \
+      -> credentials.extract     \
+  \}\
+  asset Credentials \{\
+    \
+      -> machines.login\
+  \}\
+  asset Machine \{\
+    | login\
+      -> entry\
+    | entry \
+      -> link\
+    #MFA\
+     -> login\
+  \}\
+  asset Gateway \{\
+  \}\
+\}\
+associations \{\
+  Gateway [gateways] * <-- LinkAccess --> * [machines] Machine\
+  Machine [machines] 1 <-- AuthData --> * [operators] Operator\
+  \
+\}\
+'''\
+\
+with open("result.mal", "w") as file:\
+    file.write(mal_lang)}

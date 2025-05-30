@@ -1,0 +1,284 @@
+{
+  "matched_aspects": [
+    {
+      "reference_aspect_id": 1,
+      "generated_aspect_id": 26,
+      "match_reason": "Both represent categories for grouping identity or person-related assets.",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 2,
+      "generated_aspect_id": 27,
+      "match_reason": "Both represent the user or identity asset involved in authentication/access.",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 6,
+      "generated_aspect_id": 4,
+      "match_reason": "Both represent the target remote service asset.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 7,
+      "generated_aspect_id": 18,
+      "match_reason": "Reference represents the overall entry point/capability of accessing remote services; Generated represents the successful outcome of gaining access on the remote service.",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 9,
+      "generated_aspect_id": 19,
+      "match_reason": "Both represent the consequence of gaining access to the remote service leading to further access/foothold within the internal network/systems.",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 21,
+      "generated_aspect_id": 32,
+      "match_reason": "Both represent categories for grouping internal network or core infrastructure assets.",
+      "confidence_score": 0.8
+    },
+    {
+      "reference_aspect_id": 22,
+      "generated_aspect_id": 33,
+      "match_reason": "Both represent the internal network or system asset.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 23,
+      "generated_aspect_id": 34,
+      "match_reason": "Reference models achieving persistence; Generated models establishing a foothold, which is a precursor to persistence.",
+      "confidence_score": 0.7
+    },
+    {
+      "reference_aspect_id": 24,
+      "generated_aspect_id": 36,
+      "match_reason": "Reference models achieving remote access; Generated models performing lateral movement, which is a form of exercising remote access within the network.",
+      "confidence_score": 0.7
+    },
+    {
+      "reference_aspect_id": 28,
+      "generated_aspect_id": 22,
+      "match_reason": "Both represent the defense/mitigation of implementing multi-factor authentication.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 30,
+      "generated_aspect_id": 23,
+      "match_reason": "Both represent the relationship where MFA defense prevents successful login/access via remote services.",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 31,
+      "generated_aspect_id": 38,
+      "match_reason": "Both represent the defense/mitigation of implementing network segmentation.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 33,
+      "generated_aspect_id": 39,
+      "match_reason": "Both represent the relationship where network segmentation acts as a defense, although the targeted step (access to service vs. lateral movement) differs.",
+      "confidence_score": 0.7
+    },
+    {
+      "reference_aspect_id": 34,
+      "generated_aspect_id": 42,
+      "match_reason": "Both represent the block defining associations between assets.",
+      "confidence_score": 1.0
+    },
+    {
+      "reference_aspect_id": 35,
+      "generated_aspect_id": 44,
+      "match_reason": "Both represent an association linking user/identity assets to remote service assets.",
+      "confidence_score": 0.9
+    },
+    {
+      "reference_aspect_id": 36,
+      "generated_aspect_id": 43,
+      "match_reason": "Both represent an association linking service assets to internal network/system assets.",
+      "confidence_score": 0.9
+    },
+     {
+      "reference_aspect_id": 3,
+      "generated_aspect_id": 16,
+      "match_reason": "Reference represents user rights capability enabling access; Generated represents successful login using stolen credentials, which is a way user rights/credentials are leveraged.",
+      "confidence_score": 0.7
+    },
+    {
+      "reference_aspect_id": 4,
+      "generated_aspect_id": 17,
+      "match_reason": "Both represent the relationship where user rights/credentials capability leads to successful access/login.",
+      "confidence_score": 0.7
+    },
+    {
+      "reference_aspect_id": 11,
+      "generated_aspect_id": 16,
+      "match_reason": "Reference represents valid accounts capability enabling access; Generated represents successful login using stolen credentials, which is a way valid accounts are leveraged.",
+      "confidence_score": 0.7
+    },
+     {
+      "reference_aspect_id": 13,
+      "generated_aspect_id": 17,
+      "match_reason": "Both represent the relationship where valid accounts capability leads to successful access/login.",
+      "confidence_score": 0.7
+    }
+  ],
+  "unmatched_aspects_list_a": [
+    {
+      "aspect_description": "Information annotation for the externalRemoteServices step, linking it to the ATT&CK technique description.",
+      "evidence_code": "info: \"Adversaries may use remote services to initially access and/or persist within a network.\""
+    },
+    {
+      "aspect_description": "Abstract asset definition for 'OS' within the Software category.",
+      "evidence_code": "abstractAsset OS {"
+    },
+    {
+      "aspect_description": "Information annotation for the _validAccounts step.",
+      "evidence_code": "info: \"Adversaries may steal the credentials of a specific user or service account using Credential Access techniques or capture credentials earlier in their reconnaissance process through social engineering for means of gaining Initial Access.\""
+    },
+    {
+      "aspect_description": "Defense/mitigation step 'disableOrRemoveFeatureOrProgram' on the OS asset.",
+      "evidence_code": "# disableOrRemoveFeatureOrProgram"
+    },
+    {
+      "aspect_description": "Information annotation for the disableOrRemoveFeatureOrProgram mitigation, linking to ATT&CK M1064.",
+      "evidence_code": "info: \"https://attack.mitre.org/techniques/T1064/\""
+    },
+    {
+      "aspect_description": "Asset definition for 'Windows' extending the abstract OS asset.",
+      "evidence_code": "asset Windows extends OS {"
+    },
+    {
+      "aspect_description": "Attack step/capability 'windowsRemoteManagement' on the Windows asset.",
+      "evidence_code": "& windowsRemoteManagement"
+    },
+    {
+      "aspect_description": "Logical relationship: windowsRemoteManagement capability enables access to service.externalRemoteServices.",
+      "evidence_code": "->  service.externalRemoteServices"
+    },
+    {
+      "aspect_description": "Comment explaining the use of Windows Remote Management.",
+      "evidence_code": "// Windows Remote Management can also be used externally"
+    },
+    {
+      "aspect_description": "Defense/mitigation step 'limitAccessToResourceOverNetwork' on the InternalNetwork asset.",
+      "evidence_code": "# limitAccessToResourceOverNetwork"
+    },
+    {
+      "aspect_description": "Information annotation for the limitAccessToResourceOverNetwork mitigation, linking to ATT&CK M1035.",
+      "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1035/\""
+    },
+    {
+      "aspect_description": "Information annotation for the multiFactorAuthentication mitigation, linking to ATT&CK M1032.",
+      "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1032/\""
+    },
+    {
+      "aspect_description": "Information annotation for the networkSegmentation mitigation, linking to ATT&CK M1030.",
+      "evidence_code": "info: \"https://attack.mitre.org/mitigations/M1030/\""
+    },
+    {
+      "aspect_description": "Association: OS assets Contain Service assets (one OS contains one or more Services).",
+      "evidence_code": "OS [os] 1 <--Contain--> 1-* [service] Service"
+    }
+  ],
+  "unmatched_aspects_list_b": [
+    {
+      "aspect_description": "Model metadata: identifier.",
+      "evidence_code": "#id: \"com.example.external_remote_services\""
+    },
+    {
+      "aspect_description": "Model metadata: version.",
+      "evidence_code": "#version: \"1.0.0\""
+    },
+    {
+      "aspect_description": "Attack step/capability 'scanAndIdentify' on RemoteService with an Exponential probability distribution.",
+      "evidence_code": "    & scanAndIdentify [Exponential(0.8)] -> tryExploitVulnerability, attemptBruteForceLogin"
+    },
+    {
+      "aspect_description": "Logical relationship: 'scanAndIdentify' can lead to 'tryExploitVulnerability' AND 'attemptBruteForceLogin'.",
+      "evidence_code": "-> tryExploitVulnerability, attemptBruteForceLogin"
+    },
+    {
+      "aspect_description": "Attack step/capability 'tryExploitVulnerability' on RemoteService with a LogNormal probability distribution.",
+      "evidence_code": "    & tryExploitVulnerability [LogNormal(5.0,2.0)]"
+    },
+    {
+      "aspect_description": "Attack step/capability 'attemptBruteForceLogin' on RemoteService with a Gamma probability distribution.",
+      "evidence_code": "    & attemptBruteForceLogin [Gamma(4.0,8.0)]"
+    },
+    {
+      "aspect_description": "Attack step/capability 'prepareStolenCredentialAttack' on RemoteService with a Uniform probability distribution.",
+      "evidence_code": "    & prepareStolenCredentialAttack [Uniform(0.01,0.01)] -> attemptLoginWithStolenCreds"
+    },
+    {
+      "aspect_description": "Logical relationship: 'prepareStolenCredentialAttack' can lead to 'attemptLoginWithStolenCreds'.",
+      "evidence_code": "-> attemptLoginWithStolenCreds"
+    },
+    {
+      "aspect_description": "Attack step/capability 'attemptLoginWithStolenCreds' on RemoteService with an Exponential probability distribution.",
+      "evidence_code": "    & attemptLoginWithStolenCreds [Exponential(0.7)]"
+    },
+    {
+      "aspect_description": "Attack step/capability 'successfulExploit' on RemoteService with a Uniform probability distribution.",
+      "evidence_code": "    & successfulExploit [Uniform(0.1,0.1)] -> accessAchieved"
+    },
+    {
+      "aspect_description": "Logical relationship: 'successfulExploit' can lead to 'accessAchieved'.",
+      "evidence_code": "-> accessAchieved"
+    },
+    {
+      "aspect_description": "Attack step/capability 'successfulBruteForceLogin' on RemoteService with a Uniform probability distribution.",
+      "evidence_code": "    & successfulBruteForceLogin [Uniform(0.1,0.1)] -> accessAchieved"
+    },
+    {
+      "aspect_description": "Logical relationship: 'successfulBruteForceLogin' can lead to 'accessAchieved'.",
+      "evidence_code": "-> accessAchieved"
+    },
+    {
+      "aspect_description": "Defense/mitigation 'ServiceIsRegularlyPatched' on RemoteService.",
+      "evidence_code": "    # ServiceIsRegularlyPatched -> successfulExploit"
+    },
+    {
+      "aspect_description": "Logical relationship: 'ServiceIsRegularlyPatched' defense prevents 'successfulExploit'.",
+      "evidence_code": "-> successfulExploit"
+    },
+    {
+      "aspect_description": "Defense/mitigation 'StrongPasswordPolicyInEffect' on RemoteService.",
+      "evidence_code": "    # StrongPasswordPolicyInEffect -> successfulBruteForceLogin"
+    },
+    {
+      "aspect_description": "Logical relationship: 'StrongPasswordPolicyInEffect' defense prevents 'successfulBruteForceLogin'.",
+      "evidence_code": "-> successfulBruteForceLogin"
+    },
+    {
+      "aspect_description": "Attack step/capability 'compromise' on UserCredentials with an Exponential probability distribution.",
+      "evidence_code": "    & compromise [Exponential(0.05)] -> authenticatesToServices.prepareStolenCredentialAttack"
+    },
+    {
+      "aspect_description": "Logical relationship: 'compromise' on UserCredentials can lead to 'prepareStolenCredentialAttack' on associated RemoteService assets.",
+      "evidence_code": "-> authenticatesToServices.prepareStolenCredentialAttack"
+    },
+    {
+      "aspect_description": "Defense/mitigation 'UserSecurityAwarenessTraining' on UserCredentials.",
+      "evidence_code": "    # UserSecurityAwarenessTraining -> compromise"
+    },
+    {
+      "aspect_description": "Logical relationship: 'UserSecurityAwarenessTraining' defense prevents 'compromise'.",
+      "evidence_code": "-> compromise"
+    },
+    {
+      "aspect_description": "Logical relationship: 'establishFoothold' can lead to 'performLateralMovement' AND 'exfiltrateData'.",
+      "evidence_code": "-> performLateralMovement, exfiltrateData"
+    },
+    {
+      "aspect_description": "Attacker objective/capability 'exfiltrateData' on InternalSystem with a Gamma probability distribution.",
+      "evidence_code": "    & exfiltrateData [Gamma(3.0,3.0)]"
+    },
+    {
+      "aspect_description": "Defense/mitigation 'EndpointDetectionAndResponseActive' on InternalSystem.",
+      "evidence_code": "    # EndpointDetectionAndResponseActive -> establishFoothold"
+    },
+    {
+      "aspect_description": "Logical relationship: 'EndpointDetectionAndResponseActive' defense prevents 'establishFoothold'.",
+      "evidence_code": "-> establishFoothold"
+    }
+  ]
+}

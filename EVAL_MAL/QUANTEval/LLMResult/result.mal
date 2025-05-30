@@ -1,0 +1,88 @@
+
+#id: "com.infrastructure.threatmodel" #version: "1.0.0"
+
+category Infrastructure {
+
+    // Human attacker capable of social-engineering campaigns
+    asset Operator {
+        attackSteps {
+
+            // Attacker launches the phishing campaign
+            launchPhishing {
+                -> phishingHit;
+            }
+
+            // A single victim falls for the phishing mail
+            phishingHit [Exponential(10)] {
+                -> [credential]Credential.extract;
+            }
+        }
+    }
+
+    // Secrets that enable authenticated log-in
+    asset Credential {
+        attackSteps {
+
+            // Theft of the credential
+            extract {
+                -> compromised;
+            }
+
+            // Stolen / fully compromised state
+            compromised {
+                -> [machine]Machine.login;
+            }
+        }
+    }
+
+    // Compute node that can be reached and laterally traversed
+    asset Machine {
+        attackSteps {
+
+            // Interactive or remote log-in
+            login {
+                #MFA         // optional multi-factor defence
+                -> entry;
+            }
+
+            // Initial foothold on the machine
+            entry {
+                -> link;
+            }
+
+            // Using internal connectivity to reach other assets
+            link {
+                -> [target]Machine.login;   // lateral within flat network
+                -> [edge]Gateway.forward;   // traverse via gateway
+            }
+        }
+    }
+
+    // Network gateway that routes traffic but was not itself breached
+    asset Gateway {
+        attackSteps {
+
+            // Forward traffic deeper into the network
+            forward {
+                -> [internal]Machine.login;
+            }
+        }
+    }
+}
+
+associations {
+
+    // Operators possess (or steal) credentials
+    Operator [operator] * <-- HasCredential --> * [credential] Credential
+
+    // Credentials authenticate machine log-in
+    Credential [credential] * <-- Authenticates --> * [machine] Machine
+
+    // Direct machine-to-machine internal links
+    Machine [source] * <-- InternalLink --> * [target] Machine
+
+    // Gateways connect to internal machines
+    Gateway [edge] * <-- LinkAccess --> * [internal] Machine
+}
+
+

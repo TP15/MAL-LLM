@@ -1,0 +1,43 @@
+
+
+#id: "org.mal-lang.examplelang"
+#version: "1.0.0"
+
+category System { //Test
+  asset Operator {
+    | launchPhishing [Exponential(0.10)]
+      -> phishingHit  // PARSER ERROR <result.mal:9:34> Propability one line to low
+
+    | phishingHit 
+      -> credentials.extract     
+  }
+
+  asset Credentials {
+    & test
+      -> machines.login // PARSER ERROR 17:7 Missing Credential name
+
+  }
+  asset Machine {
+    | login
+      -> entry
+    | entry 
+      -> link
+    #MFA
+     -> login
+
+  }
+
+  asset Gateway {
+
+  }
+
+}
+
+associations {
+  Gateway [gateways] * <-- LinkAccess --> * [machines] Machine
+  Machine [machines] 1 <-- AuthData --> * [operators] Operator
+  
+} 
+// [ANALYZER ERROR] <result.mal:12:10> Field 'credentials' not defined for asset 'Operator'
+//[ANALYZER ERROR] <result.mal:17:10> Field 'machines' not defined for asset 'Credentials'
+//[ANALYZER ERROR] <result.mal:24:10> Attack step 'link' not defined for asset 'Machine'
