@@ -1,0 +1,4 @@
+#id: "org.mal-lang.coreLang"
+#version: "1.0.0"
+
+include "coreLang.mal"

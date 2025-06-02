@@ -1,0 +1,5 @@
+#id: "org.mal-lang.vehicleLang"
+#version: "2.0.0"
+
+include "org.mal-lang.coreLang/coreLang.mal"
+include "vehicleLang.mal"

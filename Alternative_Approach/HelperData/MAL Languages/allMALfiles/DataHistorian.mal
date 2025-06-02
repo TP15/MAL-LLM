@@ -1,0 +1,18 @@
+#id: "org.mal_lang.DataHistorianlang"
+#version: "1.0.0"
+category IcsInterfaceResources{
+
+    asset DataHistorian extends IcsApplication 
+        user info: "A centralized database located on a computer installed in the control system DMZ supporting external corporate user data access for archival and analysis using statistical process control and other techniques."
+      {
+      // Override control related attack steps (Impact) because they are not relevant to this asset
+      | manipulationOfControl @Override
+
+      | lossOfControl @Override
+      }
+
+}
+
+associations {
+ 
+ }

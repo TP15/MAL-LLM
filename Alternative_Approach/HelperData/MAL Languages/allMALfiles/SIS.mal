@@ -1,0 +1,23 @@
+#id: "org.mal_lang.SISlang"
+#version: "1.0.0"
+category IcsControlResources{
+
+    asset SIS extends IcsHardware
+        user info: "A safety instrumented system (SIS) takes automated action to keep a plant in a safe state, or to put it into a safe state, when abnormal conditions are present."
+      {
+        | shutdown @Override
+            +> safeguardedSystem.lossOfSafety
+
+        # notDisabled @Override [Enabled]
+          developer info: "The probability that a particular SIS is not actually present."
+          modeler info: "The use cases for this are removing the SIS safeguarding an IcsHardware and removing redundant SIS subsystems."
+          -> safeguardedSystem.safetyMechanismsOffline,
+             triggerPropagateRedundantShutdown
+
+      }
+
+}
+
+associations {
+
+}

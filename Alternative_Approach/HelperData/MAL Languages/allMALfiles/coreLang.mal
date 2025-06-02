@@ -1,0 +1,9 @@
+#id: "org.mal_lang.corelang"
+#version: "1.0.0"
+
+include "ComputeResources.mal"
+include "DataResources.mal"
+include "IAM.mal"
+include "User.mal"
+include "Networking.mal"
+include "Vulnerability.mal"

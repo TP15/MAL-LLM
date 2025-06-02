@@ -1,0 +1,4 @@
+#id: "org.mal-lang.icsLang"
+#version: "0.0.2"
+
+include "icsLang.mal"
